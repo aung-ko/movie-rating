@@ -14,7 +14,21 @@
 			<h1>{{$movie[0]['movie_name']}}</h1>
 			<h3>{{$movie[0]['director_name']}}</h3>
 			<p>{{$movie[0]['description']}}</p>
-			<small>{{$movie[0]['genres']}}</small>
+			
+
+
+
+			<?php
+
+			$length = count($movie[0]['genre_id']);
+
+
+
+			for($i=0; $i < $length; $i++){ ?>
+				<small>{{$genre[$movie[0]['genre_id'][$i]]}}</small>
+			
+			<?php } ?>
+
 			<h4>{{$movie[0]['released_date']}}</h4>
 		</div>
 

@@ -20,7 +20,35 @@
 			
 			<h3>{{$movie->director_name}}</h3>
 			<p>{{$movie->description}}</p>
-			<small>{{$movie->genres}}</small>
+
+			<?php
+		
+			// dd($genre[$movie->genres[0]]);
+			// $moviegenre = json_encode($movie->genres);
+			
+
+			// $moviegenre = str_replace('[', "", $moviegenre);
+			// $moviegenre = str_replace(']', "", $moviegenre);
+			// $moviegenre = str_replace('"', "", $moviegenre);
+			// $moviegenre = str_replace(',', " | ", $moviegenre);
+
+			// $moviegenre = preg_replace('/[^A-Za-z0-9\-]/', '|', $moviegenre);
+			// dd($moviegenre);
+
+			?>
+
+			<?php
+
+			$length = count($movie->genre_id);
+
+			for($i=0; $i < $length; $i++){ ?>
+				<small>{{$genre[$movie->genre_id[$i]]}}</small>
+			
+			<?php } ?>
+
+
+
+			
 			<h4>{{$movie->released_date}}</h4>
 		</div>
 

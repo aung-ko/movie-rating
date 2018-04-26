@@ -26,11 +26,15 @@
 			
 		</div>
 
+
 		<div class="form-group">
-			<label for="genres">Genres</label>
-			<input type="text" name="genres" id="genres" class="form-control">
+			<label for="genre_id">Genres</label>
+			<select class="form-control myclass" name="genre_id[]" multiple="multiple">
+				@foreach($genre as $key=>$value)
+				<option value="{{ $key }}">{{ $value }}</option>
+				@endforeach
+			</select>
 			<br>
-			
 		</div>
 
 

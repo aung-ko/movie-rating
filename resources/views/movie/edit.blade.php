@@ -22,10 +22,17 @@
 				<input type="text" name="description" id="description" class="form-control" value="{{$movie[0]['description']}}">
 			</div>
 
+
+
 			<div class="form-group">
-				<label for="genres">Genres</label>
-				<input type="text" name="genres" id="genres" class="form-control" value="{{$movie[0]['genres']}}">
-			</div>
+			<label for="genre_id">Genres</label>
+			<select class="form-control myclass" name="genre_id[]" multiple="multiple">
+				@foreach($genre as $key=>$value)
+				<option value="{{ $key }}">{{ $value }}</option>
+				@endforeach
+			</select>
+			<br>
+		</div>
 
 
 			<div class="form-group">
