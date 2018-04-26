@@ -16,6 +16,8 @@
 			<p>{{$movie[0]['description']}}</p>
 			<small>{{$movie[0]['genres']}}</small>
 			<h4>{{$movie[0]['released_date']}}</h4>
+			<hr>
+			<p>{{$reviews}}</p>
 		</div>
 
 
