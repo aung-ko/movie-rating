@@ -76,7 +76,7 @@ class MovieController extends Controller
         // dd($slug);
         $movies = Movie::where('slug', '=' , $slug)->get();
         $movie = $movies->toArray();
-        $reviews = Movie::findOrFail(2)->review;
+        $reviews = Movie::findOrFail($movie[0]['id'])->review;
         
         // dd($movie[0]['id']);
 
