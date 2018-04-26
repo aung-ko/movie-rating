@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+//Movie Route
+Route::resource('movie', 'MovieController')->except(['edit', 'show']);
+Route::get('movie/{slug}/edit', 'MovieController@edit');
+Route::get('movie/{slug}', 'MovieController@show');
+//Review Route
+Route::resource('review', 'ReviewController')->except(['edit', 'show']);
+Route::get('review/{slug}/edit', 'ReviewController@edit');
+Route::get('review/{slug}', 'ReviewController@show');
+
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
