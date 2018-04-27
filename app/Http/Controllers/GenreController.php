@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class GenreController extends Controller
 {
@@ -14,7 +15,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+    	$genres = Genre::paginate(5);
+    	return view('genre.index', compact('genres'));
     }
 
     /**
@@ -24,7 +26,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+    	return view('genre.create');
     }
 
     /**
@@ -35,7 +37,22 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	$this->validate(request(), [
+    		'genre_name' => 'required'
+
+    	]);
+
+    	$name = $request->genre_name;
+    	$slug = str_slug($name, "-");
+
+    	Genre::create([
+    		'genre_name' => request('genre_name'),
+    		'slug' => $slug
+
+
+    	]);
+
+    	return Redirect::route('genre.index');
     }
 
     /**
@@ -44,9 +61,16 @@ class GenreController extends Controller
      * @param  \App\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function show(Genre $genre)
+    public function show($slug)
     {
-        //
+        
+        // dd($slug);
+        $genres = Genre::where('slug', '=' , $slug)->get();
+        $genre = $genres->toArray();
+        
+        // dd($movie[0]['id']);
+
+        return view('genre.show', compact('genre'));
     }
 
     /**
@@ -55,9 +79,13 @@ class GenreController extends Controller
      * @param  \App\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function edit(Genre $genre)
+    public function edit($slug)
     {
-        //
+        
+        $genres = Genre::where('slug', '=' , $slug)->get();
+        $genre = $genres->toArray();
+        // dd($movie[0]['id']);
+        return view('genre.edit', compact('genre'));
     }
 
     /**
@@ -69,7 +97,25 @@ class GenreController extends Controller
      */
     public function update(Request $request, Genre $genre)
     {
-        //
+    	$this->validate(request(), [
+    		'genre_name' => 'required'
+
+    	]);
+
+    	$name = $request->genre_name;
+    	$slug = str_slug($name, "-");
+
+
+
+    	$genre->update([
+    		'genre_name' => $request->genre_name,
+    		'slug' => $slug
+
+    	]);
+
+    	return redirect()->action(
+    		'GenreController@show', ['slug' => $genre->slug]
+    	);
     }
 
     /**
@@ -80,6 +126,7 @@ class GenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-        //
+    	Genre::deleteid($genre->id);
+    	return Redirect::route('genre.index');
     }
 }

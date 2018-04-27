@@ -13,7 +13,8 @@ class GenreSeeder extends Seeder
     {
         //
         Genre::create([
-        	'genre_name' => 'Drama'
+        	'genre_name' => 'Drama',
+            'slug' => 'drama'
 
         ]);
     }

@@ -19,7 +19,7 @@ class MovieController extends Controller
          $genre = Genre::pluck('genre_name', 'id');
         $movies = Movie::paginate(10);
 
-        return view('movie.index', compact('movies'), compact('genre'));
+        return view('movie.index', compact('movies','genre'));
     }
 
     /**
@@ -83,7 +83,7 @@ class MovieController extends Controller
         
         // dd($movie[0]['id']);
 
-        return view('movie.show', compact('movie'), compact('genre'));
+        return view('movie.show', compact('movie', 'genre'));
     }
 
     /**
@@ -98,7 +98,7 @@ class MovieController extends Controller
         $movies = Movie::where('slug', '=' , $slug)->get();
         $movie = $movies->toArray();
         // dd($movie[0]['id']);
-        return view('movie.edit', compact('movie'), compact('genre'));
+        return view('movie.edit', compact('movie','genre'));
     }
 
     /**
