@@ -17,8 +17,18 @@ class Movie extends Model
     }
 
 
+    
+    public function scopeShowslug($query, $slug)
+    {
+        return $query->where('slug', $slug)->get();
+    }
+
+
     public function genres()
     {
-    	return $this->belongsToMany('App\Genre', 'genres_movies', 'movie_id', 'genre_id');
+    	return $this->belongsToMany(Genre::class);
     }
+
+
+
 }

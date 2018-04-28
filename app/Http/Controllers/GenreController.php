@@ -65,7 +65,7 @@ class GenreController extends Controller
     {
         
         // dd($slug);
-        $genres = Genre::where('slug', '=' , $slug)->get();
+        $genres = Genre::showslug($slug);
         $genre = $genres->toArray();
         
         // dd($movie[0]['id']);
@@ -82,7 +82,7 @@ class GenreController extends Controller
     public function edit($slug)
     {
         
-        $genres = Genre::where('slug', '=' , $slug)->get();
+        $genres = Genre::showslug($slug);
         $genre = $genres->toArray();
         // dd($movie[0]['id']);
         return view('genre.edit', compact('genre'));

@@ -6,39 +6,30 @@
 <div class="container">
 
 
-
+	
+	@foreach($movies as $movie)
 
 	<div class="row">
 		
 		<div class="col-md-8">
-			<h1>{{$movie[0]['movie_name']}}</h1>
-			<h3>{{$movie[0]['director_name']}}</h3>
-			<p>{{$movie[0]['description']}}</p>
-			
+			<h1>{{$movie->movie_name}}</h1>
+			<h3>{{$movie->director_name}}</h3>
+			<p>{{$movie->description}}</p>	
+			<h4>{{$movie->released_date}}</h4>
 
 
-
-			<?php
-
-			$length = count($movie[0]['genre_id']);
-
-
-
-			for($i=0; $i < $length; $i++){ ?>
-				<small>{{$genre[$movie[0]['genre_id'][$i]]}}</small>
-			
-			<?php } ?>
-
-			<h4>{{$movie[0]['released_date']}}</h4>
+			@foreach($movie->genres->pluck('genre_name', 'id') as $genre)
+			<a href="#">{{$genre}}</a>
+			@endforeach
 		</div>
 
 
 
 		<div class="col-md-4">
 
-			<a href="/movie/{{ $movie[0]['slug'] }}/edit" class="btn btn-primary" style="margin-bottom: 10px">Edit</a>
+			<a href="/movie/{{ $movie->slug }}/edit" class="btn btn-primary" style="margin-bottom: 10px">Edit</a>
 
-			<form action="{{ route('movie.destroy', $movie[0]['id']) }}" method="post">
+			<form action="{{ route('movie.destroy', $movie->id) }}" method="post">
 				{{ csrf_field() }}
 				{{ method_field('delete') }}
 				<button class="btn btn-danger">Delete</button>
@@ -48,6 +39,7 @@
 		
 	</div>
 	<hr>
+	@endforeach
 
 
 

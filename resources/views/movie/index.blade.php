@@ -10,7 +10,7 @@
 	</div>
 
 	@foreach($movies as $movie)
-
+	
 	
 	<div class="row">
 		
@@ -19,37 +19,22 @@
 			
 			
 			<h3>{{$movie->director_name}}</h3>
-			<p>{{$movie->description}}</p>
-
-			<?php
-		
-			// dd($genre[$movie->genres[0]]);
-			// $moviegenre = json_encode($movie->genres);
-			
-
-			// $moviegenre = str_replace('[', "", $moviegenre);
-			// $moviegenre = str_replace(']', "", $moviegenre);
-			// $moviegenre = str_replace('"', "", $moviegenre);
-			// $moviegenre = str_replace(',', " | ", $moviegenre);
-
-			// $moviegenre = preg_replace('/[^A-Za-z0-9\-]/', '|', $moviegenre);
-			// dd($moviegenre);
-
-			?>
-
-			<?php
-
-			$length = count($movie->genre_id);
-
-			for($i=0; $i < $length; $i++){ ?>
-				<small>{{$genre[$movie->genre_id[$i]]}}</small>
-			
-			<?php } ?>
-
-
-
-			
+			<p>{{$movie->description}}</p>	
 			<h4>{{$movie->released_date}}</h4>
+
+			
+				
+			<?php $genres = $movie->genres->pluck('genre_name', 'id'); 
+
+					$slug = $movie->genres->pluck('slug');
+				
+			?>
+			
+			@foreach($genres as $genre)
+
+			<a href="/genre/{{$slug[0]}}">{{$genre}}</a>
+
+			@endforeach
 		</div>
 
 		<div class="col-md-4">

@@ -16,11 +16,11 @@ class MovieController extends Controller
      */
     public function index()
     {
-         $genre = Genre::pluck('genre_name', 'id');
-        $movies = Movie::paginate(10);
 
-        return view('movie.index', compact('movies','genre'));
-    }
+     $movies = Movie::paginate(10);
+
+     return view('movie.index', compact('movies'));
+ }
 
     /**
      * Show the form for creating a new resource.
@@ -41,6 +41,8 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $this->validate(request(), [
             'movie_name' => 'required',
             'director_name' => 'required',
@@ -57,12 +59,19 @@ class MovieController extends Controller
             'movie_name' => request('movie_name'),
             'director_name' => request('director_name'),
             'description' => request('description'),
-            'genre_id' => request('genre_id'),
             'released_date' => request('released_date'),
             'slug' => $slug
 
 
         ]);
+
+        $movie = Movie::where('movie_name', request('movie_name'))->first();
+        $length = count($request->genre_id);
+        for ($i=0; $i < $length; $i++) { 
+            $genre = Genre::where('id', $request->genre_id[$i])->first();
+            $movie->genres()->attach($genre);
+        }
+
 
         return Redirect::route('movie.index');
 
@@ -76,14 +85,9 @@ class MovieController extends Controller
      */
     public function show($slug)
     {
-        $genre = Genre::pluck('genre_name', 'id');
-        // dd($slug);
-        $movies = Movie::where('slug', '=' , $slug)->get();
-        $movie = $movies->toArray();
-        
-        // dd($movie[0]['id']);
 
-        return view('movie.show', compact('movie', 'genre'));
+        $movies = Movie::showslug($slug);
+        return view('movie.show', compact('movies'));
     }
 
     /**
@@ -95,10 +99,9 @@ class MovieController extends Controller
     public function edit($slug)
     {
         $genre = Genre::pluck('genre_name', 'id');
-        $movies = Movie::where('slug', '=' , $slug)->get();
-        $movie = $movies->toArray();
-        // dd($movie[0]['id']);
-        return view('movie.edit', compact('movie','genre'));
+        $movies = Movie::showslug($slug);
+
+        return view('movie.edit', compact('movies','genre'));
     }
 
     /**
@@ -121,23 +124,32 @@ class MovieController extends Controller
 
        $name = $request->movie_name;
        $slug = str_slug($name, "-");
-       
+
 
 
        $movie->update([
         'movie_name' => $request->movie_name,
         'director_name' => $request->director_name,
         'description' => $request->description,
-        'genre_id' => $request->genre_id,
         'released_date' => $request->released_date,
         'slug' => $slug
 
     ]);
 
-       return redirect()->action(
+
+       $movie = Movie::where('id', $movie->id)->first();
+       $movie->genres()->detach();
+
+       $length = count($request->genre_id);
+       for ($i=0; $i < $length; $i++) { 
+        $genre = Genre::where('id', $request->genre_id[$i])->first();
+        $movie->genres()->attach($genre);
+    }
+
+    return redirect()->action(
         'MovieController@show', ['slug' => $movie->slug]
     );
-   }
+}
 
     /**
      * Remove the specified resource from storage.
