@@ -1,61 +1,63 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 
 @section('content')
 
-<div class="container">
 
-	<div class="row">
+	<br>
 		<a href="{{route('movie.create')}}" class="btn btn-success">Create</a>
-	</div>
+	
 
 	@foreach($movies as $movie)
 	
-	
-	<div class="row">
-		
-		<div class="col-md-8">
-			<h1 ><a href="/movie/{{ $movie->slug }}">{{$movie->movie_name}}</a></h1>
+			<h1 >Movie Name: <a href="/movie/{{ $movie->slug }}">{{$movie->movie_name}}</a></h1>
 			
 			
-			<h3>{{$movie->director_name}}</h3>
-			<p>{{$movie->description}}</p>	
-			<h4>{{$movie->released_date}}</h4>
+			<h3>Director Name: {{$movie->director_name}}</h3>
+			<h4>Movie Description: {{$movie->description}}</h4>	
+			<h4>Movie Released-Date: {{$movie->released_date}}</h4>
 
 			
 				
 			<?php $genres = $movie->genres->pluck('genre_name', 'id'); 
 
 					$slug = $movie->genres->pluck('slug');
-				
+					
 			?>
 			
 			@foreach($genres as $genre)
-
-			<a href="/genre/{{$slug[0]}}">{{$genre}}</a>
+			<?php 
+				$slug = $genre;
+    			$slug = str_slug($slug, "-");
+			?>
+			
+			<a href="/movie/genre/{{$slug}}">{{$genre}}</a>
+	
 
 			@endforeach
-		</div>
+		
 
-		<div class="col-md-4">
-
-			<a href="/movie/{{$movie->slug}}/edit" class="btn btn-primary" style="margin-bottom: 10px">Edit</a>
-
-			<form action="{{ route('movie.destroy', $movie->id) }}" method="post">
+			<br>
+			<br>
+	
+			<a href="/movie/{{$movie->slug}}/edit" class="btn btn-primary">Edit</a>
+			<br>
+			<br>
+			<form action="{{ route('movie.destroy', $movie->slug) }}" method="post">
 				{{ csrf_field() }}
 				{{ method_field('delete') }}
 				<button class="btn btn-danger">Delete</button>
 			</form>
-		</div>
+
 
 		
-	</div>
-	<hr>
-	@endforeach
+	
+		<hr>
+		@endforeach
+
 
 	{{$movies->links()}}
 
-</div>
 
 
 @endsection

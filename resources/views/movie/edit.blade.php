@@ -4,8 +4,8 @@
 @section('content')
 
 	<div class="container">
-		@foreach($movies as $movie)
-		<form action="{{route('movie.update', $movie->id)}}" method="POST">
+		
+		<form action="{{route('movie.update', $movie->slug)}}" method="POST">
 			{{ method_field('PATCH') }}
 			{{csrf_field()}}
 			<div class="form-group">
@@ -44,7 +44,7 @@
 			<button type="submit" class="btn btn-primary">Edit</button>
 
 		</form>
-		@endforeach
+	
 	</div>
 
 @endsection

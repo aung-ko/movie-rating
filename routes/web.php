@@ -18,8 +18,8 @@ Route::get('/', function () {
 
 Route::resource('movie', 'MovieController')->except(['edit', 'show']);
 
-Route::get('movie/{slug}/edit', 'MovieController@edit');
-Route::get('movie/{slug}', 'MovieController@show');
+Route::get('movie/{movie}/edit', 'MovieController@edit');
+Route::get('movie/{movie}', 'MovieController@show');
 
 
 Auth::routes();
@@ -28,6 +28,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::resource('genre', 'GenreController')->except(['edit', 'show']);
-Route::get('genre/{slug}/edit', 'GenreController@edit');
-Route::get('genre/{slug}', 'GenreController@show');
+Route::resource('movie/genre', 'GenreController')->except(['edit', 'show', 'index', 'create']);
+Route::get('genre/{genre}/edit', 'GenreController@edit');
+Route::get('movie/genre/{genre}', 'GenreController@show');
+Route::get('/genre', 'GenreController@index')->name('genre.index');
+Route::get('/genre/create', 'GenreController@create')->name('genre.create');
+

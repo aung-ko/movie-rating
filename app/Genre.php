@@ -12,13 +12,16 @@ class Genre extends Model
     	return $query->where('id', '=' , $id)->delete();
     }
 
-    public function scopeShowslug($query, $slug)
-    {
-    	return $query->where('slug', $slug)->get();
-    }
+ 
 
     public function movies()
     {
     	return $this->belongsToMany(Movie::class);
+    }
+
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

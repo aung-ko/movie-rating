@@ -83,11 +83,11 @@ class MovieController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Movie $movie)
     {
 
-        $movies = Movie::showslug($slug);
-        return view('movie.show', compact('movies'));
+    
+        return view('movie.show', compact('movie'));
     }
 
     /**
@@ -96,12 +96,10 @@ class MovieController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit(Movie $movie)
     {
         $genre = Genre::pluck('genre_name', 'id');
-        $movies = Movie::showslug($slug);
-
-        return view('movie.edit', compact('movies','genre'));
+        return view('movie.edit', compact('movie','genre'));
     }
 
     /**
@@ -146,9 +144,8 @@ class MovieController extends Controller
         $movie->genres()->attach($genre);
     }
 
-    return redirect()->action(
-        'MovieController@show', ['slug' => $movie->slug]
-    );
+    return Redirect::route('movie.index');
+
 }
 
     /**
@@ -159,7 +156,14 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        Movie::deleteid($movie->id);
+        
+        
+        $movie = Movie::deleteslug($movie->slug)->first();
+        $movie->genres()->detach();
+
+        $movies = Movie::deleteslug($movie->slug);
+        $movies->delete();
+
         return Redirect::route('movie.index');
     }
 }

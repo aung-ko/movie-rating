@@ -11,16 +11,9 @@ class Movie extends Model
 		
 	];
 
-    public function scopeDeleteid($query, $id)
+    public function scopeDeleteslug($query, $slug)
     {
-    	return $query->where('id', '=' , $id)->delete();
-    }
-
-
-    
-    public function scopeShowslug($query, $slug)
-    {
-        return $query->where('slug', $slug)->get();
+    	return $query->where('slug', $slug);
     }
 
 
@@ -29,6 +22,10 @@ class Movie extends Model
     	return $this->belongsToMany(Genre::class);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 
 }

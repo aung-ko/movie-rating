@@ -1,39 +1,41 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 
 @section('content')
 
-<div class="container">
+	@foreach($movieByGenre as $movie)
 
 
+	<h1 >Movie Name: <a href="/movie/{{ $movie->slug }}">{{$movie->movie_name}}</a></h1>
+			
+			
+			<h3>Director Name: {{$movie->director_name}}</h3>
+			<h4>Movie Description: {{$movie->description}}</h4>	
+			<h4>Movie Released-Date: {{$movie->released_date}}</h4>
 
+			
+				
+			<?php $genres = $movie->genres->pluck('genre_name', 'id'); 
 
-	<div class="row">
-		<div class="col-md-10">
-			<div class="alert alert-info" role="alert">{{$genre[0]['genre_name']}}</div>	
-		</div>
-
-
-		<div class="col-md-1">
-
-			<a href="/genre/{{$genre[0]['slug']}}/edit" class="btn btn-primary" style="margin-bottom: 10px">Edit</a>
-		</div>
-		<div class="col-md-1">
-			<form action="{{ route('genre.destroy', $genre[0]['id']) }}" method="post">
-				{{ csrf_field() }}
-				{{ method_field('delete') }}
-				<button class="btn btn-danger">Delete</button>
-			</form>
-		</div>
-	</div>
-		
-	</div>
-	<hr>
-
-
-
-
-</div>
+					$slug = $movie->genres->pluck('slug');
+					
+			?>
+			
+			@foreach($genres as $genre)
+			<?php 
+				$slug = $genre;
+    			$slug = str_slug($slug, "-");
+			?>
+			
+			<a href="/movie/genre/{{$slug}}">{{$genre}}</a>
+	
+			@endforeach
+			<hr>
+	@endforeach
 
 
 @endsection
+
+<br>
+<br>
+<br>

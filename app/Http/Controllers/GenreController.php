@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Genre;
+use App\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -61,16 +62,14 @@ class GenreController extends Controller
      * @param  \App\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Genre $genre)
     {
         
-        // dd($slug);
-        $genres = Genre::showslug($slug);
-        $genre = $genres->toArray();
-        
-        // dd($movie[0]['id']);
+        $movieByGenre = $genre->movies;
+    
 
-        return view('genre.show', compact('genre'));
+
+        return view('genre.show', compact('movieByGenre'));
     }
 
     /**
@@ -79,12 +78,10 @@ class GenreController extends Controller
      * @param  \App\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit(Genre $genre)
     {
         
-        $genres = Genre::showslug($slug);
-        $genre = $genres->toArray();
-        // dd($movie[0]['id']);
+
         return view('genre.edit', compact('genre'));
     }
 
@@ -114,7 +111,7 @@ class GenreController extends Controller
     	]);
 
     	return redirect()->action(
-    		'GenreController@show', ['slug' => $genre->slug]
+    		'GenreController@index'
     	);
     }
 
