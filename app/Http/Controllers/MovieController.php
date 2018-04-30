@@ -6,6 +6,7 @@ use App\Movie;
 use App\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -17,10 +18,10 @@ class MovieController extends Controller
     public function index()
     {
 
-     $movies = Movie::paginate(10);
+    	$movies = Movie::paginate(10);
 
-     return view('movie.index', compact('movies'));
- }
+    	return view('movie.index', compact('movies'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,8 +30,8 @@ class MovieController extends Controller
      */
     public function create()
     {
-        $genre = Genre::pluck('genre_name', 'id');
-        return view('movie.create', compact('genre'));
+    	$genre = Genre::pluck('genre_name', 'id');
+    	return view('movie.create', compact('genre'));
     }
 
     /**
@@ -43,37 +44,45 @@ class MovieController extends Controller
     {
 
 
-        $this->validate(request(), [
-            'movie_name' => 'required',
-            'director_name' => 'required',
-            'description' => 'required',
-            'genre_id' => 'required',
-            'released_date' => 'required',
+    	$this->validate(request(), [
+    		'movie_name' => 'required',
+    		'director_name' => 'required',
+    		'description' => 'required',
+    		'genre_id' => 'required',
+    		'movie_image' => 'image',
+    		'released_date' => 'required',
 
-        ]);
+    	]);
+    	// $file = $request->file("movie_image");
+    	// dd($file);
+    	// $old_filename = $file->getClientOriginalName();
+    	$path = Storage::putFile("public/images", $request->file('movie_image'));
+    	$path = '/' . str_replace('public', 'storage', $path);
+    	
 
-        $name = $request->movie_name;
-        $slug = str_slug($name, "-");
+    	$name = $request->movie_name;
+    	$slug = str_slug($name, "-");
 
-        Movie::create([
-            'movie_name' => request('movie_name'),
-            'director_name' => request('director_name'),
-            'description' => request('description'),
-            'released_date' => request('released_date'),
-            'slug' => $slug
-
-
-        ]);
-
-        $movie = Movie::where('movie_name', request('movie_name'))->first();
-        $length = count($request->genre_id);
-        for ($i=0; $i < $length; $i++) { 
-            $genre = Genre::where('id', $request->genre_id[$i])->first();
-            $movie->genres()->attach($genre);
-        }
+    	Movie::create([
+    		'movie_name' => request('movie_name'),
+    		'director_name' => request('director_name'),
+    		'description' => request('description'),
+    		'movie_image' => $path,
+    		'released_date' => request('released_date'),
+    		'slug' => $slug
 
 
-        return Redirect::route('movie.index');
+    	]);
+
+    	$movie = Movie::where('movie_name', request('movie_name'))->first();
+    	$length = count($request->genre_id);
+    	for ($i=0; $i < $length; $i++) { 
+    		$genre = Genre::where('id', $request->genre_id[$i])->first();
+    		$movie->genres()->attach($genre);
+    	}
+
+
+    	return Redirect::route('movie.index');
 
     }
 
@@ -86,8 +95,8 @@ class MovieController extends Controller
     public function show(Movie $movie)
     {
 
-    
-        return view('movie.show', compact('movie'));
+
+    	return view('movie.show', compact('movie'));
     }
 
     /**
@@ -98,8 +107,8 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        $genre = Genre::pluck('genre_name', 'id');
-        return view('movie.edit', compact('movie','genre'));
+    	$genre = Genre::pluck('genre_name', 'id');
+    	return view('movie.edit', compact('movie','genre'));
     }
 
     /**
@@ -111,42 +120,48 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-       $this->validate(request(), [
-        'movie_name' => 'required',
-        'director_name' => 'required',
-        'description' => 'required',
-        'genre_id' => 'required',
-        'released_date' => 'required',
+    	$this->validate(request(), [
+    		'movie_name' => 'required',
+    		'director_name' => 'required',
+    		'description' => 'required',
+    		'genre_id' => 'required',
+    		'movie_image' => 'image',
+    		'released_date' => 'required',
 
-    ]);
+    	]);
 
-       $name = $request->movie_name;
-       $slug = str_slug($name, "-");
+    	$file = $request->file("movie_image");
+    	$old_filename = $file->getClientOriginalName();
+    	Storage::putFileAS("public/images", $file, $old_filename);
 
-
-
-       $movie->update([
-        'movie_name' => $request->movie_name,
-        'director_name' => $request->director_name,
-        'description' => $request->description,
-        'released_date' => $request->released_date,
-        'slug' => $slug
-
-    ]);
+    	$name = $request->movie_name;
+    	$slug = str_slug($name, "-");
 
 
-       $movie = Movie::where('id', $movie->id)->first();
-       $movie->genres()->detach();
 
-       $length = count($request->genre_id);
-       for ($i=0; $i < $length; $i++) { 
-        $genre = Genre::where('id', $request->genre_id[$i])->first();
-        $movie->genres()->attach($genre);
+    	$movie->update([
+    		'movie_name' => $request->movie_name,
+    		'director_name' => $request->director_name,
+    		'description' => $request->description,
+    		'movie_image' => $old_filename,
+    		'released_date' => $request->released_date,
+    		'slug' => $slug
+
+    	]);
+
+
+    	$movie = Movie::where('id', $movie->id)->first();
+    	$movie->genres()->detach();
+
+    	$length = count($request->genre_id);
+    	for ($i=0; $i < $length; $i++) { 
+    		$genre = Genre::where('id', $request->genre_id[$i])->first();
+    		$movie->genres()->attach($genre);
+    	}
+
+    	return Redirect::route('movie.index');
+
     }
-
-    return Redirect::route('movie.index');
-
-}
 
     /**
      * Remove the specified resource from storage.
@@ -156,14 +171,14 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        
-        
-        $movie = Movie::deleteslug($movie->slug)->first();
-        $movie->genres()->detach();
 
-        $movies = Movie::deleteslug($movie->slug);
-        $movies->delete();
 
-        return Redirect::route('movie.index');
+    	$movie = Movie::deleteslug($movie->slug)->first();
+    	$movie->genres()->detach();
+
+    	$movies = Movie::deleteslug($movie->slug);
+    	$movies->delete();
+
+    	return Redirect::route('movie.index');
     }
 }

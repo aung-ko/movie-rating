@@ -18,6 +18,7 @@ class CreateMoviesTable extends Migration
             $table->string('movie_name')->unique();
             $table->string('director_name');
             $table->string('description');
+            $table->string('movie_image');
             $table->date('released_date');
             $table->string('slug');
             $table->timestamps();

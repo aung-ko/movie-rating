@@ -29,8 +29,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('movie/genre', 'GenreController')->except(['edit', 'show', 'index', 'create']);
-Route::get('genre/{genre}/edit', 'GenreController@edit');
 Route::get('movie/genre/{genre}', 'GenreController@show');
+Route::get('/genre/{genre}/edit', 'GenreController@edit')->name('genre.edit');
 Route::get('/genre', 'GenreController@index')->name('genre.index');
 Route::get('/genre/create', 'GenreController@create')->name('genre.create');
+
+
+Route::get("upload", 'FileUploadController@index');
+
+Route::post("upload", 'FileUploadController@upload')->name("upload");
 

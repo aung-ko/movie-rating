@@ -6,7 +6,7 @@
 
 
 
-
+			<img src='{{$movie->movie_image}}' width="200">
 		
 
 			<h1>{{$movie->movie_name}}</h1>

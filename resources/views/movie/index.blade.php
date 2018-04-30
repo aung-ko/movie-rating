@@ -6,9 +6,13 @@
 
 	<br>
 		<a href="{{route('movie.create')}}" class="btn btn-success">Create</a>
+		<br>
+		<br>
 	
 
 	@foreach($movies as $movie)
+
+			<img src='{{$movie->movie_image}}' width="200">
 	
 			<h1 >Movie Name: <a href="/movie/{{ $movie->slug }}">{{$movie->movie_name}}</a></h1>
 			

@@ -3,8 +3,15 @@
 @section('content')
 
 <div class="container" id="root">
-	<form action="{{route('movie.store')}}" method="POST">
+	<form action="{{route('movie.store')}}" method="POST" enctype='multipart/form-data'>
 		{{csrf_field()}}
+
+		<div class="form-group">
+			<label for="movie_image">Image Upload</label>
+			<input name="movie_image" type="file" class="form-control-file" id="movie_image">
+		</div>	
+		
+	
 		<div class="form-group">
 			<label for="movie_name">Movie Name</label>
 			<input type="text" name="movie_name" id="movie_name" class="form-control">

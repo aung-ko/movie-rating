@@ -27,5 +27,10 @@ class Movie extends Model
         return 'slug';
     }
 
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
 
 }
