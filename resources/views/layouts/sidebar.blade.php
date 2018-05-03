@@ -1,12 +1,8 @@
-<!-- Sidebar Widgets Column -->
-      <div class="col-md-4">
 
-        
 
         <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Genres</h5>
-          <div class="card-body">
+      
+          
             <div class="row">
               <div class="col-lg-12">
                 <ul class="list-unstyled mb-0">
@@ -16,21 +12,20 @@
                         $slug = str_slug($slug, "-");
                     ?>
                       
-                      <li>
-                        <a href="/movie/genre/{{$slug}}">
+                      
+                        <button href="/movie/genre/{{$slug}}" class="btn btn-warning">
                           {{ $genre }}
-                        </a>
-                      </li>
+                        </button>
+                        
+                      <br>
+                      <br>
                     @endforeach
                 </ul>
               </div>
               
             </div>
-          </div>
-        </div>
+         
+      
 
      
 
-       
-
-      </div>

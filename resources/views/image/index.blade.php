@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 
+
 @section('content')
 
 
@@ -9,23 +10,10 @@
 	<div class="row">
 		<div class="col-lg-12 col-md-12">
 			<div class="post-preview">
-
+				@foreach($movies as $movie)
 				<div class="row">
 					<div class="col-lg-4">
-						<div class="row">
-
-							<img id="myImg" src="{{$movie->movie_image}}" alt="{{$movie->movie_name}}" width="300" height="300">
-
-							<div id="myModal" class="modal">
-
-								<span class="close">&times;</span>
-
-								<img class="modal-content" id="img01">
-
-								<div id="caption"></div>
-							</div>
-
-						</div>
+						<img src='{{$movie->movie_image}}' width="300">
 					</div>
 					<div class="col-lg-8">
 
@@ -34,6 +22,10 @@
 
 
 						<h3>Director Name: {{$movie->director_name}}</h3>
+
+						
+
+						
 
 						<p class="post-meta">Movie Released by
 							{{$movie->released_date}}
@@ -77,43 +69,8 @@
 
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-lg-8 col-md-10 mx-auto">
-						<div class="post-preview" style="text-align: center">
-							<a href="post.html">
-								<h2 class="post-title">
-									Description
-								</h2>
-							</a>
-							<p class="post-subtitle" style="text-align: left">
-								{{$movie->description}}
-							</p>
-							<p class="post-meta">Posted by
-								<a href="#">Start Bootstrap</a>
-							on September 24, 2018</p>
-						</div>
-
-
-
-					</div>
-
-				</div>
-
-				<div class="row">
-					<a href="{{route('image.create', 'movie_id='.$movie->id)}}" class="btn btn-primary">Create Image</a>
-
-				</div>
-				<br>
-				<div class="row">
-					@foreach($images as $image)
-						
-						<img src="{{$image->image_path}}" width="200" height="200">
-						
-						<br>
-					@endforeach
-				
-				</div>
-
+				<hr>
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -122,8 +79,8 @@
 
 
 
+{{$movies->links()}}
+
+
 
 @endsection
-
-<br>
-<br>

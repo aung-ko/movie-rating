@@ -35,7 +35,6 @@ Route::get('/genre', 'GenreController@index')->name('genre.index');
 Route::get('/genre/create', 'GenreController@create')->name('genre.create');
 
 
-Route::get("upload", 'FileUploadController@index');
+Route::resource('image', 'ImageController');
 
-Route::post("upload", 'FileUploadController@upload')->name("upload");
 

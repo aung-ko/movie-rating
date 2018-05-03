@@ -4,45 +4,31 @@
 <head>
 
   @include('layouts.meta')
-  <title>Blog Post - Start Bootstrap Template</title>
 
-  <link rel="stylesheet" href="/css/select2-bootstrap.min.css">
-  <link rel="stylesheet" href="/css/select2.min.css">
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/blog-post.css" rel="stylesheet">
+  <title>Clean Blog - Start Bootstrap Theme</title>
+
+  @include('layouts.css')
+
 
 </head>
 
 <body>
-<div class="container">
-  <!-- Navigation -->
-      @include('layouts.nav')
-
-  <!-- Page Content -->
   
- <div class="row">
-      @include('layouts.body')
+  <!-- Navigation -->
+  @include('layouts.nav')
 
-      @include('layouts.sidebar')
-</div>
-   
+  <!-- Page Header -->
+          @yield('header')
+          @yield('content')
 
-  </div>
-  <!-- /.container -->
+  <hr>
 
   <!-- Footer -->
-      @include('layouts.footer')
+  @include('layouts.footer')
 
   <!-- Bootstrap core JavaScript -->
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/bootstrap.bundle.min.js"></script>
-  <script src="/js/select2.min.js"></script>
-  <script>
-  $("document").ready(function(){
-    $(".myclass").select2();
-  });
-
-  </script>
+  
+  @include('layouts.script')
 
 </body>
 

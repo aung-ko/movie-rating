@@ -14,6 +14,7 @@
 			<label for="movie_image">Image Edit</label>
 			<input name="movie_image" type="file" class="form-control-file" id="movie_image">
 		</div>
+		<img src="{{$movie->movie_image}}" width="200">
 		<div class="form-group">
 			<label for="movie_name">Movie Name</label>
 			<input type="text" name="movie_name" id="movie_name" class="form-control" value="{{$movie->movie_name}}">
