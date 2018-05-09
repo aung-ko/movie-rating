@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css?family=Skranji:400,700')
+//Variable
+
+$font-handwritten: 'Skranji', cursive
+
+\:root
+	--background: #008080
+	--button: #ff8800 
+	--text: #000000
+	--body: #191919
+	--view: #80bbff
+	--nav: #ffffff
+	--hover: #ff5500
+
+body
+		
+	background-color: var(--body) !important
+
+
+
+
+//Navbar
+
+.nav-responsive-btn
+	background-color: var(--text) !important
+	height: 43px
+	outline: none
+	color: var(--button) !important
+
+.navbar-color
+	background: var(--nav) !important
+
+	a
+		color: var(--text) !important
+		font-family: $font-handwritten
+		outline: none
+	a:hover
+		color: var(--hover) !important
+
+.navbar-nav
+	input:focus
+		background-color: var(--text)
+
+.navbar-search-box
+	border-radius: 1.25rem !important
+	border: 1px solid var(--button)
+	line-height: 1.5
+	font-size: 1rem
+	padding: .375rem .75rem
+	color: var(--button)
+	background-color: #ffffff
+	background-clip: padding-box
+
+
+.navbar-search-btn
+	background: var(--button)
+	color: var(--text)
+	font-family: $font-handwritten
+	border-radius: 1.25rem
+	margin-top: 3px
+	margin-left: 3px
+.navbar-search-btn:hover
+	color: var(--hover)
+	background: var(--text)
+
+
+
+
+
+
+//View Images
+
+.view-images
+	position: relative
+	width: 50%
+.view-images:hover
+	.indivi-image
+		opacity: 0.3
+	.view-images-overlay
+		opacity: 1
+
+.indivi-image
+	opacity: 1
+	display: block
+	width: 210px
+	height: 315px
+	transition: .5s ease
+	backface-visibility: hidden
+	-webkit-backface-visibility: hidden
+	border: 5px solid #ffffff
+	border-radius: .5rem
+
+.view-images-overlay
+	transition: .5s ease
+	opacity: 0
+	position: absolute
+	top: 150px
+	left: 100px
+	transform: translate(-50%, -50%)
+	-ms-transform: translate(-50%, -50%)
+	text-align: center
+	h4
+		color: #ffffff
+		font-family: $font-handwritten
+
+.view-btn
+	background-color: var(--button)
+	color: var(--text)
+.view-btn:hover
+	background-color: var(--text)
+	color: var(--hover)
+
+
+
+
+//index1.html Show Images
+
+.text-ingrediant
+	color: #ffffff
+	font-family: $font-handwritten
+.text-font
+	font-size: 2.5rem
+
+.show-image
+	display: block
+	width: 280px
+	height: 390px
+	border-radius: .5rem
+	border: 5px solid #ffffff
+
+.movie-synopsis
+	h2
+		color: #ffffff
+	h4
+		color: #ffffff
+		
+	p
+		color: #ffffff
+	img
+		height: 40px
+		width: 40px
+		border-radius: 150px
+		-webkit-border-radius: 150px
+		-moz-border-radius: 150px
+		float: left
+.pabsolute
+	position: absolute
+	color: #ffffff
+	left: 65px
+	top: 68px
+
+.tborder
+	border-top: 1px solid #ffffff
+.prelative
+	position: relative
+.taligncenter
+	text-align: center
+	
+
+
+
+//Media Query
+@media screen and (min-width: 1200px)
+	
+
+@media screen and (min-width: 992px) and (max-width: 1199px)
+	
+
+
+@media screen and (min-width: 768px) and (max-width: 991px)
+	
+
+@media screen and (min-width: 576px) and (max-width: 767px)
+	
+
+@media screen and (min-width: 484px) and (max-width: 575px)
+	
+
+@media screen and (min-width: 398px) and (max-width: 483px)
+	
+
+
+@media screen and (min-width: 382px) and (max-width: 397px)
+
+
+@media screen and (min-width: 322px) and (max-width: 381px)
+	
+
+@media screen and (max-width: 321px)
+	

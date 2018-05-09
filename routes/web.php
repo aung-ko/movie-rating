@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MovieController@index');
 
 
 Route::group(['prefix' => 'admin'], function () {
