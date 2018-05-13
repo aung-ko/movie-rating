@@ -8,7 +8,7 @@ class MovieRepo
 {
     public function all()
     {
-        return Movie::all();
+        return Movie::latest()->get();
     }
 
     public function save($request)
