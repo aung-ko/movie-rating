@@ -25,4 +25,6 @@
     </div>
 
     @include('admin.layouts.scripts')
+
+    @yield('scripts')
 </body>

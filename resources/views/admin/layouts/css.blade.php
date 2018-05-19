@@ -6,8 +6,11 @@
 <!-- Custom CSS -->
 <link href="{{ asset('admin/dist/css/sb-admin-2.css') }}" rel="stylesheet">
 
-<!-- Morris Charts CSS -->
-<link href="{{ asset('admin/vendor/morrisjs/morris.css') }}" rel="stylesheet">
-
 <!-- Custom Fonts -->
 <link href="{{ asset('admin/vendor/font-awesome/css/font-awesome.min.css') }}"rel="stylesheet" type="text/css">
+
+<!-- DataTables CSS -->
+<link href="{{ asset('admin/vendor/datatables-plugins/dataTables.bootstrap.css') }}" rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link href="{{ asset('admin/vendor/datatables-responsive/dataTables.responsive.css') }}" rel="stylesheet">
