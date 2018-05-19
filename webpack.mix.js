@@ -10,6 +10,9 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+ mix.js([
+	'resources/assets/talvbansal/media-manager/js/media-manager.js',
+	'resources/assets/js/media-manager-custom.js'
+	], 'public/js/media-manager.js')
+   .styles('resources/assets/talvbansal/media-manager/css/media-manager.css', 'public/css/media-manager.css');
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');

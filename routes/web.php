@@ -11,6 +11,17 @@
 |
 */
 
+\TalvBansal\MediaManager\Routes\MediaRoutes::get();
+
+
+Route::get('/upload', function(){
+	return view('upload');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
