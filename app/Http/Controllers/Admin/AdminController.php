@@ -40,6 +40,23 @@ class AdminController extends Controller
         return redirect()->route('admin.movies');
     }
 
+    public function createMovie()
+    {
+        return view('admin.create-movie');
+    }
+
+    public function storeMovie(Request $request)
+    {
+        $this->movieRepo->save($request);
+        return redirect()->route('admin.movies');
+    }
+
+    public function deleteMovie(Movie $movie)
+    {
+        $this->movieRepo->delete($movie);
+        return redirect()->route('admin.movies');
+    }
+
     /**
      * Process datatables ajax request.
      *

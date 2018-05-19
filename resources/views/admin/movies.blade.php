@@ -15,6 +15,12 @@
     </div>
     <!-- /.row -->
 
+    <div style="padding-bottom: 10px; float: right">
+        <a href="{{ route('admin.movie.create') }}" class="btn btn-primary">
+            Create New
+        </a>
+    </div>
+    
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -32,7 +38,8 @@
                                 <th>Poster</th>
                                 <th>Released Date</th>
                                 <th>Status</th>
-                                <th>Slug</th>
+                                <th>Created at</th>
+                                <th>Updated at</th>
                             </tr>
                         </thead>
                     </table>
@@ -57,8 +64,9 @@
                     { data: 'description', name: 'description' },
                     { data: 'poster', name: 'poster' },
                     { data: 'released_date', name: 'released_date' },
-                    { data: 'status', name: 'slug' },
-                    { data: 'slug', name: 'slug' }
+                    { data: 'status', name: 'status' },
+                    { data: 'created_at', name: 'created_at' },
+                    { data: 'updated_at', name: 'updated_at' },
                 ]
             });
         });

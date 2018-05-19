@@ -32,36 +32,45 @@
 
                                 <div class="form-group">
                                     <label>Name :</label>
-                                    <input class="form-control" value="{{ $movie->name }}">
+                                    <input type="text" class="form-control" name="name" value="{{ $movie->name }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Director :</label>
-                                    <input class="form-control" value="{{ $movie->director_name }}">
+                                    <input type="text" class="form-control" name="director_name" value="{{ $movie->director_name }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Description :</label>
-                                    <textarea class="form-control" rows="3">{{ $movie->description }}</textarea>
+                                    <textarea type="text" class="form-control" name="description" rows="3">{{ $movie->description }}</textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Main Poster :</label>
-                                    <input class="form-control" value="{{ $movie->poster }}">
+                                    <input type="text" class="form-control" name="poster" value="{{ $movie->poster }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Released Date :</label>
-                                    <input type="date" class="form-control" value="{{ $movie->released_date }}">
+                                    <input type="date" class="form-control" name="released_date" value="{{ $movie->released_date }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Status :</label>
-                                    <input class="form-control" value="{{ $movie->status }}">
+                                    <input type="text" name="status" class="form-control" value="{{ $movie->status }}">
                                 </div>
 
-                                <button type="submit" class="btn btn-default">Update</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
 
+                            </form>
+
+                            <form class="form" role="form" method="POST" action="{{ route('admin.movie.delete', $movie->slug) }}"
+                                style="float: right">
+                                <input type="hidden" name="_method" value="DELETE">
+                                {{ csrf_field() }}
+    
+                                <input class="btn btn-danger" Onclick="return ConfirmDelete();" type="submit" value="Delete">
+    
                             </form>
                         </div>
                     </div>
@@ -70,4 +79,13 @@
         </div>
     </div>
 
+@endsection
+
+@section('scripts')
+<script>
+    function ConfirmDelete()
+    {
+        return confirm("Are you sure you want to delete?");
+    }
+</script>
 @endsection

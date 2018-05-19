@@ -8,12 +8,13 @@ Route::prefix('admin')->group(function () {
     Route::get('movies-all', 'Admin\AdminController@anyData')->name('admin.movies.data');
     Route::get('{movie}/edit', 'Admin\AdminController@editMovie')->name('admin.movie.edit');
     Route::patch('update/{movie}', 'Admin\AdminController@updateMovie')->name('admin.movie.update');
+    Route::delete('delete/{movie}', 'Admin\AdminController@deleteMovie')->name('admin.movie.delete');
+    Route::get('movie/create', 'Admin\AdminController@createMovie')->name('admin.movie.create');
+    Route::post('movie/store', 'Admin\AdminController@storeMovie')->name('admin.movie.store');
 });
 
 Route::prefix('movie')->group(function () {
     Route::get('/', 'Movie\MovieController@index')->name('movie.index');
-    Route::get('create', 'Movie\MovieController@create')->name('movie.create');
-    Route::post('store', 'Movie\MovieController@store')->name('movie.store');
     Route::get('{movie}', 'Movie\MovieController@show')->name('movie.show');
     
 });

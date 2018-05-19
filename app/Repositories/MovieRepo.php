@@ -35,6 +35,11 @@ class MovieRepo
         }
     }
 
+    public function delete($movie)
+    {
+        $movie->delete();
+    }
+
     public function makeSlug($name)
     {
         return str_slug($name, "-") . "-" . uniqid();
