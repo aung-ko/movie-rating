@@ -12,4 +12,9 @@ class Movie extends Model
     {
         return 'slug';
     }
+
+    public function genres()
+    {
+        return $this->belongsToMany("App\Models\Genre", "movie_genres");
+    }
 }

@@ -13,6 +13,8 @@
 
     @include('admin.layouts.css')
 
+    @yield('css')
+
 </head>
 
 <body>

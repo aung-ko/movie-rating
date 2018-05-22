@@ -4,6 +4,10 @@
     <title>Add Movie</title>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+@endsection
+
 @section('content')
 
 <div id="page-wrapper">
@@ -58,6 +62,15 @@
                                     <label>Status :</label>
                                     <input type="text" name="status" class="form-control" value="{{ old('status') }}">
                                 </div>
+                                
+                                <div class="form-group">
+                                    <label for="genres">Select genre:</label>
+                                <select name="genres[]" id="genres" class="form-control" multiple="multiple">
+                                        @foreach($genres as $key => $genre)
+                                            <option value="{{ $key }}">{{ $genre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                                 <button type="submit" class="btn btn-primary">Save</button>
 
@@ -68,5 +81,17 @@
             </div>
         </div>
     </div>
+
+@endsection
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>  
+    <script>
+    $(document).ready(function(){
+        $('#genres').select2({
+            tags: true
+        });
+    });  
+    </script>
 
 @endsection

@@ -4,6 +4,10 @@
     <title>Edit Movie</title>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+@endsection
+
 @section('content')
 
 <div id="page-wrapper">
@@ -82,6 +86,7 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script>
     function ConfirmDelete()
     {

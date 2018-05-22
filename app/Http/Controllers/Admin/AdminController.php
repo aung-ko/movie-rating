@@ -7,6 +7,7 @@ use App\Repositories\MovieRepo;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Models\Movie;
+use App\Models\Genre;
 
 class AdminController extends Controller
 {
@@ -42,11 +43,13 @@ class AdminController extends Controller
 
     public function createMovie()
     {
-        return view('admin.create-movie');
+        $genres = Genre::pluck('name','id');
+        return view('admin.create-movie', compact('genres'));
     }
 
     public function storeMovie(Request $request)
     {
+        return $request->all();
         $this->movieRepo->save($request);
         return redirect()->route('admin.movies');
     }
