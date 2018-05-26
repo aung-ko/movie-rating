@@ -29,6 +29,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-10">
+                            @include('admin.layouts.errors')
+                            
                             <form role="form" action="{{ route('admin.movie.store') }}" method="POST">
 
                                 {{  csrf_field() }}
@@ -65,7 +67,7 @@
                                 
                                 <div class="form-group">
                                     <label for="genres">Select genre:</label>
-                                <select name="genres[]" id="genres" class="form-control" multiple="multiple">
+                                    <select name="genres[]" id="genres" class="form-control" multiple="multiple">
                                         @foreach($genres as $key => $genre)
                                             <option value="{{ $key }}">{{ $genre }}</option>
                                         @endforeach

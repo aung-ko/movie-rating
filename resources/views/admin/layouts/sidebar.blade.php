@@ -19,6 +19,9 @@
                 <a href="{{ route('admin.movies') }}"><i class="fa fa-film fa-fw"></i> Movies</a>
             </li>
             <li>
+                <a href="{{ route('admin.genres') }}"><i class="fa fa-list-ul fa-fw"></i> Genres</a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

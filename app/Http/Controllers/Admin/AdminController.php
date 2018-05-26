@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
+use App\Models\Movie;
 use App\Repositories\MovieRepo;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Movie;
-use App\Models\Genre;
 
 class AdminController extends Controller
 {
@@ -26,13 +26,18 @@ class AdminController extends Controller
 
     public function allMovies()
     {
-        return view('admin.movies', compact('movies'));
+        return view('admin.movie.movies', compact('movies'));
     }
 
     public function editMovie(Movie $movie)
     {
+        $genres = Genre::pluck('name', 'id');
         $movie = $this->movieRepo->get($movie);
-        return view('admin.edit-movie', compact('movie'));
+        $movie_genre_ids = [];
+        foreach ($movie->genres as $genre) {
+            $movie_genre_ids[$genre->id] = $genre->name;
+        }
+        return view('admin.movie.edit-movie', compact(['movie', 'genres', 'movie_genre_ids']));
     }
 
     public function updateMovie(Request $request, Movie $movie)
@@ -43,13 +48,12 @@ class AdminController extends Controller
 
     public function createMovie()
     {
-        $genres = Genre::pluck('name','id');
-        return view('admin.create-movie', compact('genres'));
+        $genres = Genre::pluck('name', 'id');
+        return view('admin.movie.create-movie', compact('genres'));
     }
 
     public function storeMovie(Request $request)
     {
-        return $request->all();
         $this->movieRepo->save($request);
         return redirect()->route('admin.movies');
     }
@@ -69,7 +73,7 @@ class AdminController extends Controller
     {
         $movies = $this->movieRepo->all();
         return Datatables::of($movies)
-            ->editColumn('name', '<a href={{ $slug }}/edit> {{ $name }} </a>')
+            ->editColumn('name', '<a href=movie/{{ $slug }}/edit> {{ $name }} </a>')
             ->rawColumns(['name'])
             ->make(true);
     }

@@ -23,32 +23,10 @@ class MovieController extends Controller
         return view('movies.index', compact('movies'));
     }
 
-    public function create()
-    {
-        return view('movies.create');
-    }
-
-    public function store(Request $request)
-    {
-        $this->movieRepo->save($request);
-        return redirect()->route('movie.index');
-    }
-
     public function show(Movie $movie)
     {
         return $this->movieRepo->get($movie);
         // return view('movies.show');
     }
-
-    public function edit(Movie $movie)
-    {
-        $movie = $this->movieRepo->get($movie);
-        return view('movies.edit', compact('movie'));
-    }
-
-    public function update(Request $request, Movie $movie)
-    {
-        $this->movieRepo->update($request, $movie);
-        return redirect()->route('movie.index');
-    }
+    
 }

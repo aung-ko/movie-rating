@@ -15,7 +15,8 @@ class MovieRepo
     {
         $validatedMovie = $this->validateMovie($request);
         $validatedMovie['slug'] = $this->makeSlug($request->name);
-        Movie::create($validatedMovie);
+        $movie = Movie::create(array_except($validatedMovie, 'genres'));
+        $movie->genres()->sync($request->genres);
     }
 
     public function get($movie)
@@ -29,9 +30,11 @@ class MovieRepo
         $validatedMovie = $this->validateMovie($request);
         if ($request->name !== $movie->name) {
             $validatedMovie['slug'] = $this->makeSlug($request->name);
-            $movie->update($validatedMovie);
+            $movie->update(array_except($validatedMovie, 'genres'));
+            $movie->genres()->sync($request->genres);
         } else {
-            $movie->update($validatedMovie);
+            $movie->update(array_except($validatedMovie, 'genres'));
+            $movie->genres()->sync($request->genres);
         }
     }
 
@@ -54,6 +57,7 @@ class MovieRepo
             'poster' => 'required',
             'released_date' => 'required|date',
             'status' => 'required',
+            'genres' => 'required|array|min:1',
         ]);
     }
 

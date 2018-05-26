@@ -29,6 +29,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-10">
+                            @include('admin.layouts.errors')
+
                             <form role="form" action="{{ route('admin.movie.update', $movie->slug) }}" method="POST">
                                 {{ method_field('PATCH') }}
 
@@ -63,6 +65,19 @@
                                     <label>Status :</label>
                                     <input type="text" name="status" class="form-control" value="{{ $movie->status }}">
                                 </div>
+                                
+                                <div class="form-group">
+                                    <label for="genres">Select genre:</label>
+                                    <select name="genres[]" id="genres" class="form-control" multiple="multiple">
+                                        @foreach($genres as $key => $genre)
+                                            @if (array_key_exists($key, $movie_genre_ids))
+                                                <option value="{{ $key }}" selected>{{ $genre }}</option>
+                                            @else
+                                                <option value="{{ $key }}">{{ $genre }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
 
                                 <button type="submit" class="btn btn-primary">Update</button>
 
@@ -87,6 +102,13 @@
 
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#genres').select2({
+            tags: true
+        });
+    });  
+</script>
 <script>
     function ConfirmDelete()
     {
