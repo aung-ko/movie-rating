@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\Status;
 use App\Repositories\MovieRepo;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -32,12 +33,13 @@ class AdminController extends Controller
     public function editMovie(Movie $movie)
     {
         $genres = Genre::pluck('name', 'id');
+        $statuses = Status::all();
         $movie = $this->movieRepo->get($movie);
         $movie_genre_ids = [];
         foreach ($movie->genres as $genre) {
             $movie_genre_ids[$genre->id] = $genre->name;
         }
-        return view('admin.movie.edit-movie', compact(['movie', 'genres', 'movie_genre_ids']));
+        return view('admin.movie.edit-movie', compact(['movie', 'genres', 'movie_genre_ids', 'statuses']));
     }
 
     public function updateMovie(Request $request, Movie $movie)
@@ -49,7 +51,8 @@ class AdminController extends Controller
     public function createMovie()
     {
         $genres = Genre::pluck('name', 'id');
-        return view('admin.movie.create-movie', compact('genres'));
+        $statuses = Status::all();
+        return view('admin.movie.create-movie', compact(['genres', 'statuses']));
     }
 
     public function storeMovie(Request $request)
@@ -74,7 +77,11 @@ class AdminController extends Controller
         $movies = $this->movieRepo->all();
         return Datatables::of($movies)
             ->editColumn('name', '<a href=movie/{{ $slug }}/edit> {{ $name }} </a>')
-            ->rawColumns(['name'])
+            ->addColumn('status', function($model){
+                $data = $model->status->name;
+                return $data;
+            })
+            ->rawColumns(['name','status'])
             ->make(true);
     }
 }

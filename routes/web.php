@@ -18,6 +18,10 @@ Route::prefix('admin')->group(function () {
     Route::get('genre/{genre}/edit', 'Admin\GenreController@edit')->name('admin.genre.edit');
     Route::patch('genre/update/{genre}', 'Admin\GenreController@update')->name('admin.genre.update');
     Route::delete('genre/delete/{genre}', 'Admin\GenreController@destroy')->name('admin.genre.delete');
+
+    Route::get('status', 'Admin\StatusController@index')->name('admin.status');
+    Route::post('status/store', 'Admin\StatusController@store')->name('admin.status.store');
+    Route::delete('status/delete/{status}', 'Admin\StatusController@destroy')->name('admin.status.delete');
     
 });
 

@@ -63,7 +63,15 @@
 
                                 <div class="form-group">
                                     <label>Status :</label>
-                                    <input type="text" name="status" class="form-control" value="{{ $movie->status }}">
+                                    <select name="status_id" class="form-control">
+                                        @foreach($statuses as $status)
+                                            @if ($status->id == $movie->status_id)
+                                                <option value="{{ $status->id}}" selected>{{ $status->name }}</option>
+                                            @else
+                                                <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
                                 
                                 <div class="form-group">

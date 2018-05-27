@@ -56,7 +56,7 @@ class MovieRepo
             'description' => 'required',
             'poster' => 'required',
             'released_date' => 'required|date',
-            'status' => 'required',
+            'status_id' => 'required',
             'genres' => 'required|array|min:1',
         ]);
     }

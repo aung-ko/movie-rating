@@ -62,7 +62,11 @@
 
                                 <div class="form-group">
                                     <label>Status :</label>
-                                    <input type="text" name="status" class="form-control" value="{{ old('status') }}">
+                                    <select name="status_id" class="form-control">
+                                        @foreach($statuses as $status)
+                                            <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 
                                 <div class="form-group">

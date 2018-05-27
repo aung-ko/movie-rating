@@ -17,4 +17,9 @@ class Movie extends Model
     {
         return $this->belongsToMany("App\Models\Genre", "movie_genres");
     }
+
+    public function status()
+    {
+        return $this->belongsTo("App\Models\Status");
+    }
 }
