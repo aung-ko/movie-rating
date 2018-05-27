@@ -22,4 +22,9 @@ class Movie extends Model
     {
         return $this->belongsTo("App\Models\Status");
     }
+
+    public function images()
+    {
+        return $this->hasMany("App\Models\MovieImage");
+    }
 }
