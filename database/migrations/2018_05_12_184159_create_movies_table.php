@@ -21,6 +21,7 @@ class CreateMoviesTable extends Migration
             $table->string('poster');
             $table->string('background');
             $table->string('thumb');
+            $table->string('trailer_id');
             $table->date('released_date');
             $table->integer('status_id');
             $table->string('slug')->unique();

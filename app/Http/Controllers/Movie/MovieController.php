@@ -25,8 +25,8 @@ class MovieController extends Controller
 
     public function show(Movie $movie)
     {
-        return $this->movieRepo->get($movie);
-        // return view('movies.show');
+        $movie = $this->movieRepo->get($movie);
+        return view('frontend.movie-detail', compact('movie'));
     }
     
 }

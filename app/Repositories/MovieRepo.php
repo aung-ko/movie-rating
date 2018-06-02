@@ -78,6 +78,7 @@ class MovieRepo
             'poster' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'background' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'thumb' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'trailer_id' => 'required|max:200',
             'released_date' => 'required|date',
             'status_id' => 'required',
             'genres' => 'required|array|min:1',

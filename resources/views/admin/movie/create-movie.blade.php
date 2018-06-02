@@ -51,6 +51,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Trailer Video ID :</label>
+                                    <input type="text" class="form-control" name="trailer_id" value="{{ old('trailer_id') }}">
+                                </div>
+
+                                <div class="form-group">
                                     <label>Main Poster :</label>
                                     <input type="file" class="form-control" name="poster">
                                 </div>

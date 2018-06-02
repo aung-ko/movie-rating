@@ -4,16 +4,21 @@ namespace App\Http\Controllers\Pages;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\MovieRepo;
 
 class PagesController extends Controller
 {
-    public function __construct()
+    protected $movieRepo;
+
+    public function __construct(MovieRepo $movieRepo)
     {
-        $this->middleware('auth')->except('index');
+        $this->movieRepo = $movieRepo;
+        $this->middleware('auth');
     }
 
     public function index()
     {
-        return view('pages.index');
+        $movies = $this->movieRepo->all();
+        return view('pages.index', compact('movies'));
     }
 }
