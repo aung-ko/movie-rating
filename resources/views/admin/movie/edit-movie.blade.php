@@ -31,7 +31,7 @@
                         <div class="col-lg-10">
                             @include('admin.layouts.errors')
 
-                            <form role="form" action="{{ route('admin.movie.update', $movie->slug) }}" method="POST">
+                            <form role="form" action="{{ route('admin.movie.update', $movie->slug) }}" method="POST" enctype="multipart/form-data">
                                 {{ method_field('PATCH') }}
 
                                 {{  csrf_field() }}
@@ -53,7 +53,20 @@
 
                                 <div class="form-group">
                                     <label>Main Poster :</label>
-                                    <input type="text" class="form-control" name="poster" value="{{ $movie->poster }}">
+                                    <img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster) }}">
+                                    <input type="file" class="form-control" name="poster" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster) }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Background Image :</label>
+                                    <img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->background) }}">
+                                    <input type="file" class="form-control" name="poster" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->background) }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Thumbnail :</label>
+                                    <img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->thumb) }}">
+                                    <input type="file" class="form-control" name="poster" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->thumb) }}">
                                 </div>
 
                                 <div class="form-group">

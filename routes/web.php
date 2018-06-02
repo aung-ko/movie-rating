@@ -31,11 +31,6 @@ Route::prefix('movie')->group(function () {
     
 });
 
-// Route::controller('datatables', 'DatatablesController', [
-//     'anyData'  => 'movies.data',
-//     'getIndex' => 'datatables',
-// ]);
-
 
 
 Route::get('/', 'Pages\PagesController@index')->name('index');

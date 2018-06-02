@@ -31,7 +31,7 @@
                         <div class="col-lg-10">
                             @include('admin.layouts.errors')
                             
-                            <form role="form" action="{{ route('admin.movie.store') }}" method="POST">
+                            <form role="form" action="{{ route('admin.movie.store') }}" method="POST" enctype="multipart/form-data">
 
                                 {{  csrf_field() }}
 
@@ -52,7 +52,17 @@
 
                                 <div class="form-group">
                                     <label>Main Poster :</label>
-                                    <input type="text" class="form-control" name="poster" value="{{ old('poster') }}">
+                                    <input type="file" class="form-control" name="poster">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Background Image :</label>
+                                    <input type="file" class="form-control" name="background" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Thumbnail :</label>
+                                    <input type="file" class="form-control" name="thumb">
                                 </div>
 
                                 <div class="form-group">
