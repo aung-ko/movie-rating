@@ -14,12 +14,22 @@ class MovieRepo
 
     public function save($request)
     {
+        // validation
         $validatedMovie = $this->validateMovie($request);
+        
+        // making slug according to name
         $slug = $this->makeSlug($request->name);
         $validatedMovie['slug'] = $slug;
+
+        // file fields
         $files = ['poster', 'background', 'thumb'];
+
+        // preparing file path
         $path = 'public/movies/' . $slug . '/';
+
+        // upload all images
         $images = $this->uploadImages($request, $files, $path);
+        
         $validatedMovie = array_merge($validatedMovie, $images);
         $movie = Movie::create(array_except($validatedMovie, 'genres'));
         $movie->genres()->sync($request->genres);
