@@ -4,12 +4,14 @@
         <div class="container">
           <h1 class="jumbotron-heading text-left p-1 pb-3 myanmarsanpro">{{ $movie->name }}
           	@for ($i = 0; $i < 4; $i++)	
-          	<span class="text-small fa fa-xs-movie fa-star checked"></span>
+                <span class="text-small fa fa-xs-movie fa-star checked"></span>
           	@endfor
           </h1> 
 
           <div class="row">
-          	<div class="col-md-3 nopadding nomargin bg-dark-movie"><img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster ) }}" alt=""></div>
+          	<div class="col-md-3 nopadding nomargin bg-dark-movie">
+                  <img width="300px" height="auto" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->thumb ) }} " alt="">
+            </div>
           	<div class="col-md-9 nopadding nomargin bg-dark-movie">
 				<!-- Youtube Embed Custom Player	 -->
 				<div class="plyr__video-embed" id="player">

@@ -47,7 +47,7 @@
         </main>
       @include('frontend.include.footer')
     </div>
-        <script src="js/app.js"></script>  
+    <script src="{{ asset('js/app.js') }}"></script>  
 <!--         <script src="js/custom.js"></script>  -->
 </body>
 </html>

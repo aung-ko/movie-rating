@@ -13,7 +13,7 @@ class PagesController extends Controller
     public function __construct(MovieRepo $movieRepo)
     {
         $this->movieRepo = $movieRepo;
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
