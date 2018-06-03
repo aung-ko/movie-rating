@@ -52,21 +52,26 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Trailer Id :</label>
+                                    <input type="text" class="form-control" name="trailer_id" value="{{ $movie->trailer_id }}">
+                                </div>
+
+                                <div class="form-group">
                                     <label>Main Poster :</label>
-                                    <img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster) }}">
+                                    <img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster) }}" width="250px" height="auto">
                                     <input type="file" class="form-control" name="poster" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster) }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Background Image :</label>
-                                    <img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->background) }}">
-                                    <input type="file" class="form-control" name="poster" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->background) }}">
+                                    <img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->background) }}" width="500px" height="auto">
+                                    <input type="file" class="form-control" name="background" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->background) }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Thumbnail :</label>
-                                    <img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->thumb) }}">
-                                    <input type="file" class="form-control" name="poster" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->thumb) }}">
+                                    <img src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->thumb) }}" width="250px" height="auto">
+                                    <input type="file" class="form-control" name="thumb" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->thumb) }}">
                                 </div>
 
                                 <div class="form-group">
