@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 
 <!--     <link href="https://fonts.googleapis.com/css?family=Padauk" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -47,7 +48,10 @@
         </main>
       @include('frontend.include.footer')
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>  
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+    @include('sweetalert::alert')
+
 <!--         <script src="js/custom.js"></script>  -->
 </body>
 </html>

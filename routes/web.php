@@ -32,5 +32,8 @@ Route::prefix('movie')->group(function () {
 });
 
 
+Route::get('/search', 'SearchController@search');
+
+
 
 Route::get('/', 'Pages\PagesController@index')->name('index');

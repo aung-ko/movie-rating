@@ -36,4 +36,14 @@ class User extends Authenticatable
     {
         return $this->role_id == 1;
     }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
+
+    public function replys()
+    {
+        return $this->hasMany('App\Models\Reply');
+    }
 }

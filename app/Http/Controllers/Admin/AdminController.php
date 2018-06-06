@@ -9,6 +9,7 @@ use App\Models\Status;
 use App\Repositories\MovieRepo;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use Alert;
 
 class AdminController extends Controller
 {
@@ -57,13 +58,14 @@ class AdminController extends Controller
 
     public function storeMovie(Request $request)
     {
-        $this->movieRepo->save($request);
+        $this->movieRepo->save($request);        
         return redirect()->route('admin.movies');
     }
 
     public function deleteMovie(Movie $movie)
     {
         $this->movieRepo->delete($movie);
+        // Alert::success('Movie is Deleted');
         return redirect()->route('admin.movies');
     }
 

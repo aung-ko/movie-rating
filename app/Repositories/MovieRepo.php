@@ -64,6 +64,15 @@ class MovieRepo
         
     }
 
+
+    public function released_date()
+    {
+        $startdate = 1960;
+        $enddate = date('Y');
+        $years = range($enddate,$startdate);
+        return $years;
+    }
+
     public function delete($movie)
     {
         $movie->delete();
