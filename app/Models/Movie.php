@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
-   
+    protected $guarded = [];
+    //  protected $fillable = [
+    //     'name', 'released_date', 'genre_id', 'rating_id'
+    // ];
 
     public function getRouteKeyName()
     {
@@ -26,10 +30,5 @@ class Movie extends Model
     {
         // dd($filters);
         $filters->apply($query);
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany('App\Models\Review');
     }
 }

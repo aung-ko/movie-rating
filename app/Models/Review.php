@@ -5,6 +5,8 @@ namespace App\Models;
 
 class Review extends Model
 {
+    public $timestamps = false;
+    
     public function replys()
     {
     	return $this->hasMany('App\Models\Reply');

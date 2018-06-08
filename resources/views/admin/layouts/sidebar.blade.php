@@ -25,6 +25,9 @@
                 <a href="{{ route('admin.status') }}"><i class="glyphicon glyphicon-tower"></i> Statuses</a>
             </li>
             <li>
+                <a href="{{ route('admin.review') }}"><i class="glyphicon glyphicon-book"></i> Reviews</a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

@@ -22,13 +22,23 @@ Route::prefix('admin')->group(function () {
     Route::get('status', 'Admin\StatusController@index')->name('admin.status');
     Route::post('status/store', 'Admin\StatusController@store')->name('admin.status.store');
     Route::delete('status/delete/{status}', 'Admin\StatusController@destroy')->name('admin.status.delete');
+
+
+
     
 });
 
 Route::prefix('movie')->group(function () {
     Route::get('/', 'Movie\MovieController@index')->name('movie.index');
     Route::get('{movie}', 'Movie\MovieController@show')->name('movie.show');
-    
+    Route::post('{movie}/review', 'Movie\MovieController@storeReview')->name('review.store');
+
+
+    Route::post('{movie}/review/{review}', 'Movie\MovieController@storeReply')->name('reply.store');
+    // Route::delete('{movie}/review/{review}', 'Movie\MovieController@destroyReview')->name('review.destroy');
+
+    Route::delete('{movie}/review', 'Movie\MovieController@destroyReply')->name('reply.destroy');
+
 });
 
 
