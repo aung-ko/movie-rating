@@ -4,10 +4,13 @@
 
     <section class="activities">
         <h2 class='myanmarsanpro'>လှုပ်ရှားမှုများ</h2>
+        <a href="{{route('review.create', $movie)}}" class="btn btn-success">Add</a>
         @foreach($reviews as $review)
         <section class="event"><span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>
             <h4 class="event-heading"><a href="#">{{$review->user->name}}</a> <small><a href="#">"{{$movie->name}}" ရုပ်ရှင်တွင် မှတ်ချက်ရေးခဲ့သည့်</a></small></h4>
             <p class="fs-sm text-muted">၂၀၁၈ခုနှစ် မေလ ၁ရက်နေ င်္နနက် ၅း၃၀</p>
+            <p class="fs-mini"><a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a></p>
+            <a href="{{route('review.edit',[$movie,$review]) }}" class="btn btn-primary">Edit</a>
             <p class="fs-mini">{{$review->body}}</p>
            
             <i class="fa fa-star checked"></i>
@@ -45,7 +48,7 @@
                     @endforeach
                     <li><span class="thumb-xs avatar pull-left mr-sm"><img class="img-circle" src="img/avatar6.png" alt="..."></span>
                         <div class="comment-body">
-                         <form  action="{{url( 'movie/'. $movie->slug . '/review/' . $review->id)}}" method="POST">
+                         <form  action="{{url( 'movie/'. $movie->slug . '/review/' . $review->id . '/reply')}}" method="POST">
                              {{ csrf_field() }}
                              <input class="form-control input-sm" name="body" type="text" placeholder="ဒီ ပိုစ့်ကို မှတ်ချက်ရေးသားပါ.....">
                              <button type="submit" class="btn btn-success btn-sm pull-right">Post</button>

@@ -40,59 +40,7 @@ class MovieController extends Controller
         return view('frontend.movie-detail', compact('movie', 'reviews'));
     }
 
-    public function storeReply(Request $request, Movie $movie, Review $review)
-    {
-        $this->validate($request, [
-            'body' => 'string'
-        ]);
+    
 
-        
-
-
-        Reply::create([
-            'body' => $request->body,
-            'user_id' => \Auth::user()->id,
-            'review_id' => $review->id
-
-        ]);
-
-        return redirect()->route('movie.show', $movie->slug);
-    }
-
-
-    public function storeReview(Request $request, Movie $movie)
-    {
-        $this->validate($request, [
-            'body' => 'string'
-        ]);
-
-
-
-
-        Review::create([
-            'title' => 'Not Yet',
-            'body' => $request->body,
-            'user_id' => \Auth::user()->id,
-            'movie_id' => $movie->id
-
-        ]);
-
-        return redirect()->route('movie.show', $movie->slug);
-    }
-
-    public function destroyReply($id)
-    {
-
-        $reply = Reply::where('id', '=', $id)->delete();
-
-        return redirect()->back();
-    }
-
-    public function destroyReview($id)
-    {
-        // dd($id);
-        $review = Review::where('id', '=' , $id)->delete();
-        return redirect()->back();
-    }
     
 }

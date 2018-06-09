@@ -31,13 +31,19 @@ Route::prefix('admin')->group(function () {
 Route::prefix('movie')->group(function () {
     Route::get('/', 'Movie\MovieController@index')->name('movie.index');
     Route::get('{movie}', 'Movie\MovieController@show')->name('movie.show');
-    Route::post('{movie}/review', 'Movie\MovieController@storeReview')->name('review.store');
 
-
-    Route::post('{movie}/review/{review}', 'Movie\MovieController@storeReply')->name('reply.store');
+    Route::get('{movie}/review/create', 'Movie\ReviewController@create')->name('review.create');
+    Route::post('{movie}/review', 'Movie\ReviewController@store')->name('review.store');
+    Route::get('{movie}/review/{review}', 'Movie\ReviewController@show')->name('review.show');
+    Route::get('{movie}/review/{review}/edit', 'Movie\ReviewController@edit')->name('review.edit');
+    Route::patch('{movie}/review/{review}', 'Movie\ReviewController@update')->name('review.update');
+    
     // Route::delete('{movie}/review/{review}', 'Movie\MovieController@destroyReview')->name('review.destroy');
-
-    Route::delete('{movie}/review', 'Movie\MovieController@destroyReply')->name('reply.destroy');
+  
+    Route::post('{movie}/review/{review}/reply', 'Movie\ReplyController@store')->name('reply.store');
+    Route::get('{movie}/review/{review}/reply/{reply}/edit', 'Movie\ReplyController@edit')->name('reply.edit');
+    Route::patch('{movie}/review/{review}/reply/{reply}', 'Movie\ReplyController@update')->name('reply.update');
+    Route::delete('{movie}/review', 'Movie\ReplyController@destroy')->name('reply.destroy');
 
 });
 
