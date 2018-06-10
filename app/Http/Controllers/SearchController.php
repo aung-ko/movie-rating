@@ -9,19 +9,28 @@ use App\Filters\GenreFilters;
 use App\Filters\RatingFilters;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Repositories\MovieRepo;
 
 class SearchController extends Controller
 {
+     protected $movieRepo;
+
+    public function __construct(MovieRepo $movieRepo)
+    {
+        $this->movieRepo = $movieRepo;
+        // $this->middleware('auth');
+    }
 	public function search(Request $request, MovieFilters $movieFilters, GenreFilters $genreFilters)
     {
         
         $genre = Genre::filter($genreFilters)->get();
         $movie = Movie::filter($movieFilters);
+       $genres = Genre::pluck('name', 'id');
 
 
         $results = $movie->whereHas('genres' , function ($query) use ($genreFilters) {
             $genreFilters->apply($query);
-        })->get()->toArray();
+        })->get();
 
         // dd($results->count());
 
@@ -30,12 +39,7 @@ class SearchController extends Controller
         foreach ($results as $result) {
             $numOfResults++;
         }
-        // Alert::info('Test', 'test');
-
-
-
-
-        // dd($numOfResults);
+       
 
 
         if (count($results) == 0 || $numOfResults == 0) {
@@ -44,9 +48,12 @@ class SearchController extends Controller
         }else{
             Alert::success("$numOfResults Results Found", "Results Found");
         }
+
+        $years = $this->movieRepo->released_date();
+        
         
 
-       return $results;
+       return view('frontend.movie-listing', compact('results', 'genres', 'years'));
     
         
        

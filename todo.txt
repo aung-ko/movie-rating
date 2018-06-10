@@ -43,6 +43,34 @@ Reply
 
 
 
+Review Rating Popularity
+
+
+
+Popularity
+
+
+
+Spicy
+
+Gyinn
+
+Potato
+
+
+
+Primary_key id
+name
+slug
+image_path
+
+
+A movie has many popularity that created by user
+
+popularity belongs to movie
+
+
+
 
 
 
