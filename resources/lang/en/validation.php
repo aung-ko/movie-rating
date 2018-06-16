@@ -100,8 +100,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'attributes' => [
+            'name' => 'naam'
+            'password' => 'wachtwoord'
         ],
     ],
 

@@ -1,6 +1,6 @@
 @extends('frontend.app')
 @section('content')
-<section class="listing jumbotron horror  text-light">
+<section class="listing jumbotron">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
@@ -12,46 +12,48 @@
 					<div class="card-body">
 						<form action="/search" method="GET">
 							<div class="form-row">
-								<div class="p-2">
+								<div class="p-2 w-100">
 									<input type="text" class="form-control" placeholder="ဇာတ်ကားအမည်" name="name">
 								</div>
-								<div class="p-2 slidecontainer">
-									<p>Min Rating နဲ့ရှာမယ် <span class="badge badge-success" id="rateoutput"></span></p>
-									<input type="range" min="1" max="5" value="1" class="slider" id="min_rating" name="min_rating">
-								</div>	
-								<div class="p-2 slidecontainer">
-									<p>Max Rating နဲ့ရှာမယ် <span class="badge badge-success" id="rateoutput"></span></p>
-									<input type="range" min="2" max="5" value="2" class="slider" id="max_rating" name="max_rating">
+								<div class="p-2 slidecontainer row text-center">
+									<div class='col'>
+										အနည်းဆုံး ြကယ် <select name="min_rating" id="min_rating" class="form-control" title="Min Rating">
+										{{-- <option value="null" data-html='null'>အနည်းဆုံး ြကယ်</option> --}}
+											@for($i=1; $i<=5; $i++)
+											<option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
+											@endfor
+										</select>
+									</div>
+									<div class='col'>
+										အများဆုံး ြကယ် <select name="max_rating" id="max_rating" class="form-control" title="Max Rating">
+										{{-- <option value="null">အများဆုံး ြကယ်</option> --}}
+										@for($i=1; $i<=5; $i++)
+										<option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
+										@endfor 
+										</select> 													
+									</div>								
 								</div>	   		
-								<div class="p-2">
-									<select id="category" name="genre_id" class="form-control">
+								<div class="p-2 w-100">
+									<select id="category" name="genres_name" class="form-control">
+										<option value='null' selected>အမျိုးအစား</option>
 										@foreach($genres as $key=>$value)
 										<option value="{{$key}}">{{$value}}</option>
 
 										@endforeach
 									</select>
 								</div>
-								<div class="p-2">
+								<div class="p-2 w-100">
 									<select id="year" name="released_date" class="form-control">
+										<option value='null' selected>အချိန်အလိုက်</option>
 										@foreach($years as $year)
 										<option value="{{$year}}">{{$year}}</option>
 
 										@endforeach
 									</select>
 								</div>
-								<div class="p-2">
+								<div class="p-2 w-100">
 									<select id="popularity" class="form-control">
-										<option selected>ဒါရိုက်တာ နာမည်</option>
-										<option>အစပ်ဆုံးကားများ</option>
-										<option>အာလူးကြိုက်သူများ</option>
-										<option>ဂျင်းကားများ</option>
-										<option>ရီဗျုး အများဆုံး</option>
-										<option>အမှတ် အများဆုံး</option>
-									</select>
-								</div>
-								<div class="p-2">
-									<select id="popularity" class="form-control">
-										<option selected>ဇာတ်ညွှန်းဆရာ နာမည်</option>
+										<option value='null' selected>ဒါရိုက်တာ နာမည်</option>
 										<option>အစပ်ဆုံးကားများ</option>
 										<option>အာလူးကြိုက်သူများ</option>
 										<option>ဂျင်းကားများ</option>
@@ -70,14 +72,14 @@
 			</div>
 			<div class="col-md-8">
 				<h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>သရဲကား နှင့်သက်ဆိုင်သော ဇာတ်ကားများ</h2>
-				<p class='pl-3 jumbotron-heading'>( ၄ ) ကားရှိပါတယ်</p>
+				<p class='pl-3 jumbotron-heading'>( {{$results->count()}} ) ကားရှိပါတယ်</p>
 				<div class="row">
 					@foreach($results as $result)
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
 
 						<div class="recent-movie-block">
 							<div class="recent-movie-img">
-								<img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="{{ asset('storage/movies/' . $result->slug . '/' . $result->thumb ) }} "/>
+								<img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="{{ asset('storage/movies/' . $result->slug . '/' . $result->poster ) }} "/>
 								<div class="recent-movie-content p-3">
 									<h4 class="text-white mb0">{{$result->name}}</h4>
 									<div>
@@ -93,7 +95,7 @@
 								</div>
 								<div class="overlay">
 									<div class="card-header">
-										<h3 class="text-dark mb0">လေထဲက တိမ်တိုက်</h3>
+										<h3 class="text-dark mb0">{{$result->name}}</h3>
 									</div>
 									<div class="card-body">
 										၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 

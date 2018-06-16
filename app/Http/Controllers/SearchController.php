@@ -25,8 +25,7 @@ class SearchController extends Controller
         
         $genre = Genre::filter($genreFilters)->get();
         $movie = Movie::filter($movieFilters);
-       $genres = Genre::pluck('name', 'id');
-
+        $genres = Genre::pluck('name', 'id');
 
         $results = $movie->whereHas('genres' , function ($query) use ($genreFilters) {
             $genreFilters->apply($query);
@@ -42,12 +41,12 @@ class SearchController extends Controller
        
 
 
-        if (count($results) == 0 || $numOfResults == 0) {
-            Alert::warning("No Results Found", "Try again");
-            return back();
-        }else{
-            Alert::success("$numOfResults Results Found", "Results Found");
-        }
+        // if (count($results) == 0 || $numOfResults == 0) {
+        //     Alert::warning("No Results Found", "Try again");
+        //     return back();
+        // }else{
+        //     Alert::success("$numOfResults Results Found", "Results Found");
+        // }
 
         $years = $this->movieRepo->released_date();
         
