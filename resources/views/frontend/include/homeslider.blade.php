@@ -29,10 +29,9 @@
 		        			<span class="fa fa-lg fa-star"></span>
 		        		</p>
 		        	</div>
-		        	<p>{{ $movie->description }}</p>
+		        	<p>{{ str_limit($movie->description, 90) }}</p>
 		        </div>
-		    	
-	    		<a class="align-text-bottom btn btn-dark float-right" href="{{ route('movie.show', $movie->slug) }}" role="button">ကြည့်မယ်</a>
+		        <a class="align-text-bottom btn btn-dark float-right" href="{{ route('movie.show', $movie->slug) }}" role="button">ကြည့်မယ်</a>    
 			</div>
 		</div>
 		            

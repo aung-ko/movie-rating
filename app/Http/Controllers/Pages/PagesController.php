@@ -29,5 +29,19 @@ class PagesController extends Controller
 
         $movies = $this->movieRepo->all();
         return view('pages.index', compact('movies', 'genres', 'years'));
+
     }
+
+
+    public function user()
+    {
+        $movies = $this->movieRepo->all();    
+        return view('frontend.user', compact('movies', 'genres', 'years'));
+    }
+
+    public function reviews()
+    {
+        $movies = $this->movieRepo->all();    
+        return view('frontend.reviews', compact('movies', 'genres', 'years'));
+    }   
 }

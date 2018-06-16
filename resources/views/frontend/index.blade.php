@@ -10,14 +10,14 @@
 			</div>
 		</div>
 		<div class="row">
-			@for ($i = 0; $i < 6; $i++)
+			@foreach ($movies as $movie)
 			<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
 
 				<div class="recent-movie-block">
 					<div class="recent-movie-img">
 						<img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="img/simple-{{ $i }}.jpg"/>
 						<div class="recent-movie-content p-3">
-							<h4 class="text-white mb0">လေထဲက တိမ်တိုက်</h4>
+							<h4 class="text-white mb0">{{ $movie->name }}</h4>
 							<div>
 								<p class="rating"> ၄/၅ </p>
 								<p class="stars">
@@ -31,7 +31,7 @@
 						</div>
 						<div class="overlay">
 							<div class="card-header">
-								<h3 class="text-dark mb0">လေထဲက တိမ်တိုက်</h3>
+								<h3 class="text-dark mb0">{{ $movie->name }}</h3>
 							</div>
 							<div class="card-body">
 								၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
@@ -48,13 +48,13 @@
 								<p>"လေထဲက တိမ်တိုက် သည် ဘလာဘလာ ဖြစ်သည် လေထဲက တိမ်တိုက် သည် ဘလာဘလာ ဖြစ်သည် လေထဲက တိမ်တိုက် သည် ဘလာဘလာ ဖြစ်သည်"</p>
 							</div>
 							<div class="card-footer nopadding">
-								<a class="align-text-bottom btn btn-dark align-text-bottom btn-lg btn-block" href="#" role="button">ကြည့်မယ်</a>
+								<a class="align-text-bottom btn btn-dark align-text-bottom btn-lg btn-block" href="{{ route('movie.show', $movie->slug) }}" role="button">ကြည့်မယ်</a>
 							</div>	
 						</div>
 					</div>
 				</div>
 			</div>   
-			@endfor
+			@endforeach
 		</div>
 	</div>    
 

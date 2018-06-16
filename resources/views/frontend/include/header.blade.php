@@ -58,12 +58,14 @@
                တန်းပလိတ် <span class="badge badge-pill badge-info"> dev</span>
              </a>
              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="./">ပင်မစာမျက်နှာ</a>
-              <a class="dropdown-item" href="./listing-movie">ရုပ်ရှင်စာမျက်နှာ (listing)</a>
-              <a class="dropdown-item" href="./single-movie">ရုပ်ရှင်စာမျက်နှာ (single)</a>
-              <a class="dropdown-item" href="./user">အသုံးပြုသူ ပရိုဖိုင်</a>
+              <a class="dropdown-item" href="../">ပင်မစာမျက်နှာ</a>
+              <a class="dropdown-item" href="../search">ရုပ်ရှင်စာမျက်နှာ (listing)</a>
+              <a class="dropdown-item" href="../movie/a-quiet-place-5b12e239d93ca">ရုပ်ရှင်စာမျက်နှာ (single)</a>
+              <a class="dropdown-item" href="../user">အသုံးပြုသူ ပရိုဖိုင်</a>
+              <a class="dropdown-item" href="../reviews">ရီဗျုးစာမျက်နှာ</a>
+              
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">ရီဗျုးစာမျက်နှာ  <span class="badge badge-pill badge-info"> soon</span></a>
+              
               <a class="dropdown-item" href="#">အမျိးအစား စာမျက်နှာ  <span class="badge badge-pill badge-info"> soon</span></a>              
             </div>
           </li>                                                                   
@@ -84,22 +86,55 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Password">
-              </div>
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary btn-movie">Submit</button>
-            </div>
+            <form method="POST" action="{{ route('login') }}"> {{ csrf_field() }}
+                <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>                   
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-movie">
+                            {{ __('Login') }}
+                        </button>
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    </div>
+            </form>
           </div>
         </form>
       </div>
@@ -107,7 +142,6 @@
 
     <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="register" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <form>
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">အကောင့် စတင်ပြုလုပ်ပါ</h5>
@@ -115,29 +149,61 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" id="username" placeholder="User Name">
-              </div>                
-              <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Confirm Password">
-              </div>
+            <form method="POST" action="{{ route('register') }}"> {{ csrf_field() }}
+              <div class="modal-body">
+                <div class="form-group row">
+                  <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  <div class="col-md-6">
+                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+
+                    @if ($errors->has('name'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                  <div class="col-md-6">
+                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                    @if ($errors->has('email'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                  <div class="col-md-6">
+                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                    @if ($errors->has('password'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                  <div class="col-md-6">
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary btn-movie">Submit</button>
-            </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-movie btn-block">{{ __('Register') }}</button>
+              </div>
+            </form>
           </div>
         </form>
       </div>
