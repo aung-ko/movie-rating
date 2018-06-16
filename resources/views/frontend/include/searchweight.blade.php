@@ -5,7 +5,7 @@
 			{{csrf_field()}}
 			<div class="form-row">
 				<div class="col-md-6">
-					<input type="text" class="form-control" placeholder="ဇာတ်ကားအမည်" name="name">
+					<input type="text" class="form-control" placeholder="ဇာတ်ကားအမည်" name="name" id="name">
 				</div>
 				<div class="col-md-2 text-center">
 					အနည်းဆုံး ြကယ် <select name="min_rating" id="min_rating" class="form-control" title="Min Rating">
@@ -26,7 +26,7 @@
 
 
 				<div class="collapse multi-collapse col-md-4 mt-3 mb-3" id='collapsehome'>					
-					<select id="category" name="genre_id" class="form-control">
+					<select id="genre_id" name="genre_id" class="form-control">
 						<option value="null">အမျိုးအစား</option>
 						@foreach($genres as $key=>$value)
 						<option value="{{$key}}">{{$value}}</option>						
@@ -42,15 +42,7 @@
 						@endforeach
 					</select>
 				</div>
-				<div class="collapse multi-collapse col-md-4 mt-3 mb-3" id='collapsehome'>
-					<select id="year" name="released_date" class="form-control">
-						<option value="null">ဒါရိုက်တာ</option>
-						@foreach($years as $year)
-						<option value="{{$year}}">{{$year}}</option>
-						
-						@endforeach
-					</select>
-				</div>				
+							
 				<div class="col">
 					<button type="submit" class="btn btn-primary btn-movie">ရှာမယ်</button>					
 						<a class="btn btn-link text-white" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" href="#collapsehome" role="button" aria-expanded="false" aria-controls="collapsehome">
