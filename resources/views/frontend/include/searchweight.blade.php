@@ -27,7 +27,7 @@
 
 				<div class="collapse multi-collapse col-md-4 mt-3 mb-3" id='collapsehome'>					
 					<select id="genre_id" name="genre_id" class="form-control">
-						<option value="null">အမျိုးအစား</option>
+						<option value=''>အမျိုးအစား</option>
 						@foreach($genres as $key=>$value)
 						<option value="{{$key}}">{{$value}}</option>						
 						@endforeach
@@ -35,7 +35,7 @@
 				</div>
 				<div class="collapse multi-collapse col-md-4 mt-3 mb-3" id='collapsehome'>
 					<select id="year" name="released_date" class="form-control">
-						<option value="null">ခုနှစ်</option>
+						<option value=''>ခုနှစ်</option>
 						@foreach($years as $year)
 						<option value="{{$year}}">{{$year}}</option>
 						

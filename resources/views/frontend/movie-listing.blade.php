@@ -34,8 +34,8 @@
 									</div>								
 								</div>	   		
 								<div class="p-2 w-100">
-									<select id="category" name="genres_name" class="form-control">
-										<option value='null' selected>အမျိုးအစား</option>
+									<select id="category" name="genre_id" class="form-control">
+										<option value='' selected>အမျိုးအစား</option>
 										@foreach($genres as $key=>$value)
 										<option value="{{$key}}">{{$value}}</option>
 
@@ -44,23 +44,14 @@
 								</div>
 								<div class="p-2 w-100">
 									<select id="year" name="released_date" class="form-control">
-										<option value='null' selected>အချိန်အလိုက်</option>
+										<option value='' selected>အချိန်အလိုက်</option>
 										@foreach($years as $year)
 										<option value="{{$year}}">{{$year}}</option>
 
 										@endforeach
 									</select>
 								</div>
-								<div class="p-2 w-100">
-									<select id="popularity" class="form-control">
-										<option value='null' selected>ဒါရိုက်တာ နာမည်</option>
-										<option>အစပ်ဆုံးကားများ</option>
-										<option>အာလူးကြိုက်သူများ</option>
-										<option>ဂျင်းကားများ</option>
-										<option>ရီဗျုး အများဆုံး</option>
-										<option>အမှတ် အများဆုံး</option>
-									</select>
-								</div>
+								
 								<div class="p-2 w-100">
 									<button type="submit" class="btn btn-primary btn-lg btn-movie btn-block">ရှာမယ်</button>
 								</div>  		   		 		   		
