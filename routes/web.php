@@ -38,7 +38,7 @@ Route::prefix('movie')->group(function () {
     Route::get('{movie}/review/{review}/edit', 'Movie\ReviewController@edit')->name('review.edit');
     Route::patch('{movie}/review/{review}', 'Movie\ReviewController@update')->name('review.update');
     
-    // Route::delete('{movie}/review/{review}', 'Movie\MovieController@destroyReview')->name('review.destroy');
+    Route::delete('{movie}/review/{review}', 'Movie\ReviewController@destroy')->name('review.destroy');
   
     Route::post('{movie}/review/{review}/reply', 'Movie\ReplyController@store')->name('reply.store');
     Route::get('{movie}/review/{review}/reply/{reply}/edit', 'Movie\ReplyController@edit')->name('reply.edit');

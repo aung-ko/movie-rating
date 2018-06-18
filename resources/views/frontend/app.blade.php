@@ -50,6 +50,7 @@
     </div>
     @include('sweetalert::alert')
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('script')
 <!--         <script src="js/custom.js"></script>  -->
 </body>
 </html>

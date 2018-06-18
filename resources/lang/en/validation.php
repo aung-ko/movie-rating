@@ -101,7 +101,7 @@ return [
 
     'custom' => [
         'attributes' => [
-            'name' => 'naam'
+            'name' => 'naam',
             'password' => 'wachtwoord'
         ],
     ],
