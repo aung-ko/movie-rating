@@ -63,7 +63,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+        $data['slug'] = str_slug($data['name'], "-") . "-" . uniqid();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
