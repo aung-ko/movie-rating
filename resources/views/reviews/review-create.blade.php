@@ -5,6 +5,9 @@
 
 <br>
 <br>
+<div class="container">
+<div class="card">
+	<div class="card-body">
 
 <form action="{{route('review.store', $movie)}}" method="POST" class="form-horizontal form-bordered">
 					{{csrf_field()}}
@@ -65,6 +68,9 @@
 						</div>
 					</div>
 				</form>
+				</div>
+				</div>
+				</div>
 				<br>
 				<br>
 

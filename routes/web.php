@@ -51,10 +51,10 @@ Route::prefix('movie')->group(function () {
 Route::get('/search', 'SearchController@search');
 Route::get('/users', 'SearchController@search');
 
-ROute::prefix('/')->group(function(){
+Route::prefix('/')->group(function(){
     Route::get('/', 'Pages\PagesController@index')->name('index');  
-    Route::get('/user', 'Pages\PagesController@user')->name('user');
-    Route::get('/reviews', 'Pages\PagesController@reviews')->name('reviews'); 
+    Route::get('/user/{user}', 'UserController@user')->name('user');
+  
 });
 
 

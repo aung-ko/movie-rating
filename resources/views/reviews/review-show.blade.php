@@ -100,19 +100,20 @@
                             <li><span class="thumb-xs avatar pull-left mr-sm"><img class="img-circle" src="img/avatar1.png" alt="..."></span>
                                 <div class="comment-body">
                                     <h6 class="author fw-semi-bold">{{$reply->user->name}}{{--  <small>{{$reply->created_at->diffForHumans()}}</small> --}}</h6>
-                                    <p>{{$reply->body}}</p>
-                                    
 
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                                    @can('delete-reply', $reply)
                                     <form action="{{route('reply.destroy', $reply->id)}}" method="POST">
                                         {{method_field('delete')}}
                                         {{csrf_field()}}
 
-                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                        <button class="btn btn-danger btn-xs pull-right">Delete</button>
 
 
                                     </form>
-
+                                    @endcan
+                                    
+                                    @can('edit-reply', $reply)
+                                    <button class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#exampleModal">Edit</button>
 
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                                       <div class="modal-dialog" role="document">
@@ -149,12 +150,23 @@
                                 </div>
                                 
                             </div>
+                        </div>
+                                    @endcan
+                                    <p>{{$reply->body}}</p>
+                                   
+                                    
+
+                                    
+
+
+
                         </li>
                         @endforeach
 
 
                         <li>
                             <div class="comment-body">
+                                @can('create')
                                 <form action="{{route('reply.store', [$movie, $review])}}" method="POST" class="form-horizontal form-bordered">
                                     {{csrf_field()}}
 
@@ -189,6 +201,7 @@
                                             </div>
                                         </div>
                                     </form>
+                                    @endcan
                                 </div>
                             </li>
                         </ul>

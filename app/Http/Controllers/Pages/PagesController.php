@@ -42,6 +42,6 @@ class PagesController extends Controller
     public function reviews()
     {
         $movies = $this->movieRepo->all();    
-        return view('frontend.reviews', compact('movies', 'genres', 'years'));
+        return view('reviews.review-show', compact('movies', 'genres', 'years'));
     }   
 }

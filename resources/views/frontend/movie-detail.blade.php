@@ -64,8 +64,15 @@
 							@endfor
 							<span class="text-small fa fa-xs-movie fa-star-o"></span>							
 						</p>
+						@if(\Auth::check())
 						<a href="{{route('review.create', $movie)}}" class="btn btn-dark btn-movie btn-lg btn-block">မှတ်ချက်ရေးမယ်</a>
-						<a href="{{route('review.create', $movie)}}" class="btn btn-dark btn-lg btn-block">မှတ်ချက်ရေးမယ်</a>		          						
+						<a href="{{route('review.create', $movie)}}" class="btn btn-dark btn-lg btn-block">မှတ်ချက်ရေးမယ်</a>
+						@else
+						<a  href="{{route('login')}}" class="btn btn-primary">မွတ္ခ်က္ေရးရန္၀င္ေရာက္ပါ</a>
+						
+						@endif
+
+
 					</div>	
 					<div class='card p-4 mt-3'>
 						<h2 class="text-left myanmarsanpro">ဘယ်မှာပြသနေပြီလဲ</h2>
@@ -91,7 +98,8 @@
 
 								<p class="fs-mini">{{$review->body}}</p>
 								<span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>
-
+								
+								@can('edit-review', $review)
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
 
 								<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -142,13 +150,16 @@
 										</div>
 									</div>
 								</div>
+								@endcan
 
+								@can('delete-review', $review)
 								<form action="{{route('review.destroy', [$movie, $review])}}" method="POST">
 									{{method_field('delete')}}
 									{{csrf_field()}}
 									<button class="btn btn-danger btn-sm">Delete</button>
 
-								</form>							           
+								</form>
+								@endcan					           
 								<i class="fa fa-star checked"></i>
 								<i class="fa fa-star checked"></i>
 								<i class="fa fa-star checked"></i>

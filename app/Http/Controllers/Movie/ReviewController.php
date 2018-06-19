@@ -12,7 +12,7 @@ class ReviewController extends Controller
 {
 	public function create(Movie $movie)
 	{
-		return view('movies.review-create', compact('movie'));
+		return view('reviews.review-create', compact('movie'));
 	}
     public function store(Request $request, Movie $movie)
     {
@@ -38,13 +38,10 @@ class ReviewController extends Controller
     }
     public function show(Movie $movie, Review $review)
     {
-        return view('movies.review-show', compact('review', 'movie'));
+        return view('reviews.review-show', compact('review', 'movie'));
     }
 
-    public function edit(Movie $movie, Review $review)
-    {
-        return view('movies.review-edit', compact('review', 'movie'));
-    }
+   
 
     public function update(Request $request,Movie $movie, Review $review)
     {

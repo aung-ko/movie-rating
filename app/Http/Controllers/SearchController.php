@@ -22,7 +22,7 @@ class SearchController extends Controller
     }
 	public function search(Request $request, MovieFilters $movieFilters, GenreFilters $genreFilters)
     {
-        
+        // dd($request);
         $genre = Genre::filter($genreFilters)->get();
         $movie = Movie::filter($movieFilters);
         $genres = Genre::pluck('name', 'id');
@@ -31,7 +31,7 @@ class SearchController extends Controller
 
 
         
-    
+        // dd($movie);
         $results = $movie->whereHas('genres' , function ($query) use ($genreFilters) {
             $genreFilters->apply($query);
         })->get();

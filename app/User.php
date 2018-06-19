@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'slug'
     ];
 
     /**
@@ -45,5 +45,11 @@ class User extends Authenticatable
     public function replys()
     {
         return $this->hasMany('App\Models\Reply');
+    }
+
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
