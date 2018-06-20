@@ -166,7 +166,7 @@
 
                         <li>
                             <div class="comment-body">
-                                @can('create')
+                                @if(\Auth::check())
                                 <form action="{{route('reply.store', [$movie, $review])}}" method="POST" class="form-horizontal form-bordered">
                                     {{csrf_field()}}
 
@@ -201,7 +201,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    @endcan
+                                    @endif
                                 </div>
                             </li>
                         </ul>
