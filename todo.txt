@@ -1,0 +1,76 @@
+
+
+A movie has many reviews that created by users
+
+A user has many reviews
+A review belongsTo A user
+
+
+
+A review has many reply that created by users
+
+A user has many replys
+A reply belongsTo A user
+
+
+User
+	reviews() user->hasMany(Review)
+
+	replys() user->hasMany(Reply)
+
+
+Movie
+	reviews() movie->hasMany(review)
+
+
+Review
+	
+	replys() review->hasMany(reply)
+
+	movie() review->belongsTo(movie)
+	user() review->belongsTo(user)
+
+	user_id
+	movie_id
+
+Reply
+
+	review() reply->belongsTo(review)
+	user() reply->belongsTo(user)
+
+	user_id
+	review_id
+
+
+
+Review Rating Popularity
+
+
+
+Popularity
+
+
+
+Spicy
+
+Gyinn
+
+Potato
+
+
+
+Primary_key id
+name
+slug
+image_path
+
+
+A movie has many popularity that created by user
+
+popularity belongs to movie
+
+
+
+
+
+
