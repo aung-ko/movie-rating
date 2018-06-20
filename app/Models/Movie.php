@@ -31,4 +31,18 @@ class Movie extends Model
         // dd($filters);
         $filters->apply($query);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
+
+    public function recalculateRating()
+    {
+        $reviews = $this->reviews();
+        $avgRating = $reviews->avg('rating');
+        $this->rating = round($avgRating, 1);
+        $this->rating_count = $reviews->count();
+        $this->save();
+    }
 }

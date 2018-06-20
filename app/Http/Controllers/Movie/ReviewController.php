@@ -12,6 +12,7 @@ class ReviewController extends Controller
 {
 	public function create(Movie $movie)
 	{
+
 		return view('reviews.review-create', compact('movie'));
 	}
     public function store(Request $request, Movie $movie)
@@ -23,19 +24,36 @@ class ReviewController extends Controller
 
 
         if(\Auth::check()){
+
+		return view('movies.review-create', compact('movie'));
+    }
+    
+    public function store(Request $request, Movie $movie)
+    {
+        $request->validate([
+            'rating' => 'required',
+            'title' => 'string',
+            'body' => 'string'
+        ]);
+
+
+
         Review::create([
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => \Auth::user()->id,
-            'movie_id' => $movie->id
-
+            'movie_id' => $movie->id,
+            'rating' => $request->rating
         ]);
         }else{
             abort(403, 'Unauthorized action. You have to login');
         }
 
+        $movie->recalculateRating();
+
         return redirect()->route('movie.show', $movie->slug);
     }
+
     public function show(Movie $movie, Review $review)
     {
         return view('reviews.review-show', compact('review', 'movie'));
@@ -45,10 +63,12 @@ class ReviewController extends Controller
 
     public function update(Request $request,Movie $movie, Review $review)
     {
+
         $this->validate($request, [
             'title' => 'required|string',
             'body' => 'required|string'
         ]);
+
 
         if(\Auth::check()){
         $review->update([

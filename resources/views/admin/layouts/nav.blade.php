@@ -212,6 +212,7 @@
                 </li>
                 <li class="divider"></li>
                 <li><a href="{{ route('logout') }}" 
+<<<<<<< HEAD
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                     <i class="fa fa-power-off"></i> Logout</a>
@@ -219,6 +220,15 @@
                         {{ csrf_field() }}
                     </form>
 
+=======
+                    onclick="event.preventDefault(); 
+                    document.getElementById('logout-form').submit();"> 
+                    <i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+>>>>>>> rating
                 </li>
             </ul>
 
