@@ -6,13 +6,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center">
-				<h1 class='m-4 myanmarsanpro'>ဒီတစ်ပတ်ရုံတင်ဇာတ်ကားများ</h1>
+				<h1 class='m-4 myanmarsanpro'>{{__('messages.this-week-movie')}}</h1>
 			</div>
 		</div>
 		<div class="row">
 			{{-- {{dd($movies)}} --}}
 			@foreach ($movies as $movie)
-			<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+			<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
 
 				<div class="recent-movie-block">
 					<div class="recent-movie-img">
@@ -20,13 +20,14 @@
 						<div class="recent-movie-content p-3">
 							<h4 class="text-white mb0">{{ $movie['name'] }}</h4>
 							<div>
-								<p class="rating"> ၄/၅ </p>
+								<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
 								<p class="stars">
-									<span class="fa fa-lg fa-star checked"></span>
-									<span class="fa fa-lg fa-star checked"></span>
-									<span class="fa fa-lg fa-star checked"></span>
-									<span class="fa fa-lg fa-star checked"></span>
-									<span class="fa fa-lg fa-star"></span>
+									@for($i=1; $i<=$movie['rating']; $i++)
+										<span class="fa fa-lg fa-star checked"></span>
+									@endfor 
+									@for($i=1; $i<=5-$movie['rating']; $i++)
+										<span class="fa fa-lg fa-star"></span>
+									@endfor 
 								</p>
 							</div>
 						</div>
@@ -38,13 +39,14 @@
 								၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
 								၁၀  <img class="custom-icon flex-row putato" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
 								၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">   		
-								<p class="rating"> ၄/၅ </p>
+								<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
 								<p class="stars">
-									<span class="fa fa-lg fa-star checked"></span>
-									<span class="fa fa-lg fa-star checked"></span>
-									<span class="fa fa-lg fa-star checked"></span>
-									<span class="fa fa-lg fa-star checked"></span>
-									<span class="fa fa-lg fa-star"></span>
+									@for($i=1; $i<=$movie['rating']; $i++)
+										<span class="fa fa-lg fa-star checked"></span>
+									@endfor 
+									@for($i=1; $i<=5-$movie['rating']; $i++)
+										<span class="fa fa-lg fa-star"></span>
+									@endfor 
 								</p>
 								<p>{{ str_limit($movie->description, 120) }}</p>
 							</div>

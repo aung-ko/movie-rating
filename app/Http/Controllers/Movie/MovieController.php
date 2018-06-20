@@ -37,7 +37,7 @@ class MovieController extends Controller
         // $replies = Reply::where('review_id' , '=', $re);
 
         $movie = $this->movieRepo->get($movie);
-        return view('frontend.movie-detail', compact('movie', 'reviews'));
+        return view('movies.show', compact('movie', 'reviews','genres'));
     }
 
     

@@ -52,10 +52,8 @@ class SearchController extends Controller
         
         
 
-       return view('frontend.movie-listing', compact('results', 'genres', 'years'));
+       return view('movies.search', compact('results', 'genres', 'years'));
     
-        
-       
     }
 
 }

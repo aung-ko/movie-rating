@@ -6,16 +6,16 @@
 			<div class="col-md-4">
 				<div class="card text-dark">
 					<div class="card-header">
-						<h2 class='pb-3 myanmarsanpro'>ရှာဖွေပါ</h2>
+						<h2 class='pb-3 myanmarsanpro'> {{ __('messages.search') }}</h2>
 						<p class='pb-2'>ကြိုက်နှစ်သက်ရာ ဇာတ်ကား၊ ရုပ်ရှင်ဇာတ်လမ်းများကို စိတ်ကြိုက်ရှာဖွေလိုက်ပါ</p>
 					</div>
-					<div class="card-body">
+					<div class="card-body p-0">
 						<form action="/search" method="GET">
 							<div class="form-row">
-								<div class="p-2 w-100">
+								<div class="p-3 w-100">
 									<input type="text" class="form-control" placeholder="ဇာတ်ကားအမည်" name="name">
 								</div>
-								<div class="p-2 slidecontainer row text-center">
+								<div class="p-1 slidecontainer row text-center">
 									<div class='col'>
 										အနည်းဆုံး ြကယ် <select name="min_rating" id="min_rating" class="form-control" title="Min Rating">
 										{{-- <option value="null" data-html='null'>အနည်းဆုံး ြကယ်</option> --}}
@@ -46,14 +46,14 @@
 									<select id="year" name="released_date" class="form-control">
 										<option value='' selected>အချိန်အလိုက်</option>
 										@foreach($years as $year)
-										<option value="{{$year}}">{{$year}}</option>
+										<option value="{{$year}}">{{numformat($year)}}</option>
 
 										@endforeach
 									</select>
 								</div>
 								
 								<div class="p-2 w-100">
-									<button type="submit" class="btn btn-primary btn-lg btn-movie btn-block">ရှာမယ်</button>
+									<button type="submit" class="btn btn-primary btn-lg btn-movie btn-block">{{__('messages.search2')}}</button>
 								</div>  		   		 		   		
 							</div>
 						</form>				
@@ -62,26 +62,32 @@
 				</div>
 			</div>
 			<div class="col-md-8">
-				<h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>သရဲကား နှင့်သက်ဆိုင်သော ဇာတ်ကားများ</h2>
-				<p class='pl-3 jumbotron-heading'>( {{$results->count()}} ) ကားရှိပါတယ်</p>
+				@if ($results->count() !== 0)
+						<h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>{{__('messages.search-result')}}</h2>
+						<p class='pl-3 jumbotron-heading'>( {{numformat($results->count())}} ) {{__('messages.has-movie')}}</p>
+					@else
+						<h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>{{__('messages.search-result')}}</h2>
+						<p class='pl-3 jumbotron-heading'>{{__('messages.no-has-movie')}}</p>					
+				@endif
 				<div class="row">
 					@foreach($results as $result)
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-
 						<div class="recent-movie-block">
 							<div class="recent-movie-img">
 								<img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="{{ asset('storage/movies/' . $result->slug . '/' . $result->poster ) }} "/>
 								<div class="recent-movie-content p-3">
 									<h4 class="text-white mb0">{{$result->name}}</h4>
 									<div>
-										<p class="rating"> ၄/၅ </p>
+										<p class="rating"> {{numformat($result->rating)}}/၅  </p>
 										<p class="stars">
-											<span class="fa fa-lg fa-star checked"></span>
-											<span class="fa fa-lg fa-star checked"></span>
-											<span class="fa fa-lg fa-star checked"></span>
-											<span class="fa fa-lg fa-star checked"></span>
-											<span class="fa fa-lg fa-star"></span>
+											@for($i=1; $i<=$result->rating; $i++)
+												<span class="fa fa-lg fa-star checked"></span>
+											@endfor 
+											@for($i=1; $i<=5-$result->rating; $i++)
+												<span class="fa fa-lg fa-star"></span>
+											@endfor 
 										</p>
+
 									</div>
 								</div>
 								<div class="overlay">

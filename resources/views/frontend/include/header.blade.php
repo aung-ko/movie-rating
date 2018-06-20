@@ -7,7 +7,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">ပင်မစာမျက်မှာ<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{URL::to('/')}}">ပင်မစာမျက်မှာ<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,11 +58,11 @@
                တန်းပလိတ် <span class="badge badge-pill badge-info"> dev</span>
              </a>
              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="../">ပင်မစာမျက်နှာ</a>
-              <a class="dropdown-item" href="../search">ရုပ်ရှင်စာမျက်နှာ (listing)</a>
-              <a class="dropdown-item" href="../movie/a-quiet-place-5b12e239d93ca">ရုပ်ရှင်စာမျက်နှာ (single)</a>
-              <a class="dropdown-item" href="../user">အသုံးပြုသူ ပရိုဖိုင်</a>
-              <a class="dropdown-item" href="../reviews">ရီဗျုးစာမျက်နှာ</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/">ပင်မစာမျက်နှာ</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/search">ရုပ်ရှင်စာမျက်နှာ (listing)</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/movie/a-quiet-place-5b12e239d93ca">ရုပ်ရှင်စာမျက်နှာ (single)</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/user">အသုံးပြုသူ ပရိုဖိုင်</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/movie/a-quiet-place-5b12e239d93ca/review/create">ရီဗျုးစာမျက်နှာ</a>
               
               <div class="dropdown-divider"></div>
               
@@ -70,9 +70,19 @@
             </div>
           </li>                                                                   
         </ul>
+
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <button type="button" class="btn btn-primary btn-movie" data-toggle="modal" data-target="#login">၀င်ရောက်ပါ</button>
-          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#register">စတင်ပါ</button>
+          @if (Auth::check())
+            <a href="{{ url('/logout') }}" class='btn btn-primary btn-movie' role='button' onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}</form>
+                                  
+
+          @else
+            <button type="button" class="btn btn-primary btn-movie" data-toggle="modal" data-target="#login">၀င်ရောက်ပါ</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#register">စတင်ပါ</button>
+          @endif
         </div>
       </div>
     </nav>
@@ -86,7 +96,8 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form method="POST" action="{{ route('login') }}"> {{ csrf_field() }}
+            <form method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
                 <div class="modal-body">
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>

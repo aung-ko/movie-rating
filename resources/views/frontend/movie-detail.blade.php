@@ -1,12 +1,8 @@
 @extends('frontend.app')
 @section('content')
-<section  style='background-image: url({{ asset('storage/movies/' . $movie->slug . '/' . $movie->background ) }});'class="single jumbotron bg-dark movie-background text-light">
+<section  style='background-image: url({{ asset('storage/movies/' . $movie->slug . '/' . $movie->background ) }});' class="single jumbotron bg-dark movie-background text-light img-background">
         <div class="container">
-	          <h1 class="jumbotron-heading text-left p-1 pb-3 myanmarsanpro">{{ $movie->name }}
-	          	@for ($i = 0; $i < 4; $i++)	
-	                <span class="text-small fa fa-xs-movie fa-star checked"></span>
-	          	@endfor
-	          </h1> 
+	          <h1 class="jumbotron-heading text-left p-1 pb-3 myanmarsanpro">{{ $movie->name }} - {{date('Y',strtotime($movie->released_date))}}</h1> 
 
 	          <div class="row">
 	          	<div class="col-md-3 nopadding nomargin bg-dark-movie">
@@ -57,7 +53,7 @@
 			<div class='row'>
 				<div class='col col-md-4 p-2'>
 					<div class='card p-4'>
-					<h2 class="text-left myanmarsanpro">၅၀၀ မှတ်ချက်ရရှိထားသည်</h2>
+					<h2 class="text-left myanmarsanpro">၅၀၀ {{ __('messages.comment').__('messages.receive')}}</h2>
 						<p>
 							@for ($i = 0; $i < 4; $i++)	
 				                <span class="text-small fa fa-xs-movie fa-star checked"></span>
@@ -81,12 +77,13 @@
 					</div>						
 				</div>
 				<div class="col col-md-8 p-2">
-					<div class="card p-4">
+					<div class="p-4">
 							<h2 class="text-left myanmarsanpro">နောက်ဆုံးရမှတ်ချက်များ</h2>							
-							@foreach($reviews->slice(0, 1) as $review)
-							    <section class="event">
+							@foreach($reviews as $review)
+							    <section class="event mb-4">
 							            <h4 class="event-heading pb-3">
 											<a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a></h4>
+											{{date(('F j, Y'),strtotime($review->created_at))}}
 											{{-- <p class="fs-sm text-muted">၂၀၁၈ခုနှစ် မေလ ၁ရက်နေ င်္နနက် ၅း၃၀</p> --}}
 
 							           <p class="fs-mini">{{$review->body}}</p>
@@ -107,6 +104,8 @@
 							                </div>
 							         </footer>
 							     </section>
+							}
+							}
 							@endforeach
 
 							<a href="{{route('review.create', $movie)}}" class="mt-4 btn btn-dark btn-lg btn-block">အြခား မှတ်ချက်များပါ ြကည့်ရှုရန်</a>							

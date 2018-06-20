@@ -13,25 +13,21 @@
 
 		        <div class='row'>
 		        	<div class="card-body">
-						<p class="d-flex flex-row">
-							 ၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-							 ၁၀  <img class="custom-icon flex-row putato" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-							 ၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">   		
-						</p>
+			        	<div class='stars-rating'>
+			        		<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
+			        		</div>
+								<p class="stars">
+									@for($i=1; $i<=$movie['rating']; $i++)
+										<span class="fa fa-lg fa-star checked"></span>
+									@endfor 
+									@for($i=1; $i<=5-$movie['rating']; $i++)
+										<span class="fa fa-lg fa-star"></span>
+									@endfor 
+								</p>
+			        	<p>{{ str_limit($movie->description, 90) }}</p>	
+		        <a class="align-text-bottom btn btn-dark float-right" href="{{ route('movie.show', $movie->slug) }}" role="button">{{__('messages.watchit')}}</a> 			        		        		
 		        	</div>
-		        	<div class='stars-rating'>
-		        		<p class="rating"> ၄/၅ </p>
-		        		<p class="stars">
-		        			<span class="fa fa-lg fa-star checked"></span>
-		        			<span class="fa fa-lg fa-star checked"></span>
-		        			<span class="fa fa-lg fa-star checked"></span>
-		        			<span class="fa fa-lg fa-star checked"></span>
-		        			<span class="fa fa-lg fa-star"></span>
-		        		</p>
-		        	</div>
-		        	<p>{{ str_limit($movie->description, 90) }}</p>
-		        </div>
-		        <a class="align-text-bottom btn btn-dark float-right" href="{{ route('movie.show', $movie->slug) }}" role="button">ကြည့်မယ်</a>    
+		        </div>   
 			</div>
 		</div>
 		            
