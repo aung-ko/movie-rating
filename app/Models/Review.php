@@ -16,6 +16,7 @@ class Review extends Model
     {
     	return $this->belongsTo('App\Models\Movie');
     }
+    
     public function user()
     {
     	return $this->belongsTo('App\User');

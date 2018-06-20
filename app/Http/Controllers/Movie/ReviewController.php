@@ -13,26 +13,30 @@ class ReviewController extends Controller
 	public function create(Movie $movie)
 	{
 		return view('movies.review-create', compact('movie'));
-	}
+    }
+    
     public function store(Request $request, Movie $movie)
     {
-        $this->validate($request, [
+        $request->validate([
+            'rating' => 'required',
+            'title' => 'string',
             'body' => 'string'
         ]);
-
-
 
 
         Review::create([
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => \Auth::user()->id,
-            'movie_id' => $movie->id
-
+            'movie_id' => $movie->id,
+            'rating' => $request->rating
         ]);
+
+        $movie->recalculateRating();
 
         return redirect()->route('movie.show', $movie->slug);
     }
+
     public function show(Movie $movie, Review $review)
     {
         return view('movies.review-show', compact('review', 'movie'));
@@ -45,10 +49,10 @@ class ReviewController extends Controller
 
     public function update(Request $request,Movie $movie, Review $review)
     {
-        $this->validate($request, [
-            'title' => 'string',
-            'body' => 'string'
-        ]);
+        // $this->validate($request, [
+        //     'title' => 'string',
+        //     'body' => 'string'
+        // ]);
 
 
 

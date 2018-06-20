@@ -10,6 +10,14 @@
 					{{csrf_field()}}
 
 					<div class="form-body">
+
+                        <select name="rating" id="max_rating" class="form-control" title="Max Rating">
+                                {{-- <option value="null">အများဆုံး ြကယ်</option> --}}
+                            @for($i=1; $i<=5; $i++)
+                                <option value="{{ $i }}" data-html='{{ $i }}'>{{ $i }}</option>
+                            @endfor 
+                        </select>
+                        
 						<div class="form-group row {{$errors->has('title') ? 'has-error' : ''}}">
 							<div class="col-md-3">
 								<label class="control-label text-right">Title</label>

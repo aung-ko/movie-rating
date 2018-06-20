@@ -24,7 +24,7 @@ class CreateMoviesTable extends Migration
             $table->string('trailer_id');
             $table->date('released_date');
             $table->integer('status_id');
-            $table->float('average_rating', 2, 1)->default(0.0);
+            $table->float('rating', 2, 1)->default(0.0);
             $table->integer('rating_count')->default(0);
             $table->integer('review_count')->default(0);
             $table->string('slug')->unique();
