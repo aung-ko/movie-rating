@@ -83,7 +83,11 @@ class AdminController extends Controller
                 $data = $model->status->name;
                 return $data;
             })
-            ->rawColumns(['name','status'])
+            ->addColumn("poster", function($model){
+                $data = "<img width='100' height='100' src=" . env('APP_URL') . '/storage/movies/' . $model->slug . '/' . $model->poster ."></img>";
+                return $data;
+            })
+            ->rawColumns(['name','status', 'poster'])
             ->make(true);
     }
 }
