@@ -15,18 +15,7 @@ class ReviewController extends Controller
 
 		return view('reviews.review-create', compact('movie'));
 	}
-    public function store(Request $request, Movie $movie)
-    {
-        $this->validate($request, [
-            'body' => 'required'
-        ]);
-
-
-
-        if(\Auth::check()){
-
-		return view('movies.review-create', compact('movie'));
-    }
+    
     
     public function store(Request $request, Movie $movie)
     {
@@ -37,7 +26,7 @@ class ReviewController extends Controller
         ]);
 
 
-
+        if(\Auth::check()){
         Review::create([
             'title' => $request->title,
             'body' => $request->body,
@@ -66,6 +55,7 @@ class ReviewController extends Controller
 
         $this->validate($request, [
             'title' => 'required|string',
+            'rating' => 'required',
             'body' => 'required|string'
         ]);
 
@@ -74,6 +64,7 @@ class ReviewController extends Controller
         $review->update([
             'title' => $request->title,
             'body' => $request->body,
+            'rating' => $request->rating,
             'user_id' => \Auth::user()->id,
             'movie_id' => $movie->id
 

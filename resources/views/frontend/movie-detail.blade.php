@@ -97,6 +97,7 @@
 								{{-- <p class="fs-sm text-muted">၂၀၁၈ခုနှစ် မေလ ၁ရက်နေ င်္နနက် ၅း၃၀</p> --}}
 
 								<p class="fs-mini">{{$review->body}}</p>
+								<p class="fs-mini">Rating: {{$review->rating}}</p>
 								<span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>
 								
 								@can('edit-review', $review)
@@ -116,33 +117,40 @@
 													{{ method_field('PATCH') }}
 													{{csrf_field()}}
 
-													<div class="form-body">
-														<div class="form-group row {{$errors->has('title') ? 'has-error' : ''}}">
-															
-															<div class="col-md-12">
-																<input type="text" class="form-control" name="title" value="{{ $review->title }}" autofocus>
+													<div class="form-group mb-0  {{$errors->has('title') ? 'has-error' : ''}}">
 
+														<input type="text" class="form-control" placeholder="တစ်ခုခုပြောမယ်..." name="title" value="{{$review->title}}">
 
-															</div>
-														</div>
+														@if ($errors->has('title'))
+														<span class="help-block">
+															<strong>{{ $errors->first('title') }}</strong>
+														</span>
+														@endif
+
 													</div>
-													<div class="form-body">
-														<div class="form-group row">
-															
-															<div class="col-md-12">
-																<input type="text" class="form-control" name="body" value="{{ $review->body }}" autofocus>
+													<br>
+													<div class="form-group mb-0  {{$errors->has('body') ? 'has-error' : ''}}">
 
-																
 
-															</div>
-														</div>
+														<input class="form-control" id="new-event" placeholder="တစ်ခုခုပြောမယ်..." name="body"  value="{{$review->body}}">
+
+														@if ($errors->has('body'))
+														<span class="help-block">
+															<strong>{{ $errors->first('body') }}</strong>
+														</span>
+														@endif
 													</div>
+													<div class="btn-toolbar">
 
-													
-													<div class="offset-sm col-md-9">
-														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-														<button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> Submit</button>
 
+														<button type="submit" class="btn btn-dark btn-movie pl-5 pr-5  pull-right">Post</button>
+
+														<select name="rating" id="max_rating" class="form-control" title="Rating" required>
+
+															@for($i=1; $i<=5; $i++)
+															<option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
+															@endfor 
+														</select>
 													</div>
 												</form>
 											</div>
