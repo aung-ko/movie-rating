@@ -5,7 +5,6 @@ namespace App\Models;
 
 class Reply extends Model
 {
-    public $timestamps = false;
 
     public function review()
     {

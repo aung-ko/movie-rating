@@ -18,4 +18,7 @@ class Genre extends Model
         // dd($filters);
         $filters->apply($query);
     }
+
+   
+
 }

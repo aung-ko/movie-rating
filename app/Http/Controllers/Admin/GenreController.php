@@ -30,13 +30,16 @@ class GenreController extends Controller
 
     public function edit(Genre $genre)
     {
-        $genre = Genre::find($genre->id);
         return view('admin.genre.edit', compact('genre'));
     }
 
-    public function update()
+    public function update(Request $request, Genre $genre)
     {
-
+        $validated = $request->validate([
+            'name' => 'required|max:200',
+        ]);
+        $genre->update($validated);
+        return redirect()->route('admin.genres');
     }
 
     public function destroy(Genre $genre)
