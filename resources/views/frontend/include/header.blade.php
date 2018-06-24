@@ -7,7 +7,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="../">ပင်မစာမျက်မှာ<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{URL::to('/')}}">ပင်မစာမျက်မှာ<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,11 +58,11 @@
                တန်းပလိတ် <span class="badge badge-pill badge-info"> dev</span>
              </a>
              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="../">ပင်မစာမျက်နှာ</a>
-              <a class="dropdown-item" href="../search">ရုပ်ရှင်စာမျက်နှာ (listing)</a>
-              <a class="dropdown-item" href="../movie/a-quiet-place-5b12e239d93ca">ရုပ်ရှင်စာမျက်နှာ (single)</a>
-              <a class="dropdown-item" href="#">အသုံးပြုသူ ပရိုဖိုင်</a>
-              <a class="dropdown-item" href="#">ရီဗျုးစာမျက်နှာ</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/">ပင်မစာမျက်နှာ</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/search">ရုပ်ရှင်စာမျက်နှာ (listing)</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/movie/a-quiet-place-5b12e239d93ca">ရုပ်ရှင်စာမျက်နှာ (single)</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/user">အသုံးပြုသူ ပရိုဖိုင်</a>
+              <a class="dropdown-item" href="{{URL::to('/')}}/movie/a-quiet-place-5b12e239d93ca/review/create">ရီဗျုးစာမျက်နှာ</a>
               
               <div class="dropdown-divider"></div>
               

@@ -1,22 +1,18 @@
 @extends('frontend.app')
 @section('content')
-<section  style='background-image: url({{ asset('storage/movies/' . $movie->slug . '/' . $movie->background ) }});'class="single jumbotron bg-dark movie-background text-light">
-	<div class="container">
-		<h1 class="jumbotron-heading text-left p-1 pb-3 myanmarsanpro">{{ $movie->name }}
-			@for ($i = 0; $i < 4; $i++)	
-			<span class="text-small fa fa-xs-movie fa-star checked"></span>
-			@endfor
-		</h1> 
+<section  style='background-image: url({{ asset('storage/movies/' . $movie->slug . '/' . $movie->background ) }});' class="single jumbotron bg-dark movie-background text-light img-background">
+        <div class="container">
+	          <h1 class="jumbotron-heading text-left p-1 pb-3 myanmarsanpro">{{ $movie->name }} - {{date('Y',strtotime($movie->released_date))}}</h1> 
 
-		<div class="row">
-			<div class="col-md-3 nopadding nomargin bg-dark-movie">
-				<img width="300px" height="auto" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster ) }}" alt="">
-			</div>
-			<div class="col-md-9 nopadding nomargin bg-dark-movie">
-				<!-- Youtube Embed Custom Player	 -->
-				<div class="plyr__video-embed" id="player">
-					<iframe src="https://www.youtube.com/embed/{{ $movie->trailer_id }}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" 
-						allowfullscreen allowtransparency allow="autoplay"></iframe>
+	          <div class="row">
+	          	<div class="col-md-3 nopadding nomargin bg-dark-movie">
+	                  <img width="300px" height="auto" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster ) }}" alt="">
+	            </div>
+	          	<div class="col-md-9 nopadding nomargin bg-dark-movie">
+					<!-- Youtube Embed Custom Player	 -->
+					<div class="plyr__video-embed" id="player">
+	                    <iframe src="https://www.youtube.com/embed/{{ $movie->trailer_id }}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" 
+	                    allowfullscreen allowtransparency allow="autoplay"></iframe>
 					</div>
 				</div>
 			</div>
@@ -57,7 +53,7 @@
 			<div class='row'>
 				<div class='col col-md-4 p-2'>
 					<div class='card p-4'>
-						<h2 class="text-left myanmarsanpro">၅၀၀ မှတ်ချက်ရရှိထားသည်</h2>
+					<h2 class="text-left myanmarsanpro">၅၀၀ {{ __('messages.comment').__('messages.receive')}}</h2>
 						<p>
 							@for ($i = 0; $i < 4; $i++)	
 							<span class="text-small fa fa-xs-movie fa-star checked"></span>

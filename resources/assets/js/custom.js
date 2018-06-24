@@ -128,7 +128,10 @@ $(document).ready(function(){
     });
     $('#max_rating').barrating({
       theme: 'fontawesome-stars'
-    });    
+    });
+    $('#rating').barrating({
+      theme: 'fontawesome-stars'
+    });       
 });
 
 
