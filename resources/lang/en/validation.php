@@ -97,10 +97,10 @@ return [
     'custom' => [
 
         'attributes' => [
+
             'name' => 'naam',
             'password' => 'wachtwoord'
 
-        
 
         ],
     ],

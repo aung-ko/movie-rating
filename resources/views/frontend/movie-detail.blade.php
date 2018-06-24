@@ -84,6 +84,38 @@
 					</div>						
 				</div>
 				<div class="col col-md-8 p-2">
+
+					<div class="p-4">
+							<h2 class="text-left myanmarsanpro">နောက်ဆုံးရမှတ်ချက်များ</h2>							
+							@foreach($reviews as $review)
+							    <section class="event mb-4">
+							            <h4 class="event-heading pb-3">
+											<a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a></h4>
+											{{date(('F j, Y'),strtotime($review->created_at))}}
+											{{-- <p class="fs-sm text-muted">၂၀၁၈ခုနှစ် မေလ ၁ရက်နေ င်္နနက် ၅း၃၀</p> --}}
+
+							           <p class="fs-mini">{{$review->body}}</p>
+							            	<span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>							           
+							            <i class="fa fa-star checked"></i>
+							            <i class="fa fa-star checked"></i>
+							            <i class="fa fa-star checked"></i>
+							            <i class="fa fa-star checked"></i> 
+							            <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+							            <footer>
+							                <div class="clearfix">
+							                    <ul class="post-links mt-sm pull-left">
+							                        <li><a href="#">တစ်နာရီက</a>
+							                        </li>
+							                        <li><a href="#"> ၁၀ ထပ်ဆင့် မှတ်ချက်ရရှိထားသည်</a>
+							                        </li>
+							                    </ul>
+							                </div>
+							         </footer>
+							     </section>
+							}
+							}
+=======
+>>>>>>> c0608fbbb7fffcbabfa33183d39ed1ccf532b87f
 					<div class="card p-4">
 						<h2 class="text-left myanmarsanpro">နောက်ဆုံးရမှတ်ချက်များ</h2>							
 						@foreach($reviews as $review)
@@ -180,6 +212,7 @@
 									</div>
 								</footer>
 							</section>
+
 							@endforeach
 
 							<a href="{{route('review.create', $movie)}}" class="mt-4 btn btn-dark btn-lg btn-block">အြခား မှတ်ချက်များပါ ြကည့်ရှုရန်</a>							

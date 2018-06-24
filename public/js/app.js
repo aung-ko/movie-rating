@@ -9242,12 +9242,12 @@ $(function () {
   var output = document.getElementById("min_rateoutput");
   var max_slider = document.getElementById("max_rating");
   var output = document.getElementById("max_rateoutput");
-  output.innerHTML = slider.value; // Display the default slider value
+  //output.innerHTML = slider.value; // Display the default slider value
 
   // Update the current slider value (each time you drag the slider handle)
-  slider.oninput = function () {
-    output.innerHTML = this.value + ' Star';
-  };
+  // slider.oninput = function() {
+  //     output.innerHTML = this.value+' Star';
+  // }
 });
 
 $(document).ready(function () {
@@ -9316,7 +9316,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var player = new Plyr('#player');
   // Bind event listener
   function on(selector, type, callback) {
-    document.querySelector(selector).addEventListener(type, callback, false);
+    document.querySelector('#player').addEventListener(type, callback, false);
   }
 
   // Play
