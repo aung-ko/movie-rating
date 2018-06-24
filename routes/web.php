@@ -49,7 +49,7 @@ Route::prefix('movie')->group(function () {
 
 
 Route::get('/search', 'SearchController@search');
-Route::get('/users', 'SearchController@search');
+// Route::get('/users', 'SearchController@search');
 
 Route::prefix('/')->group(function(){
     Route::get('/', 'Pages\PagesController@index')->name('index');  

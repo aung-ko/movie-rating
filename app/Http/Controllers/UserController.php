@@ -8,6 +8,11 @@ class UserController extends Controller
 {
     public function user(User $user)
     {
-    	return view('frontend.user', compact('user'));
+    	if($user->isAdmin()){
+    		return $user;
+    	}else{
+    		return view('frontend.user', compact('user'));
+    	}
+    	
     }
 }

@@ -79,7 +79,7 @@
              </a>
              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               
-              <a class="dropdown-item" href="/user/{{Auth::user()->slug}}">{{Auth::user()->name}}</a>
+              <a class="dropdown-item" href="{{route('user', Auth::user()->slug)}}">{{Auth::user()->name}}</a>
              
               
               <div class="dropdown-divider"></div>
