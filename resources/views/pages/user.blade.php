@@ -3,72 +3,47 @@
 
 <section class="listing jumbotron">
 <div class="container">
-    <div class="row profile">
+    <div class="row profile ng-scope">
         <div class="col-md-4">
-            <div class="bg-white">
-                <div>
-                  <h1 class="btn-movie text-white jumbotron-heading text-left p-3 pb-0 m-0 myanmarsanpro">Movie Name </h1> 
-                          <img width="100%" height="auto" src="http://127.0.0.1:8000/storage/movies/a-quiet-place-5b12e239d93ca/63dc7ed1010d3c3b8269faf0ba7491d4.jpg" alt="">
-
-                    <div class="p-4">
-                      <p class="lead text-muted">Movie descriptio here<br>
-                        ဒါရိုက်တာ : Director name<br>
-                        ဇာတ်ညွှန်းဆရာ : ---- <br>
-                        ထူးချွန်ဆုရရှိသူများ :----- <br>
-                        ဇာတ်လမ်းအမျိုးအစား : Genre name       
-                      </p>              
-                        <p class="rating"> ၄/၅ </p>
-                        <p class="stars">
-                            <span class="fa fa-lg fa-star checked"></span>
-                            <span class="fa fa-lg fa-star checked"></span>
-                            <span class="fa fa-lg fa-star checked"></span>
-                            <span class="fa fa-lg fa-star checked"></span>
-                            <span class="fa fa-lg fa-star"></span>
-                        </p>
-                        <div class="text-right other-rating">
-                             ၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-                             ၁၀  <img class="custom-icon flex-row putato" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-                             ၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                         </div>                                                                          
-                    </div>
-
-                    <div class='card p-4 bg-warning'>
-                    <h2 class="text-left myanmarsanpro">ဘယ်မှာပြသနေပြီလဲ</h2>
-                        <p>
-                            Mingalar Cinema <br>
-                            Time: <span class="badge badge-success">9:00 AM</span>များ
-                                  <span class="badge badge-success"> 12:00 PM</span>
-                                  <span class="badge badge-success">3:30 PM</span>
-                                  <span class="badge badge-warning">6:30 PM</span>
-                                  <span class="badge badge-danger">9:30 PM</span>           
-                        </p>
-                    <a href="#" class="btn btn-dark btn-lg btn-block">လက်မှတ်၀ယ်မယ်</a>                        
-                    </div>  
-                    </div>  
-                </div>
-            </div>
-        <div class="col-md-8 mt-3">
-
-            <section class="activities">
-                <h2 class='myanmarsanpro mb-3'>မှတ်ချက်များ</h2>
-                <form class="mt" action="#">
-                    <div class="form-group mb-0">
-                        <label class="sr-only" for="new-event">New event</label>
-                        <textarea class="form-control" id="new-event" placeholder="တစ်ခုခုပြောမယ်..." rows="3"></textarea>
-                    </div>
-                    <div class="btn-toolbar">
-                        <div class="btn-group"><a href="#" class="btn btn-sm btn-gray"><i class="fa fa-camera fa-lg"></i></a> <a href="#" class="btn btn-sm btn-gray"><i class="fa fa-map-marker fa-lg"></i></a>
+            <section class="widget">
+                <div class="widget-body">
+                    <div class="widget-top-overflow text-white">
+                        <div class="height-250 overflow-hidden"><img class="img-responsive" src="img/flores-amarillas-wallpaper.jpeg">
                         </div>
-                        <button type="submit" class="btn btn-dark btn-movie pl-5 pr-5  pull-right">Post</button>
-
-                        <select name="max_rating" id="max_rating" class="form-control" title="Max Rating">
-                        {{-- <option value="null">အများဆုံး ြကယ်</option> --}}
-                        @for($i=1; $i<=5; $i++)
-                        <option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
-                        @endfor 
-                    </select>
+                        <div class="btn-toolbar">
+                            <a href="#" class="btn btn-default btn-sm pull-right"><i class="fa fa-edit"></i></a>
+                        </div>
                     </div>
-                </form> 
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div class="post-user post-user-profile"><span class="thumb-xlg"><img class="img-circle rounded-circle" src="img/avatar6.png" alt="..."></span>
+                                <h4 class="fw-normal pt-2">ကို ဖြူလုံး</h4>
+                                <a href="#" class="btn btn-success btn-sm mt">&nbsp;Send <i class="fa fa-envelope ml-xs"></i>&nbsp;</a>
+                                <a href="#" class="btn btn-info btn-sm mt">&nbsp;Follow <i class="fa fa-user-plus ml-xs"></i>&nbsp;</a>
+
+								<ul class="list-group list-group-flush m-3">
+								  <li class="list-group-item">အလုပ်အကိုင်- ရုပ်ရှင် ဒါရိုက်တာရူး</li>
+								  <li class="list-group-item">စတင်ဝင်ရောက်သည့်နေ့- ၁၊ မေ၊ ၂၀၁၈</li>
+								  <li class="list-group-item">မှတ်ချက်စုစုပေါင်း- ၁၂၅ ခုပေးခဲ့သည်</li>
+								  <li class="list-group-item">သူငယ်ချင်းများ- ၃၀ ယောက်</li>
+								  <li class="list-group-item">ကြည့်ရှုပြီးသောရုပ်ရှင်- ၅၀ ကား</li>
+								  <li class="list-group-item">ရရှိထားသောဆု- လေအိုးကြီး</li>
+								</ul>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            </p>
+                            <p class="lead mt-lg">ကွီးနာမည်က ဖြူလုံး ရုပ်ရှင် ကြည့်ရတာ ဝါသနာပါတယ်၊ အထူးသဖြင့် မရီရတဲ့ ပေါကားတွေ ကြည့်ပြီး ဝေဖန်ရေး ဆစရက  လုပ်ရတာ အထူး ကျွမ်ကျင်တယ် ဆိုပါတော့</p>
+                        </div>
+                        <a href="#" class="btn btn-sm mt align-items-right align-items-bottom"><i class="fa fa-edit ml-xs"></i>&nbsp;</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-8">
+            <section class="activities">
+                <h2 class='myanmarsanpro'>လှုပ်ရှားမှုများ</h2>
                 <section class="event"><span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>
                     <h4 class="event-heading"><a href="#">ကို ဖြူလုံး</a> <small><a href="#">"မကြောက်ဘူးလား" ရုပ်ရှင်တွင် မှတ်ချက်ရေးခဲ့သည့်</a></small></h4>
                     <p class="fs-sm text-muted">၂၀၁၈ခုနှစ် မေလ ၁ရက်နေ င်္နနက် ၅း၃၀</p>
@@ -77,6 +52,7 @@
                         <ul class="post-links">
                             <li><a href="#">တစ်နာရီက</a>
                             </li>
+                            <li><a href="#"><span class="text-danger"><i class="fa fa-heart"></i> ၃၀ ကြိုက်တယ်</span></a>
                             </li>
                             <li><a href="#">မှတ်ချက်ရေးရန်</a>
                             </li>
@@ -91,6 +67,7 @@
                         <ul class="post-links">
                             <li><a href="#">တစ်နာရီက</a>
                             </li>
+                            <li><a href="#"><span class="text-danger"><i class="fa fa-heart"></i> ၅ ကြိုက်တယ်</span></a>
                             </li>
                             <li><a href="#">မှတ်ချက်ရေးရန်</a>
                             </li>
@@ -127,9 +104,19 @@
                         </ul>
                     </footer>
                 </section>
+                <form class="mt ng-pristine ng-valid" action="#">
+                    <div class="form-group mb-0">
+                        <label class="sr-only" for="new-event">New event</label>
+                        <textarea class="form-control" id="new-event" placeholder="တစ်ခုခုပြောမယ်..." rows="3"></textarea>
+                    </div>
+                    <div class="btn-toolbar">
+                        <div class="btn-group"><a href="#" class="btn btn-sm btn-gray"><i class="fa fa-camera fa-lg"></i></a> <a href="#" class="btn btn-sm btn-gray"><i class="fa fa-map-marker fa-lg"></i></a>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-sm pull-right">Post</button>
+                    </div>
+                </form>
             </section>
         </div>
-             </div>   
     </div>
 </div>
 </section>

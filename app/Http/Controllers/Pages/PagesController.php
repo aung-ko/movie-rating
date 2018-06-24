@@ -32,4 +32,18 @@ class PagesController extends Controller
 
     }
 
+    public function user()
+    {
+        $genres = Genre::pluck('name', 'id');
+        $movies = Movie::pluck('released_date');
+        
+        $years = $this->movieRepo->released_date();
+
+
+
+        $movies = $this->movieRepo->all();
+        return view('pages.user', compact('movies', 'genres', 'years'));
+
+    }
+
 }

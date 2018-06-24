@@ -42,4 +42,4 @@
 		
 	</div>
 </footer>
-@include('frontend.include.chatweight')  
+@include('frontend.include.chatweight')

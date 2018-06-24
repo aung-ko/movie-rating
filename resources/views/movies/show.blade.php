@@ -20,7 +20,7 @@
 					</div>
 				</div>
 	          </div>
-	 		<div class="row bg-dark-movie">
+	 		<div class="row bg-light">
 	 			<div class="col-md-7  p-3">
 		          <p class="lead text-muted">{{ $movie->description }}<br>
 					{{__('messages.director')}} : {{ $movie->director_name }}<br>
@@ -34,7 +34,7 @@
 
 
 	 			<div class="col-md-5  p-3">
-	            	<p class="rating"> {{numformat($movie->rating)}}/၅ </p>
+	            	<p class="rating"> {{numformat($movie->rating)}}/{{numformat(5)}} </p>
 					<p class="stars">
 						@for($i=1; $i<=$movie->rating; $i++)
 							<span class="fa fa-lg fa-star checked"></span>
@@ -57,13 +57,15 @@
 			<div class='row'>
 				<div class='col col-md-4 p-2'>
 					<div class='card p-4'>
-					<h2 class="text-left myanmarsanpro">၅၀၀ {{ __('messages.comment').__('messages.receive')}}</h2>
-						<p>
-							@for ($i = 0; $i < 4; $i++)	
-				                <span class="text-small fa fa-xs-movie fa-star checked"></span>
-				          	@endfor
-				          		<span class="text-small fa fa-xs-movie fa-star-o"></span>							
-						</p>
+					<h2 class="text-left myanmarsanpro"> {{ __('messages.comment')}} ( {{numformat($reviews->count())}} ) {{__('messages.receive')}}</h2>
+					<p class="stars text-left pt-2 pb-2">
+						@for($i=1; $i<=$movie->rating; $i++)
+							<span class="fa fa-lg fa-star checked"></span>
+						@endfor 
+						@for($i=1; $i<=5-$movie->rating; $i++)
+							<span class="fa fa-lg fa-star"></span>
+						@endfor 
+					</p>
 		          	<a href="{{route('review.create', $movie)}}" class="btn btn-dark btn-movie btn-lg btn-block">{{__('messages.write-comment')}}</a>		          						
 					</div>	
 					<div class='card p-4 mt-3'>

@@ -101,6 +101,11 @@ return [
 
     'custom' => [
         'attributes' => [
+<<<<<<< HEAD
+=======
+            'name' => 'naam',
+            'password' => 'wachtwoord'
+>>>>>>> 5d3047418cb8e5196e3cef44622f5590d948a407
         ],
     ],
 

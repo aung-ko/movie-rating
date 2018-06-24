@@ -69,6 +69,8 @@ A movie has many popularity that created by user
 
 popularity belongs to movie
 
+user has one popularity
+
 
 
 

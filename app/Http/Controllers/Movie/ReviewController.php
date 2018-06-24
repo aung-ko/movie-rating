@@ -17,12 +17,12 @@ class ReviewController extends Controller
     public function store(Request $request, Movie $movie)
     {
         $this->validate($request, [
-            'body' => 'string'
+            'body' => 'required'
         ]);
 
 
 
-
+        if(\Auth::check()){
         Review::create([
             'title' => $request->title,
             'body' => $request->body,
@@ -30,6 +30,9 @@ class ReviewController extends Controller
             'movie_id' => $movie->id
 
         ]);
+        }else{
+            abort(403, 'Unauthorized action. You have to login');
+        }
 
         return redirect()->route('movie.show', $movie->slug);
     }
@@ -46,13 +49,11 @@ class ReviewController extends Controller
     public function update(Request $request,Movie $movie, Review $review)
     {
         $this->validate($request, [
-            'title' => 'string',
-            'body' => 'string'
+            'title' => 'required|string',
+            'body' => 'required|string'
         ]);
 
-
-
-
+        if(\Auth::check()){
         $review->update([
             'title' => $request->title,
             'body' => $request->body,
@@ -60,16 +61,19 @@ class ReviewController extends Controller
             'movie_id' => $movie->id
 
         ]);
+        }else{
+            abort(403, 'Unauthorized action. You have to login');
+        }
 
         return redirect()->route('movie.show', $movie->slug);
     }
 
     
 
-    public function destroy($id)
+    public function destroy(Movie $movie, Review $review)
     {
-        // dd($id);
-        $review = Review::where('id', '=' , $id)->delete();
-        return redirect()->back();
+        // dd($review);
+        $review = Review::where('id', '=' , $review->id)->delete();
+        return redirect()->route('movie.show', $movie->slug);
     }
 }

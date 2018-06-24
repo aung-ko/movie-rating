@@ -33,7 +33,7 @@
 										</select> 													
 									</div>								
 								</div>	   		
-								<div class="p-2 w-100">
+								<div class="p-2 ml-2 mr-2 w-100">
 									<select id="category" name="genre_id" class="form-control">
 										<option value='' selected>အမျိုးအစား</option>
 										@foreach($genres as $key=>$value)
@@ -42,7 +42,7 @@
 										@endforeach
 									</select>
 								</div>
-								<div class="p-2 w-100">
+								<div class="p-2 ml-2 mr-2 w-100">
 									<select id="year" name="released_date" class="form-control">
 										<option value='' selected>အချိန်အလိုက်</option>
 										@foreach($years as $year)
@@ -52,7 +52,7 @@
 									</select>
 								</div>
 								
-								<div class="p-2 w-100">
+								<div class="p-2 m-2 w-100">
 									<button type="submit" class="btn btn-primary btn-lg btn-movie btn-block">{{__('messages.search2')}}</button>
 								</div>  		   		 		   		
 							</div>
@@ -67,7 +67,7 @@
 						<p class='pl-3 jumbotron-heading'>( {{numformat($results->count())}} ) {{__('messages.has-movie')}}</p>
 					@else
 						<h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>{{__('messages.search-result')}}</h2>
-						<p class='pl-3 jumbotron-heading'>{{__('messages.no-has-movie')}}</p>					
+						<p class='pl-3 jumbotron-heading alert alert-danger'>{{__('messages.no-has-movie')}}</p>					
 				@endif
 				<div class="row">
 					@foreach($results as $result)
