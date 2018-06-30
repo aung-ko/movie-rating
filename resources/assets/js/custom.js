@@ -9,20 +9,6 @@ $(function() {
     $('.lazy').lazy();
 });
 
-$(function(){
-    var min_slider = document.getElementById("min_rating");
-    var output = document.getElementById("min_rateoutput");
-    var max_slider = document.getElementById("max_rating");
-    var output = document.getElementById("max_rateoutput");
-    //output.innerHTML = slider.value; // Display the default slider value
-
-    // Update the current slider value (each time you drag the slider handle)
-    // slider.oninput = function() {
-    //     output.innerHTML = this.value+' Star';
-    // }
-
-});
-
 $(document).ready(function(){
   $(".left-first-section").click(function(){
         $('.main-section').toggleClass("open-more");
@@ -91,48 +77,37 @@ document.addEventListener('DOMContentLoaded', () => {
   // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
   const player = new Plyr('#player');
   // Bind event listener
-  function on(selector, type, callback) {
-    document.querySelector('#player').addEventListener(type, callback, false);
-  }
-
-  // Play
-  on('.js-play', 'click', () => { 
-    player.play();
-  });
-
-  // Pause
-  on('.js-pause', 'click', () => { 
-    player.pause();
-  });
-
-  // Stop
-  on('.js-stop', 'click', () => { 
-    player.stop();
-  });
-
-  // Rewind
-  on('.js-rewind', 'click', () => { 
-    player.rewind();
-  });
-
-  // Forward
-  on('.js-forward', 'click', () => { 
-    player.forward();
-  });
 });
 
+
+
+!function(a){"use strict";a.fn.ratingThemes["krajee-fa"]={filledStar:'<i class="fa fa-star"></i>',emptyStar:'<i class="fa fa-star-o"></i>',clearButton:'<i class="fa fa-lg fa-minus-circle"></i>'}}(window.jQuery);
 
 $(document).ready(function(){
-    $('#min_rating').barrating({
-      theme: 'fontawesome-stars'
+    $('.star-readonly').rating({
+        hoverOnClear: false,
+        theme: 'krajee-fa',
+        displayed: false,
+        showClear: false,        
+        showCaption: false        
     });
-    $('#max_rating').barrating({
-      theme: 'fontawesome-stars'
+    $('.star-reaction').rating({
+        hoverOnClear: false,
+        theme: 'krajee-fa',
+        displayed: true,
+        showClear: true,        
+        showCaption: false        
     });
-    $('#rating').barrating({
-      theme: 'fontawesome-stars'
-    });       
+    $('.user-reaction').rating({
+        hoverOnClear: true,
+        theme: 'krajee-fa',
+        displayed: true,
+        showClear: true,        
+        showCaption: true        
+    });           
 });
+
+
 
 
 

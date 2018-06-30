@@ -38,7 +38,7 @@
 			</div>
 			<div class="row bg-dark-movie">
 				<div class="col-md-7  p-3">
-					<p class="lead text-muted">{{ $movie->description }}<br>
+					<p class="text-muted">{{ $movie->description }}<br>
 						ဒါရိုက်တာ : {{ $movie->director_name }}<br>
 						ဇာတ်ညွှန်းဆရာ : ---- <br>
 						ထူးချွန်ဆုရရှိသူများ :----- <br>
@@ -52,12 +52,7 @@
 				<div class="col-md-5  p-3">
 					<p class="rating"> ၄/၅ </p>
 					<p class="stars">
-						<span class="fa fa-lg fa-star checked"></span>
-						<span class="fa fa-lg fa-star checked"></span>
-						<span class="fa fa-lg fa-star checked"></span>
-						<span class="fa fa-lg fa-star checked"></span>
-						<span class="fa fa-lg fa-star"></span>
-
+						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
 					</p>
 					<div class="text-right other-rating">
 						၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 

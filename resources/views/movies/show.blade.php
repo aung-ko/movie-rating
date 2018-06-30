@@ -1,4 +1,8 @@
 @extends('frontend.app')
+@section('title', 'Watch '.($movie->name).' movie free in Myanmar movie database ')
+@section('description', ($movie->name).' released in '.(date('Y',strtotime($movie->released_date)). ' directed by '.($movie->director_name).' the brief of movie - '.($movie->description)))
+@section('keywords', ($movie->name).' in Myanmar')
+@section('image', asset('storage/movies/' . $movie->slug . '/' . $movie->poster ))
 @section('content')
 <section  style='background-image: url({{ asset('storage/movies/' . $movie->slug . '/' . $movie->background ) }});' class="single jumbotron bg-dark movie-background text-light img-background">
         <div class="container">
@@ -22,10 +26,8 @@
 	          </div>
 	 		<div class="row bg-light">
 	 			<div class="col-md-7  p-3">
-		          <p class="lead text-muted">{{ $movie->description }}<br>
+		          <p class="text-muted">{{ $movie->description }}<br>
 					{{__('messages.director')}} : {{ $movie->director_name }}<br>
-					{{__('messages.writer')}} : ---- <br>
-					{{__('messages.reward')}} :----- <br>
 					{{__('messages.genre')}} : @foreach ($movie->genres as $genre)
 	                    {{ $genre->name }}, 
 	                @endforeach<br>       	
@@ -36,18 +38,8 @@
 	 			<div class="col-md-5  p-3">
 	            	<p class="rating"> {{numformat($movie->rating)}}/{{numformat(5)}} </p>
 					<p class="stars">
-						@for($i=1; $i<=$movie->rating; $i++)
-							<span class="fa fa-lg fa-star checked"></span>
-						@endfor 
-						@for($i=1; $i<=5-$movie->rating; $i++)
-							<span class="fa fa-lg fa-star"></span>
-						@endfor 
-					</p>
-					<div class="text-right other-rating">
-						 ၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-						 ၁၀  <img class="custom-icon flex-row putato" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-						 ၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">					
-					</div>	        						
+						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xs" data-readonly="true">
+					</p>        						
 	 			</div>
 	 		</div> 		
         </div>
@@ -59,12 +51,7 @@
 					<div class='card p-4'>
 					<h2 class="text-left myanmarsanpro"> {{ __('messages.comment')}} ( {{numformat($reviews->count())}} ) {{__('messages.receive')}}</h2>
 					<p class="stars text-left pt-2 pb-2">
-						@for($i=1; $i<=$movie->rating; $i++)
-							<span class="fa fa-lg fa-star checked"></span>
-						@endfor 
-						@for($i=1; $i<=5-$movie->rating; $i++)
-							<span class="fa fa-lg fa-star"></span>
-						@endfor 
+						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$reviews->count()}}" dir="ltr" data-size="xs" data-readonly="true">
 					</p>
 		          	<a href="{{route('review.create', $movie)}}" class="btn btn-dark btn-movie btn-lg btn-block">{{__('messages.write-comment')}}</a>		          						
 					</div>	
@@ -88,19 +75,11 @@
 							    <section class="event mb-4">
 							            <h4 class="event-heading pb-3">
 											<a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a></h4>
-											{{numdate($review->created_at)}}
-											{{-- <p class="fs-sm text-muted">၂၀၁၈ခုနှစ် မေလ ၁ရက်နေ င်္နနက် ၅း၃၀</p> --}}
-
+											
 							           <p class="fs-mini">{{$review->body}}</p>
-							            	<span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>							           
-							            <i class="fa fa-star checked"></i>
-							            <i class="fa fa-star checked"></i>
-							            <i class="fa fa-star checked"></i>
-							            <i class="fa fa-star checked"></i> 
-
-
-
-							            <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+							            	<span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>				
+							            		{{numdate($review->created_at)}}  <br>
+						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$reviews->count()}}" dir="ltr" data-size="xxs" data-readonly="true">
 							            <footer>
 							                <div class="clearfix">
 							                    <ul class="post-links mt-sm pull-left">
@@ -113,8 +92,11 @@
 							         </footer>
 							     </section>
 							@endforeach
-
-							<a href="{{route('review.create', $movie)}}" class="mt-4 btn btn-dark btn-lg btn-block">{{__('messages.view-other-comment')}}</a>							
+							@if($reviews->count() == !0)
+							<a href="{{route('review.create', $movie)}}" class="mt-4 btn btn-dark btn-lg btn-block">{{__('messages.view-other-comment')}}</a>
+							@else
+							<a href="{{route('review.create', $movie)}}" class="mt-4 btn btn-dark btn-lg btn-block">{{__('messages.be-first-comment')}}</a>							
+							@endif							
 					          												
 					</div>	
 				</div>

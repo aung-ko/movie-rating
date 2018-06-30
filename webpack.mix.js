@@ -22,9 +22,9 @@ mix.babel([
     'resources/assets/js/holder.min.js',
     'resources/assets/js/slick.min.js',
     'resources/assets/js/plyr.min.js',
-    'resources/assets/js/sweetalert2.all.js',
-    // 'resources/assets/js/bootstrap-datepicker.js',
-    'resources/assets/js/jquery.barrating.js',
+    //'resources/assets/js/sweetalert2.all.js',
+    //'resources/assets/js/jquery.barrating.js',
+    'resources/assets/js/star-rating.min.js',
     'resources/assets/js/custom.js'
 ], 'public/js/app.js');
 mix.styles([
@@ -33,9 +33,8 @@ mix.styles([
     'resources/assets/css/font-awesome.min.css',
     'resources/assets/css/slick.css',
     'resources/assets/css/slick-theme.css',
-    'resources/assets/css/slick-theme.css',
+    //'resources/assets/css/slick-theme.css',
     'resources/assets/css/plyr.css',
-    // 'resources/assets/css/bootstrap-datepicker.css',
-    'resources/assets/css/fontawesome-stars.css',     
+    'resources/assets/css/star-rating.min.css',
     'resources/assets/css/custom.css'
 ], 'public/css/app.css');

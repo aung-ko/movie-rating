@@ -1,7 +1,7 @@
 <section class="container-fluid slider-custom">
 	
 	<div class="card-list">
-		@foreach ($movies as $movie)
+		@foreach ($movies as $key =>$movie)
 
 		<div class="card">
 		    <div class="thumbnail">
@@ -17,15 +17,9 @@
 			        		<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
 			        		</div>
 								<p class="stars">
-									@for($i=1; $i<=$movie['rating']; $i++)
-										<span class="fa fa-lg fa-star checked"></span>
-									@endfor 
-									@for($i=1; $i<=5-$movie['rating']; $i++)
-										<span class="fa fa-lg fa-star"></span>
-									@endfor 
+									<input name="input-5-ltr-star-xs-{{$key}}" class="star-readonly" rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
 								</p>
-			        	<p>{{ str_limit($movie->description, 90) }}</p>	
-		        <a class="align-text-bottom btn btn-dark float-right" href="{{ route('movie.show', $movie->slug) }}" role="button">{{__('messages.watchit')}}</a> 			        		        		
+		        <a class="align-text-bottom btn btn-dark float-right" href="{{ route('movie.show', $movie->slug) }}" role="button">{{__('messages.watchit')}}</a> 	
 		        	</div>
 		        </div>   
 			</div>

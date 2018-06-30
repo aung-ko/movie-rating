@@ -1,4 +1,8 @@
 @extends('frontend.app')
+@section('title', 'Movie reviews for '.($movie->name))
+@section('description', 'Best movie review for '.($movie->name).' released in '.(date('Y',strtotime($movie->released_date)). ' directed by '.($movie->director_name)))
+@section('keywords', ($movie->name).' in Myanmar')
+@section('image', asset('storage/movies/' . $movie->slug . '/' . $movie->poster ))
 @section('content')
 
 <section class="listing jumbotron">
@@ -8,22 +12,15 @@
             <div class="bg-white">
                 <div>
                   <h1 class="btn-movie text-white jumbotron-heading text-left p-3 pb-0 m-0 myanmarsanpro">{{ $movie->name }}</h1> 
-                          <img width="100%" height="auto" src="http://127.0.0.1:8000/storage/movies/a-quiet-place-5b12e239d93ca/63dc7ed1010d3c3b8269faf0ba7491d4.jpg" alt="">
+                          <img width="100%" height="auto" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster ) }}" alt="">
 
                     <div class="p-4">             
                         <p class="rating"> {{numformat($movie->rating)}}/၅  </p>
                         <p class="stars">
-                            @for($i=1; $i<=$movie->rating; $i++)
-                                <span class="fa fa-lg fa-star checked"></span>
-                            @endfor 
-                            @for($i=1; $i<=5-$movie->rating; $i++)
-                                <span class="fa fa-lg fa-star"></span>
-                            @endfor 
+                        <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
                         </p>
                           <p class="lead text-muted">{{ $movie->description }}<br>
                             {{__('messages.director')}} : {{ $movie->director_name }}<br>
-                            {{__('messages.writer')}} : ---- <br>
-                            {{__('messages.reward')}} :----- <br>
                             {{__('messages.genre')}} : @foreach ($movie->genres as $genre)
                                 {{ $genre->name }}, 
                             @endforeach<br>         
@@ -64,16 +61,10 @@
 
                     </div>
                     <div class="btn-toolbar">
-                        <div class="btn-group"><a href="#" class="btn btn-sm btn-gray"><i class="fa fa-camera fa-lg"></i></a> <a href="#" class="btn btn-sm btn-gray"><i class="fa fa-map-marker fa-lg"></i></a>
+                        <div class="btn-group m-2"><a href="#" class="btn btn-sm btn-gray"><i class="fa fa-camera fa-lg"></i></a> <a href="#" class="btn btn-sm btn-gray"><i class="fa fa-map-marker fa-lg"></i></a>
                         </div>
-                        <button type="submit" class="btn btn-dark btn-movie pl-5 pr-5  pull-right">Post</button>
-
-                        <select name="rating" id="rating" class="form-control" title="User Rating">
-                        {{-- <option value="null">အများဆုံး ြကယ်</option> --}}
-                        @for($i=1; $i<=5; $i++)
-                        <option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
-                        @endfor 
-                        </select>
+                        <button type="submit" class="btn btn-dark btn-movie btn-sm pl-5 pr-5">Post</button>
+                        <div class='m-2'><input id="input-1-ltr-star-xs" name="review_rating" id="review_rating" class="user-reaction" rating-loading" value="3.5" dir="ltr" data-size="xxs"></div>
                     </div>
                 </form> 
                 
