@@ -16,7 +16,7 @@ class MovieRepo
     {
         // validation
         $validatedMovie = $this->validateMovie($request);
-        
+
         // making slug according to name
         $slug = $this->makeSlug($request->name);
         $validatedMovie['slug'] = $slug;
@@ -29,7 +29,7 @@ class MovieRepo
 
         // upload all images
         $images = $this->uploadImages($request, $files, $path);
-        
+
         $validatedMovie = array_merge($validatedMovie, $images);
         $movie = Movie::create(array_except($validatedMovie, 'genres'));
         $movie->genres()->sync($request->genres);
@@ -47,29 +47,33 @@ class MovieRepo
 
         $path = 'public/movies/' . $movie->slug . '/';
 
-        if($request->hasfile('poster')){
+        if ($request->hasfile('poster')) {
             $validatedMovie['poster'] = $this->uploadOneImage($request, 'poster', $path);
         }
 
-        if($request->hasfile('background')){
+        if ($request->hasfile('background')) {
             $validatedMovie['background'] = $this->uploadOneImage($request, 'background', $path);
         }
 
-        if($request->hasfile('thumb')){
+        if ($request->hasfile('thumb')) {
             $validatedMovie['thumb'] = $this->uploadOneImage($request, 'thumb', $path);
         }
 
         $movie->update(array_except($validatedMovie, 'genres'));
         $movie->genres()->sync($request->genres);
-        
+
     }
 
+    public function getMovieByStatus($status)
+    {
+        return Movie::where('status_id', $status)->get();
+    }
 
     public function released_date()
     {
         $startdate = 1960;
         $enddate = date('Y');
-        $years = range($enddate,$startdate);
+        $years = range($enddate, $startdate);
         return $years;
     }
 

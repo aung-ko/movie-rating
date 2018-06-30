@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div class="row">
-			@foreach ($movies as $movie)
+			@foreach ($comingSoonMovies as $movie)
 			<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
 
 				<div class="recent-movie-block">

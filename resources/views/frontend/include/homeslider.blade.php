@@ -1,7 +1,7 @@
 <section class="container-fluid slider-custom">
 	
 	<div class="card-list">
-		@foreach ($movies as $movie)
+		@foreach ($showingMovies as $movie)
 
 		<div class="card">
 		    <div class="thumbnail">

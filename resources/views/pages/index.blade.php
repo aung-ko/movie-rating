@@ -10,8 +10,8 @@
 			</div>
 		</div>
 		<div class="row">
-			{{-- {{dd($movies)}} --}}
-			@foreach ($movies as $movie)
+			{{-- {{dd($comingSoonMovies)}} --}}
+			@foreach ($comingSoonMovies as $movie)
 			<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
 
 				<div class="recent-movie-block">

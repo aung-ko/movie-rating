@@ -28,11 +28,7 @@ class MovieController extends Controller
 
     public function show(Movie $movie)
     {
-        $reviews = Review::where('movie_id', '=' , $movie->id)->get();
-
-        
-        
-      
+        $reviews = Review::where('movie_id', '=' , $movie->id)->get();      
         
         // $replies = Reply::where('review_id' , '=', $re);
 

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Pages;
 
+use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Movie;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Repositories\MovieRepo;
 
 class PagesController extends Controller
@@ -22,26 +21,27 @@ class PagesController extends Controller
     {
         $genres = Genre::pluck('name', 'id');
         $movies = Movie::pluck('released_date');
-        
+
         $years = $this->movieRepo->released_date();
 
+        // $movies = $this->movieRepo->all();
 
+        $showingMovies = $this->movieRepo->getMovieByStatus(1);
+        $comingSoonMovies = $this->movieRepo->getMovieByStatus(2);
 
-        $movies = $this->movieRepo->all();
-        return view('pages.index', compact('movies', 'genres', 'years'));
+        return view('pages.index', compact('showingMovies', 'comingSoonMovies', 'genres', 'years'));
 
     }
 
-
     public function user()
     {
-        $movies = $this->movieRepo->all();    
+        $movies = $this->movieRepo->all();
         return view('frontend.user', compact('movies', 'genres', 'years'));
     }
 
     public function reviews()
     {
-        $movies = $this->movieRepo->all();    
+        $movies = $this->movieRepo->all();
         return view('reviews.review-show', compact('movies', 'genres', 'years'));
-    }   
+    }
 }

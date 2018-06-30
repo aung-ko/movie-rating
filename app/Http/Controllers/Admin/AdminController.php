@@ -84,7 +84,7 @@ class AdminController extends Controller
                 return $data;
             })
             ->addColumn("poster", function($model){
-                $data = "<img width='100' height='100' src=" . env('APP_URL') . '/storage/movies/' . $model->slug . '/' . $model->poster ."></img>";
+                $data = "<img width='100' height='auto' src=" . asset('/storage/movies') . '/' . $model->slug . '/' . $model->poster ."></img>";
                 return $data;
             })
             ->rawColumns(['name','status', 'poster'])
