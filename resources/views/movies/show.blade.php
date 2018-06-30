@@ -24,8 +24,6 @@
 	 			<div class="col-md-7  p-3">
 		          <p class="lead text-muted">{{ $movie->description }}<br>
 					{{__('messages.director')}} : {{ $movie->director_name }}<br>
-					{{__('messages.writer')}} : ---- <br>
-					{{__('messages.reward')}} :----- <br>
 					{{__('messages.genre')}} : @foreach ($movie->genres as $genre)
 	                    {{ $genre->name }}, 
 	                @endforeach<br>       	

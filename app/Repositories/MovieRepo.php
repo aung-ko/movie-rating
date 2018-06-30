@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MovieRepo
 {
@@ -67,6 +68,22 @@ class MovieRepo
     public function getMovieByStatus($status)
     {
         return Movie::where('status_id', $status)->get();
+    }
+
+    public function getRelatedMovies($movieId, $genres)
+    {
+        $related = [];
+        foreach ($genres as $genre) {
+            $movies = DB::table('movies')
+                ->join('movie_genres', 'movies.id', '=', 'movie_genres.movie_id')
+                ->where('movie_genres.genre_id', '=', $genre->id)
+                ->where('movies.id', '!=', $movieId)
+                ->get();
+            foreach ($movies as $movie) {
+                array_push($related, $movie);
+            }
+        }
+        return collect(array_slice($related, 0, 5));
     }
 
     public function released_date()
