@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>ဇာတ်ကားများ</h2>
-                <p class='pl-3 jumbotron-heading'>( {{numformat($movies->count())}} ) {{__('messages.has-movie')}}</p>
+                <p class='pl-3'>( {{numformat($movies->count())}} ) {{__('messages.has-movie')}}</p>
                 <div class="row">
                     @foreach($movies as $movie)
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
@@ -24,12 +24,7 @@
                                         {{trans_choice('messages.minutes_ago', 9, ['value' => 5])}}</p>
                                         <p class="rating"> {{numformat($movie->rating)}}/၅ </p>
                                         <p class="stars">
-                                            @for($i=1; $i<=$movie->rating; $i++)
-                                                <span class="fa fa-lg fa-star checked"></span>
-                                            @endfor 
-                                            @for($i=1; $i<=5-$movie->rating; $i++)
-                                                <span class="fa fa-lg fa-star"></span>
-                                            @endfor 
+                                            <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
                                         </p>
                                     </div>
                                 </div>
@@ -41,12 +36,7 @@
                                         <p class="rating"> ၄/၅ </p>
                                         <p class="rating"> {{numformat($movie->rating)}}/၅ </p>
                                         <p class="stars">
-                                            @for($i=1; $i<=$movie->rating; $i++)
-                                                <span class="fa fa-lg fa-star checked"></span>
-                                            @endfor 
-                                            @for($i=1; $i<=5-$movie->rating; $i++)
-                                                <span class="fa fa-lg fa-star"></span>
-                                            @endfor 
+                                        <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
                                         </p>
                                         <p>{{ str_limit($movie->description, 90) }}</p>
                                     </div>

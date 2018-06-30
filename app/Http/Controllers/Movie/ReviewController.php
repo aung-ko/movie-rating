@@ -16,7 +16,7 @@ class ReviewController extends Controller
 
     public function create(Movie $movie)
     {
-        return view('reviews.write-review', compact('movie'));
+        return view('movies.review-create', compact('movie'));
     }
 
     public function store(Request $request, Movie $movie)

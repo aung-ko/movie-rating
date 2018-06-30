@@ -1,4 +1,5 @@
 @font-face{font-family:myanmar sans pro;font-style:normal;font-weight:400;src:url(//fonts.gstatic.com/ea/myanmarsanspro/v4/MyanmarSansPro-Regular.eot);src:url(//fonts.gstatic.com/ea/myanmarsanspro/v4/MyanmarSansPro-Regular.eot?#iefix) format('embedded-opentype'),url(//fonts.gstatic.com/ea/myanmarsanspro/v4/MyanmarSansPro-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/myanmarsanspro/v4/MyanmarSansPro-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/myanmarsanspro/v4/MyanmarSansPro-Regular.ttf) format('truetype')}
+@import url('https://fonts.googleapis.com/css?family=Padauk');
 body{
         padding-top: 0;
 }
@@ -11,12 +12,21 @@ body{
           border-radius: 0 !important;
 }
 
-html,body,p,h1,h2,h3,h4,h5,a{
+html,body,p,h1,h2,h3,h4,h5,a,li{
     font-family: "Padauk";
 }
 .h1, h1{
-    font-size: 1.9rem;
+    font-size: 1.5rem;
 }
+.h2, h2{
+    font-size: 1.3rem;
+}
+
+ button {
+      font-size: .9rem;
+ }
+p { font-size: 1rem;
+ }
 .bg-light {
     /*box-shadow: 0px 2px 30px #afafaf;*/
     box-shadow: 0px 3px 10px #23232370;
@@ -133,7 +143,7 @@ img.left {
 .card h1 {
     font-family: "myanmar sans pro";
     /*padding-top: 5px;*/
-    font-size: 1.6rem;
+    font-size: 1.25rem;
     color: #636363;
     font-weight: 500;
 }
@@ -207,11 +217,11 @@ img.left {
     height: 30px;
     background: url(../img/icon-small.gif) 90px 0;
 }
-.star{
+/*.star{
     width: 30px;
     height: 30px;
     background: url(../img/icon-small.gif) 60px 0;
-}
+}*/
 .card-group{
 
 }
@@ -1318,6 +1328,24 @@ select.form-control:not([size]):not([multiple]) {
     background-position: center;
     background-size: cover;
     background-blend-mode: color-dodge;
+}
+
+.rating-xxs {
+    font-size: 1.2em;
+}
+.rating-mxs {
+    font-size: 1.5em;
+}
+.rating-container .filled-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: auto;
+    color: #ffa500;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-text-stroke: 0px;
+    text-shadow: none;
 }
 @media (max-width: 575.98px) {
     .card-list .card{

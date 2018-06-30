@@ -1,4 +1,8 @@
 @extends('frontend.app')
+@section('title', 'Search the best Myanmar Movie')
+@section('description', 'Easy search & watch one place movie review database in MovieSpicy')
+@section('keywords', 'myanmar movie review, free movie in myanmar')
+@section('image')
 @section('content')
 <section class="listing jumbotron">
 	<div class="container">
@@ -17,20 +21,11 @@
 								</div>
 								<div class="p-1 slidecontainer row text-center">
 									<div class='col'>
-										အနည်းဆုံး ြကယ် <select name="min_rating" id="min_rating" class="form-control" title="Min Rating">
-										{{-- <option value="null" data-html='null'>အနည်းဆုံး ြကယ်</option> --}}
-											@for($i=1; $i<=5; $i++)
-											<option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
-											@endfor
-										</select>
+										အနည်းဆုံး ြကယ် <input id="input-1-ltr-star-xs" name="min_rating" id="min_rating" class="star-reaction" rating-loading" value="1" dir="ltr" data-size="xs">	
 									</div>
 									<div class='col'>
-										အများဆုံး ြကယ် <select name="max_rating" id="max_rating" class="form-control" title="Max Rating">
-										{{-- <option value="null">အများဆုံး ြကယ်</option> --}}
-										@for($i=1; $i<=5; $i++)
-										<option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
-										@endfor 
-										</select> 													
+										အများဆုံး ြကယ် 
+									<input id="input-1-ltr-star-xs" name="max_rating" id="max_rating" class="star-reaction" rating-loading" value="1.5" dir="ltr" data-size="xs">									
 									</div>								
 								</div>	   		
 								<div class="p-2 ml-2 mr-2 w-100">
@@ -64,10 +59,10 @@
 			<div class="col-md-8">
 				@if ($results->count() !== 0)
 						<h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>{{__('messages.search-result')}}</h2>
-						<p class='pl-3 jumbotron-heading'>( {{numformat($results->count())}} ) {{__('messages.has-movie')}}</p>
+						<p class='pl-3'>( {{numformat($results->count())}} ) {{__('messages.has-movie')}}</p>
 					@else
 						<h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>{{__('messages.search-result')}}</h2>
-						<p class='pl-3 jumbotron-heading alert alert-danger'>{{__('messages.no-has-movie')}}</p>					
+						<p class='pl-3 alert alert-danger'>{{__('messages.no-has-movie')}}</p>					
 				@endif
 				<div class="row">
 					@foreach($results as $result)
@@ -80,12 +75,7 @@
 									<div>
 										<p class="rating"> {{numformat($result->rating)}}/၅  </p>
 										<p class="stars">
-											@for($i=1; $i<=$result->rating; $i++)
-												<span class="fa fa-lg fa-star checked"></span>
-											@endfor 
-											@for($i=1; $i<=5-$result->rating; $i++)
-												<span class="fa fa-lg fa-star"></span>
-											@endfor 
+											<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$result->rating}}" dir="ltr" data-size="Xxs" data-readonly="true"> 
 										</p>
 
 									</div>
@@ -98,13 +88,9 @@
 										၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
 										၁၀  <img class="custom-icon flex-row putato" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
 										၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">   		
-										<p class="rating"> ၄/၅ </p>
+										<p class="rating"> {{numformat($result->rating)}}/၅  </p>
 										<p class="stars">
-											<span class="fa fa-lg fa-star checked"></span>
-											<span class="fa fa-lg fa-star checked"></span>
-											<span class="fa fa-lg fa-star checked"></span>
-											<span class="fa fa-lg fa-star checked"></span>
-											<span class="fa fa-lg fa-star"></span>
+											<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$result->rating}}" dir="ltr" data-size="Xxs" data-readonly="true"> 
 										</p>
 										<p>{{$result->description}}</p>
 									</div>

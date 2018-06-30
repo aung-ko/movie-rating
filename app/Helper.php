@@ -22,5 +22,4 @@ function numdate($value){
     $month = date(('m'),strtotime($value));
     return numformat($day).'-'. numformat($month).'-'.numformat($year); 
 }
-
  ?>

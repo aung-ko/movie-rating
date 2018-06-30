@@ -1,4 +1,8 @@
 @extends('frontend.app')
+@section('title', 'Best Movie Review website in Myanmar')
+@section('description', 'Watch movie trailer, Have fun & Enjoy with your friends & family')
+@section('keywords', 'myanmar movie review, free movie in myanmar')
+@section('image', 'http://127.0.0.1:8000/img/logo.png')
 @section('content')
 @include('frontend.include.homeslider')  
 @include('frontend.include.searchweight')
@@ -11,7 +15,7 @@
 		</div>
 		<div class="row">
 			{{-- {{dd($comingSoonMovies)}} --}}
-			@foreach ($comingSoonMovies as $movie)
+			@foreach ($comingSoonMovies as $key => $movie)
 			<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
 
 				<div class="recent-movie-block">
@@ -22,12 +26,7 @@
 							<div>
 								<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
 								<p class="stars">
-									@for($i=1; $i<=$movie['rating']; $i++)
-										<span class="fa fa-lg fa-star checked"></span>
-									@endfor 
-									@for($i=1; $i<=5-$movie['rating']; $i++)
-										<span class="fa fa-lg fa-star"></span>
-									@endfor 
+									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly" rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
 								</p>
 							</div>
 						</div>
@@ -41,12 +40,7 @@
 								၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">   		
 								<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
 								<p class="stars">
-									@for($i=1; $i<=$movie['rating']; $i++)
-										<span class="fa fa-lg fa-star checked"></span>
-									@endfor 
-									@for($i=1; $i<=5-$movie['rating']; $i++)
-										<span class="fa fa-lg fa-star"></span>
-									@endfor 
+									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly" rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
 								</p>
 								<p>{{ str_limit($movie->description, 120) }}</p>
 							</div>

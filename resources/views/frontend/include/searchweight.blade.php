@@ -7,20 +7,12 @@
 					<input type="text" class="form-control" placeholder="ဇာတ်ကားအမည်" name="name" id="name">
 				</div>
 				<div class="col-md-2 text-center">
-					{{trans_choice('messages.ratings',1)}} <select name="min_rating" id="min_rating" class="form-control" title="Min Rating">
-					{{-- <option value="null" data-html='null'>အနည်းဆုံး ြကယ်</option> --}}
-						@for($i=1; $i<=5; $i++)
-						<option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
-						@endfor
-					</select>
+					{{trans_choice('messages.ratings',1)}} 
+					<input id="input-3-ltr-star-xs" name="min_rating" id="min_rating" class="star-readonly" rating-loading" value="1" dir="ltr" data-size="xxs">
 				</div>
 				<div class="col-md-2 text-center">
-					{{trans_choice('messages.ratings',5)}}  <select name="max_rating" id="max_rating" class="form-control" title="Max Rating">
-						{{-- <option value="null">အများဆုံး ြကယ်</option> --}}
-						@for($i=1; $i<=5; $i++)
-						<option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
-						@endfor 
-					</select>									
+					{{trans_choice('messages.ratings',5)}}
+					<input id="input-2-ltr-star-xs" name="max_rating" id="max_rating" class="star-readonly" rating-loading" value="1.5" dir="ltr" data-size="xxs">									
 				</div>
 				
 				<div class="collapse multi-collapse col-md-4 mt-3 mb-3" id='collapsehome'>					
