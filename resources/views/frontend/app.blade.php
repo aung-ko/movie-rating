@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/chatapp.js') }}"></script>
     
 
 <!--     <link href="https://fonts.googleapis.com/css?family=Padauk" rel="stylesheet">
@@ -49,7 +50,10 @@
       @include('frontend.include.footer')
     </div>
     @include('sweetalert::alert')
+    <script src="{{ asset('js/chatapp.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    
+    
     @yield('script')
 <!--         <script src="js/custom.js"></script>  -->
 </body>

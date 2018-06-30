@@ -552,12 +552,14 @@ select.form-control:not([size]):not([multiple]) {
   margin-top:10px;
   position: relative;
 }
-.chat-section{
+.chat-section ul{
   overflow-y:scroll;
   height:300px;
 }
 .chat-section ul{
-  padding: 0px;
+  padding: 5px;
+
+
 }
 .left-chat img,.right-chat img{
   width:50px;
