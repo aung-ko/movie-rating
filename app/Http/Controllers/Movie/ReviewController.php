@@ -46,7 +46,7 @@ class ReviewController extends Controller
 
     public function show(Movie $movie, Review $review)
     {
-        return view('reviews.review-show', compact('review', 'movie'));
+        return view('movies.review-show', compact('review', 'movie'));
     }
 
     public function update(Request $request, Movie $movie, Review $review)

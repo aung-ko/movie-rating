@@ -23,8 +23,8 @@ Route::prefix('admin')->group(function () {
     Route::post('status/store', 'Admin\StatusController@store')->name('admin.status.store');
     Route::delete('status/delete/{status}', 'Admin\StatusController@destroy')->name('admin.status.delete');
 
-
-
+    Route::get('users', 'Admin\UserController@index')->name('admin.users');
+    Route::get('users-d', 'Admin\UserController@userData')->name('admin.users.data');
     
 });
 
@@ -53,7 +53,7 @@ Route::get('/search', 'SearchController@search');
 
 Route::prefix('/')->group(function(){
     Route::get('/', 'Pages\PagesController@index')->name('index');  
-    Route::get('/user/{user}', 'UserController@user')->name('user');
+    Route::get('/user/{user}', 'ProfileController@user')->name('user');
   
 });
 

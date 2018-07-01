@@ -38,7 +38,7 @@
 	 			<div class="col-md-5  p-3">
 	            	<p class="rating"> {{numformat($movie->rating)}}/{{numformat(5)}} </p>
 					<p class="stars">
-						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xs" data-readonly="true">
+						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xs" data-readonly="true">
 					</p>        						
 	 			</div>
 	 		</div> 		
@@ -51,7 +51,7 @@
 					<div class='card p-4'>
 					<h2 class="text-left myanmarsanpro"> {{ __('messages.comment')}} ( {{numformat($reviews->count())}} ) {{__('messages.receive')}}</h2>
 					<p class="stars text-left pt-2 pb-2">
-						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$reviews->count()}}" dir="ltr" data-size="xs" data-readonly="true">
+						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$reviews->count()}}" dir="ltr" data-size="xs" data-readonly="true">
 					</p>
 		          	<a href="{{route('review.create', $movie)}}" class="btn btn-dark btn-movie btn-lg btn-block">{{__('messages.write-comment')}}</a>		          						
 					</div>	
@@ -74,12 +74,14 @@
 							@foreach($reviews as $review)
 							    <section class="event mb-4">
 							            <h4 class="event-heading pb-3">
-											<a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a></h4>
+                                            <a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a>
+                                        
+                                        </h4>
 											
 							           <p class="fs-mini">{{$review->body}}</p>
 							            	<span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>				
 							            		{{numdate($review->created_at)}}  <br>
-						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$reviews->count()}}" dir="ltr" data-size="xxs" data-readonly="true">
+						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$reviews->count()}}" dir="ltr" data-size="xxs" data-readonly="true">
 							            <footer>
 							                <div class="clearfix">
 							                    <ul class="post-links mt-sm pull-left">

@@ -1,8 +1,8 @@
-<div class="container-fluid">
-<div class="row">
+<div class="container pl-5 pr-5">
+<div class="row p-5">
 @foreach ($relatedMovies as $movie)
 
-			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-4">
+			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
 
 				<div class="recent-movie-block">
 					<div class="recent-movie-img">

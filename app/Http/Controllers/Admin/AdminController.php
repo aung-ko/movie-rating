@@ -28,7 +28,7 @@ class AdminController extends Controller
 
     public function allMovies()
     {
-        return view('admin.movie.movies', compact('movies'));
+        return view('admin.movie.movies');
     }
 
     public function editMovie(Movie $movie)

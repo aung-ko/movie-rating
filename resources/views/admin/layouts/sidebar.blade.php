@@ -24,6 +24,9 @@
             <li>
                 <a href="{{ route('admin.status') }}"><i class="glyphicon glyphicon-tower"></i> Statuses</a>
             </li>
+            <li>
+                <a href="{{ route('admin.users') }}"><i class="fa fa-users fa-fw"></i> Users</a>
+            </li>
             
            
         </ul>

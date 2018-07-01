@@ -64,7 +64,7 @@
                         <div class="btn-group m-2"><a href="#" class="btn btn-sm btn-gray"><i class="fa fa-camera fa-lg"></i></a> <a href="#" class="btn btn-sm btn-gray"><i class="fa fa-map-marker fa-lg"></i></a>
                         </div>
                         <button type="submit" class="btn btn-dark btn-movie btn-sm pl-5 pr-5">Post</button>
-                        <div class='m-2'><input id="input-1-ltr-star-xs" name="review_rating" id="review_rating" class="user-reaction rating-loading" value="3.5" dir="ltr" data-size="xxs"></div>
+                        <div class='m-2'><input id="input-1-ltr-star-xs" name="rating" id="review_rating" class="user-reaction rating-loading" value="3.5" dir="ltr" data-size="xxs"></div>
                     </div>
                 </form> 
                 
