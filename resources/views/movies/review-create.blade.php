@@ -47,10 +47,8 @@
                         @endif                        
                     </div>
                     <div class="form-group mb-0 {{$errors->has('body') ? 'has-error' : ''}}">
-                        <label class="sr-only" for="new-event">New event</label>
-                        <textarea class="form-control" id="new-event" name="body" placeholder="တစ်ခုခုပြောမယ်..." rows="3">
-                            {{old('body')}}
-                        </textarea>
+                        
+                        <textarea class="form-control" name="body">{{old('body')}}</textarea>
 
 
                                 @if ($errors->has('body'))

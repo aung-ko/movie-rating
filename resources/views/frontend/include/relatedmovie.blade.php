@@ -1,6 +1,6 @@
 <div class="container pl-5 pr-5">
 <div class="row p-5">
-@foreach ($relatedMovies as $movie)
+@foreach ($relatedMovies as $key => $movie)
 
 			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
 
@@ -24,10 +24,10 @@
 								<h3 class="text-dark mb0">{{ $movie->name }}</h3>
 							</div>
 							<div class="card-body">
-								၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-								၁၀  <img class="custom-icon flex-row putato" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-								၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">   		
-								<p>{{ $movie->description }}</p>
+								<p class="rating"> {{numformat($movie->rating)}}/၅  </p>
+								<p class="stars">
+									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly" rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
+								</p>
 							</div>
 							<div class="card-footer nopadding">
                             <a class=" align-text-bottom w-100 btn btn-dark align-text-bottom" href="{{ route('movie.show', $movie->slug) }}" 

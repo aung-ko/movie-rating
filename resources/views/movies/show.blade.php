@@ -79,7 +79,7 @@
 							           <p class="fs-mini">{{$review->body}}</p>
 							            	<span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>				
 							            		{{numdate($review->created_at)}}  <br>
-						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$reviews->count()}}" dir="ltr" data-size="xxs" data-readonly="true">
+						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$review->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
 							            <footer>
 							                <div class="clearfix">
 							                    <ul class="post-links mt-sm pull-left">
@@ -103,7 +103,7 @@
 				
 			</div>
 
-			<h1 class="mt-5 mb-5 jumbotron-heading text-left myanmarsanpro">{{__('messages.related-movie')}}</h1>
+			<h1 class="mt-5 mb-5 text-left myanmarsanpro">{{__('messages.related-movie')}}</h1>
 			@include('frontend.include.relatedmovie') 		
 
 	</div>

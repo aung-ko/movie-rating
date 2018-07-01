@@ -12,43 +12,22 @@
             <div class="col-md-4">
                 <div class="bg-white">
                     <div>
-                      <h1 class="btn-movie text-white jumbotron-heading text-left p-3 pb-0 m-0 myanmarsanpro">Movie Name </h1> 
-                      <img width="100%" height="auto" src="http://127.0.0.1:8000/storage/movies/a-quiet-place-5b12e239d93ca/63dc7ed1010d3c3b8269faf0ba7491d4.jpg" alt="">
-
-                      <div class="p-4">
-                          <p class="lead text-muted">Movie descriptio here<br>
-                            ဒါရိုက်တာ : Director name<br>
-                            ဇာတ်ညွှန်းဆရာ : ---- <br>
-                            ထူးချွန်ဆုရရှိသူများ :----- <br>
-                            ဇာတ်လမ်းအမျိုးအစား : Genre name       
-                        </p>              
-                        <p class="rating"> ၄/၅ </p>
-                        <p class="stars">
-                            <span class="fa fa-lg fa-star checked"></span>
-                            <span class="fa fa-lg fa-star checked"></span>
-                            <span class="fa fa-lg fa-star checked"></span>
-                            <span class="fa fa-lg fa-star checked"></span>
-                            <span class="fa fa-lg fa-star"></span>
-                        </p>
-                        <div class="text-right other-rating">
-                           ၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-                           ၁၀  <img class="custom-icon flex-row putato" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-                           ၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                       </div>                                                                          
-                   </div>
-
-                   <div class='card p-4 bg-warning'>
-                    <h2 class="text-left myanmarsanpro">ဘယ်မှာပြသနေပြီလဲ</h2>
-                    <p>
-                        Mingalar Cinema <br>
-                        Time: <span class="badge badge-success">9:00 AM</span>များ
-                        <span class="badge badge-success"> 12:00 PM</span>
-                        <span class="badge badge-success">3:30 PM</span>
-                        <span class="badge badge-warning">6:30 PM</span>
-                        <span class="badge badge-danger">9:30 PM</span>           
-                    </p>
-                    <a href="#" class="btn btn-dark btn-lg btn-block">လက်မှတ်၀ယ်မယ်</a>                        
-                </div>  
+                      <div>
+                      <h1 class="btn-movie text-white jumbotron-heading text-left p-3 pb-0 m-0 myanmarsanpro">{{ $movie->name }}</h1> 
+                              <img width="100%" height="auto" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster ) }}" alt="">
+                        <div class="p-4">             
+                            <p class="rating"> {{numformat($movie->rating)}}/၅  </p>
+                            <p class="stars">
+                            <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
+                            </p>
+                              <p class="lead text-muted">{{ $movie->description }}<br>
+                                {{__('messages.director')}} : {{ $movie->director_name }}<br>
+                                {{__('messages.genre')}} : @foreach ($movie->genres as $genre)
+                                    {{ $genre->name }}, 
+                                @endforeach<br>         
+                              </p>    
+                        </div>
+                    </div>  
             </div>  
         </div>
     </div>
@@ -81,17 +60,20 @@
                                 <div class="comment-body">
                                     <h6 class="author fw-semi-bold">{{$reply->user->name}}{{--  <small>{{$reply->created_at->diffForHumans()}}</small> --}}</h6>
                                     <p>{{$reply->body}}</p>
-                                    
 
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                                <div class="d-flex float-right">
+                                     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
+
                                     <form action="{{route('reply.destroy', $reply->id)}}" method="POST">
                                         {{method_field('delete')}}
                                         {{csrf_field()}}
 
-                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                        <button class="btn btn-link">
+                                            <i class="fa fa-trash text-danger"></i></button>
 
 
-                                    </form>
+                                    </form>                                   
+                                </div>
 
 
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >

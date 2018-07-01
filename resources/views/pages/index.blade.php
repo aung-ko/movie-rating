@@ -35,14 +35,10 @@
 								<h3 class="text-dark mb0">{{ $movie['name'] }}</h3>
 							</div>
 							<div class="card-body">
-								၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-								၁၀  <img class="custom-icon flex-row putato" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-								၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">   		
 								<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
 								<p class="stars">
 									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly" rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
 								</p>
-								<p>{{ str_limit($movie->description, 120) }}</p>
 							</div>
 							<div class="card-footer nopadding">
 								<a class="align-text-bottom btn btn-dark align-text-bottom btn-lg btn-block" href="{{ route('movie.show', $movie->slug) }}" role="button">ကြည့်မယ်</a>
