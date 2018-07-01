@@ -69,6 +69,36 @@
                 </form> 
                 
             </section>
+
+                <div class="mt-3 mb-3">
+                    <div class="">
+                            <h2 class="text-left myanmarsanpro">{{__('messages.commentsall')}}</h2>                         
+                            @foreach($movie->reviews as $review)
+                                <section class="event mb-4">
+                                        <h4 class="event-heading pb-3">
+                                            <a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a>
+                                        
+                                        </h4>
+                                            
+                                       <p class="fs-mini">{{$review->body}}</p>
+                                            <span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>               
+                                                {{numdate($review->created_at)}}  <br>
+                        <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$review->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
+                                        <footer>
+                                            <div class="clearfix">
+                                                <ul class="post-links mt-sm pull-left">
+                                                    <li><a href="#">{{numformat(1)}} {{__('messages.when.hour')}}</a>
+                                                    </li>
+                                                    <li><a href="#"> {{numformat(10)}} {{__('messages.receive-reply')}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                     </footer>
+                                 </section>
+                            @endforeach                        
+                                                                            
+                    </div>  
+                </div>            
         </div>
              </div>   
     </div>

@@ -50,10 +50,8 @@
 				<div class='col col-md-4 p-2'>
 					<div class='card p-4'>
 					<h2 class="text-left myanmarsanpro"> {{ __('messages.comment')}} ( {{numformat($reviews->count())}} ) {{__('messages.receive')}}</h2>
-					<p class="stars text-left pt-2 pb-2">
-						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$reviews->count()}}" dir="ltr" data-size="xs" data-readonly="true">
-					</p>
-		          	<a href="{{route('review.create', $movie)}}" class="btn btn-dark btn-movie btn-lg btn-block">{{__('messages.write-comment')}}</a>		          						
+
+		          	<a href="{{route('review.create', $movie)}}" class="mt-3 btn btn-dark btn-movie btn-lg btn-block">{{__('messages.write-comment')}}</a>		          						
 					</div>	
 					<div class='card p-4 mt-3'>
 					<h2 class="text-left myanmarsanpro">{{__('messages.show-cinema')}}</h2>

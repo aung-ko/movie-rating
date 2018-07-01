@@ -55,26 +55,6 @@
     <div class="col-md-8 mt-3">
 
         <section class="activities">
-            {{-- <h2 class='myanmarsanpro mb-3'>မှတ်ချက်များ</h2> --}}
-                {{-- <form class="mt" action="#">
-                    <div class="form-group mb-0">
-                        <label class="sr-only" for="new-event">New event</label>
-                        <textarea class="form-control" id="new-event" placeholder="တစ်ခုခုပြောမယ်..." rows="3"></textarea>
-                    </div>
-                    <div class="btn-toolbar">
-                        <div class="btn-group"><a href="#" class="btn btn-sm btn-gray"><i class="fa fa-camera fa-lg"></i></a> <a href="#" class="btn btn-sm btn-gray"><i class="fa fa-map-marker fa-lg"></i></a>
-                        </div>
-                        <button type="submit" class="btn btn-dark btn-movie pl-5 pr-5  pull-right">Post</button>
-
-                        <select name="max_rating" id="max_rating" class="form-control" title="Max Rating"> --}}
-                            {{-- <option value="null">အများဆုံး ြကယ်</option> --}}
-                        {{-- @for($i=1; $i<=5; $i++)
-                        <option value="{{$i}}" data-html='{{$i}}'>{{$i}}</option>
-                        @endfor 
-                    </select>
-                    </div>
-                </form>  --}}
-
                 <section class="event">
                     <h4 class="event-heading"><a href="#">{{$review->user->name}}</a> <small><a href="#">"{{$review->movie->name}}" ရုပ်ရှင်တွင် မှတ်ချက်ရေးခဲ့သည့်</a></small></h4>
                     <p class="fs-sm text-muted">၂၀၁၈ခုနှစ် မေလ ၁ရက်နေ င်္နနက် ၅း၃၀</p>
@@ -174,19 +154,8 @@
 
                                                 </div>
                                             </div>
-                                        </div>
+                                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Submit</button>
 
-                                        <div class="form-actions">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="offset-sm-10 col-md-9">
-                                                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Submit</button>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </form>
                                 </div>

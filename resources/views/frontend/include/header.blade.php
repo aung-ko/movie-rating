@@ -42,11 +42,11 @@
         @auth
         <div class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               User Setting
+               {{Auth::user()->name}}
              </a>
              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               
-              <a class="dropdown-item" href="{{route('user', Auth::user()->slug)}}">{{Auth::user()->name}}</a>
+              <a class="dropdown-item" href="{{route('user', Auth::user()->slug)}}">Profile</a>
              
               
               <div class="dropdown-divider"></div>
