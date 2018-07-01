@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
@@ -57,20 +57,48 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function ban($id)
+    public function banUser(User $user)
     {
-        //
+        $user->is_banned = 1;
+        $user->save();
+        session()->flash('message', 'User has been banned');
+        return back();
+    }
+
+    public function UnBanUser(User $user)
+    {
+        $user->is_banned = 0;
+        $user->save();
+        session()->flash('message', 'User has been accepted back');
+        return back();
     }
 
     public function userData()
     {
         $users = User::all();
         return Datatables::of($users)
-            ->addColumn("role", function($model){
+            ->addColumn("role", function ($model) {
                 $data = $model->role->role;
                 return $data;
             })
-            ->rawColumns(['role'])
+            ->addColumn("action", function ($model) {
+                $data = '';
+                if (!$model->isAdmin()) {
+                    if (!$model->is_banned()) {
+                        $data = '<form action="' . route('admin.ban.user', $model->slug) . '" method="POST">' .
+                        csrf_field() .
+                            '<button type="submit" class="btn btn-danger">Ban</button>' .
+                            '</form>';
+                        return $data;
+                    }
+                    $data = '<form action="' . route('admin.unban.user', $model->slug) . '" method="POST">' .
+                    csrf_field() .
+                        '<button type="submit" class="btn btn-success">Unban</button>' .
+                        '</form>';
+                    return $data;
+                }
+            })
+            ->rawColumns(['role', 'action'])
             ->make(true);
     }
 }

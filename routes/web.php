@@ -25,7 +25,8 @@ Route::prefix('admin')->group(function () {
 
     Route::get('users', 'Admin\UserController@index')->name('admin.users');
     Route::get('users-d', 'Admin\UserController@userData')->name('admin.users.data');
-    
+    Route::post('ban/{user}', 'Admin\UserController@banUser')->name('admin.ban.user');
+    Route::post('unban/{user}', 'Admin\UserController@UnBanUser')->name('admin.unban.user');
 });
 
 Route::prefix('movie')->group(function () {

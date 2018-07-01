@@ -21,6 +21,13 @@
                 <div class="panel-heading">
                     All Users in detail
                 </div>
+
+                @if (session('message'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('message') }}
+                </div>
+            @endif
+
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="movie-table">
@@ -29,6 +36,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                <th>Action</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>
                             </tr>
@@ -53,6 +61,7 @@
                     { data: 'name', name: 'name' },
                     { data: 'email', name: 'email' },
                     { data: 'role', name: 'role' },
+                    { data: 'action', name: 'action' },
                     { data: 'created_at', name: 'created_at' },
                     { data: 'updated_at', name: 'updated_at' },
                 ]
