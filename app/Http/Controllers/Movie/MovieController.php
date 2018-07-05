@@ -20,12 +20,6 @@ class MovieController extends Controller
 
     }
 
-    public function index()
-    {
-        $movies = $this->movieRepo->all();
-        return view('movies.index', compact('movies'));
-    }
-
     public function show(Movie $movie)
     {
         $reviews = Review::where('movie_id', '=' , $movie->id)->get();

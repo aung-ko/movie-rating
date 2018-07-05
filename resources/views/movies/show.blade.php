@@ -6,7 +6,7 @@
 @section('content')
 <section  style='background-image: url({{ asset('storage/movies/' . $movie->slug . '/' . $movie->background ) }});' class="single jumbotron bg-dark movie-background text-light img-background">
         <div class="container">
-	          <h1 class="jumbotron-heading text-left p-1 pb-3 myanmarsanpro">{{ $movie->name }} - {{numformat(date('Y',strtotime($movie->released_date)))}}</h1> 
+	          <h1 class="jumbotron-heading text-left p-1 pb-3 myanmarsanpro">{{ $movie->name }} ({{numformat(date('Y',strtotime($movie->released_date)))}})</h1> 
 
 	          <div class="row">
 	          	<div class="col-md-3 nopadding nomargin bg-dark-movie">
@@ -26,7 +26,7 @@
 	          </div>
 	 		<div class="row bg-light">
 	 			<div class="col-md-7  p-3">
-		          <p class="text-muted">{{ $movie->description }}<br>
+		          <p class="text-muted">{{ $movie->description }}<br><br>
 					{{__('messages.director')}} : {{ $movie->director_name }}<br>
 					{{__('messages.genre')}} : @foreach ($movie->genres as $genre)
 	                    {{ $genre->name }}, 
@@ -73,19 +73,22 @@
 							    <section class="event mb-4">
 							            <h4 class="event-heading pb-3">
                                             <a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a>
-                                        
+                                            <span style="font-size: 12px;">
+                                                <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" 
+                                                value="{{$review->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
+                                            </span>
                                         </h4>
 											
 							           <p class="fs-mini">{{$review->body}}</p>
-							            	<span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>				
+                                            <span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  
+                                            <h4><a href="#">{{$review->user->name}}</a></h4>				
 							            		{{numdate($review->created_at)}}  <br>
-						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$review->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
 							            <footer>
 							                <div class="clearfix">
 							                    <ul class="post-links mt-sm pull-left">
-							                        <li><a href="#">{{numformat(1)}} {{__('messages.when.hour')}}</a>
-							                        </li>
-							                        <li><a href="#"> {{numformat(10)}} {{__('messages.receive-reply')}}</a>
+							                        {{-- <li><a href="#">{{numformat(1)}} {{__('messages.when.hour')}}</a>
+							                        </li> --}}
+							                        <li><a href="{{ route('review.show',[$movie,$review]) }}"> {{numformat($review->replys->count())}} {{__('messages.receive-reply')}}</a>
 							                        </li>
 							                    </ul>
 							                </div>

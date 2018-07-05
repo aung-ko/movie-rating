@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center">
-				<h1 class='m-4 myanmarsanpro'>{{__('messages.this-week-movie')}}</h1>
+				<h1 class='m-4 myanmarsanpro'>{{__('messages.coming-soon-movies')}}</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -26,7 +26,7 @@
 							<div>
 								<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
 								<p class="stars">
-									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly" rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
+									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
 								</p>
 							</div>
 						</div>
@@ -37,7 +37,7 @@
 							<div class="card-body">
 								<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
 								<p class="stars">
-									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly" rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
+									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
 								</p>
 							</div>
 							<div class="card-footer nopadding">

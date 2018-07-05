@@ -29,8 +29,7 @@ Route::prefix('admin')->group(function () {
     Route::post('unban/{user}', 'Admin\UserController@UnBanUser')->name('admin.unban.user');
 });
 
-Route::prefix('movie')->group(function () {
-    Route::get('/', 'Movie\MovieController@index')->name('movie.index');
+Route::prefix('movie')->group(function () { 
     Route::get('{movie}', 'Movie\MovieController@show')->name('movie.show');
 
     Route::get('{movie}/review/create', 'Movie\ReviewController@create')->name('review.create');

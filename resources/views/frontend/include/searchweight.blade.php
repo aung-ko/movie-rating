@@ -8,11 +8,11 @@
 				</div>
 				<div class="col-md-2 text-center">
 					{{trans_choice('messages.ratings',1)}} 
-					<input id="input-3-ltr-star-xs" name="min_rating" id="min_rating" class="star-readonly" rating-loading" value="1" dir="ltr" data-size="xxs">
+					<input id="input-3-ltr-star-xs" name="min_rating" id="min_rating" class="star-readonly rating-loading" value="1" dir="ltr" data-size="xxs">
 				</div>
 				<div class="col-md-2 text-center">
 					{{trans_choice('messages.ratings',5)}}
-					<input id="input-2-ltr-star-xs" name="max_rating" id="max_rating" class="star-readonly" rating-loading" value="1.5" dir="ltr" data-size="xxs">									
+					<input id="input-2-ltr-star-xs" name="max_rating" id="max_rating" class="star-readonly rating-loading" value="5" dir="ltr" data-size="xxs">									
 				</div>
 				
 				<div class="collapse multi-collapse col-md-4 mt-3 mb-3" id='collapsehome'>					

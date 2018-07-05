@@ -1296,7 +1296,9 @@ select.form-control:not([size]):not([multiple]) {
     margin-right: 20px
 }
 .jumbotron-heading{
-  text-shadow: 1px 2px 2px #000;
+    text-shadow: 2px 2px 3px #000;
+    font-weight: bold;
+    font-size: 250%;
 }
 @media (min-width:768px) {
     .widget-top-overflow>.btn-toolbar {
@@ -1764,7 +1766,7 @@ select.form-control:not([size]):not([multiple]) {
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    background-blend-mode: color-dodge;
+    background-blend-mode: overlay;
 }
 
 .rating-xxs {

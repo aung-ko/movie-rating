@@ -14,13 +14,16 @@
                     <div>
                       <div>
                       <h1 class="btn-movie text-white jumbotron-heading text-left p-3 pb-0 m-0 myanmarsanpro">{{ $movie->name }}</h1> 
-                              <img width="100%" height="auto" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster ) }}" alt="">
+
+                      <a href="{{ route('movie.show', $movie->slug) }}">
+                        <img width="100%" height="auto" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster ) }}" alt="">
+                      </a>
                         <div class="p-4">             
                             <p class="rating"> {{numformat($movie->rating)}}/၅  </p>
                             <p class="stars">
                             <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
                             </p>
-                              <p class="lead text-muted">{{ $movie->description }}<br>
+                              <p class="lead text-muted">{{ $movie->description }}<br><br>
                                 {{__('messages.director')}} : {{ $movie->director_name }}<br>
                                 {{__('messages.genre')}} : @foreach ($movie->genres as $genre)
                                     {{ $genre->name }}, 
@@ -62,8 +65,46 @@
                                     <p>{{$reply->body}}</p>
 
                                 <div class="d-flex float-right">
+                                    @can('edit-reply', $reply)
                                      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
-
+                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="{{route('reply.update', [$movie, $review, $reply])}}" method="POST" class="form-horizontal form-bordered">
+                                                  {{ method_field('PATCH') }}
+                                                  {{csrf_field()}}
+                                                  <div class="form-body">
+                                                      <div class="form-group row">
+      
+                                                          <div class="col-md-12">
+                                                              <input type="text" class="form-control" name="body" value="{{ $reply->body }}" autofocus>
+      
+                                                              
+      
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                  <button type="submit" class="btn btn-primary">Save</button>
+      
+      
+                                                  
+                                              </form>
+                                          </div>
+                                          
+                                      </div>
+                                      
+                                  </div>
+                            </div>
+                            @endcan
+                            @can('delete-reply', $reply)
                                     <form action="{{route('reply.destroy', $reply->id)}}" method="POST">
                                         {{method_field('delete')}}
                                         {{csrf_field()}}
@@ -72,58 +113,26 @@
                                             <i class="fa fa-trash text-danger"></i></button>
 
 
-                                    </form>                                   
-                                </div>
-
-
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                                      <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span>
-                                          </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <form action="{{route('reply.update', [$movie, $review, $reply])}}" method="POST" class="form-horizontal form-bordered">
-                                            {{ method_field('PATCH') }}
-                                            {{csrf_field()}}
-                                            <div class="form-body">
-                                                <div class="form-group row">
-
-                                                    <div class="col-md-12">
-                                                        <input type="text" class="form-control" name="body" value="{{ $reply->body }}" autofocus>
-
-                                                        
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save</button>
-
-
-                                            
-                                        </form>
-                                    </div>
+                                    </form>
                                     
-                                </div>
-                                
-                            </div>
+                                @endcan
+                              
+
+                                   
                         </li>
                         @endforeach
 
 
                         <li>
                             <div class="comment-body">
+                                @if(auth()->check())
                                 <form action="{{route('reply.store', [$movie, $review])}}" method="POST" class="form-horizontal form-bordered">
                                     {{csrf_field()}}
 
-                                    <div class="form-body">
+                                    
 
                                         <div class="form-body">
-                                            <div class="form-group row {{$errors->has('body') ? 'has-error' : ''}}">
+                                            <div class="form-group {{$errors->has('body') ? 'has-error' : ''}}">
 
                                                 <div class="col-md-12">
                                                     <input type="text" class="form-control" name="body" value="{{ old('body') }}" autofocus>
@@ -136,12 +145,14 @@
 
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Submit</button>
+                                            <button type="submit" class="ml-3 btn btn-success"> <i class="fa fa-check"></i> Submit</button>
 
                                         </div>
-                                    </form>
-                                </div>
-                            </li>
+                                </form>
+                                @endif
+                            </div>
+                        </li>
+
                         </ul>
 
 
