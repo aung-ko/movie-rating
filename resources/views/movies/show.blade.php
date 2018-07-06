@@ -88,7 +88,7 @@
 							                    <ul class="post-links mt-sm pull-left">
 							                        {{-- <li><a href="#">{{numformat(1)}} {{__('messages.when.hour')}}</a>
 							                        </li> --}}
-							                        <li><a href="{{ route('review.show',[$movie,$review]) }}"> {{numformat($review->replys->count())}} {{__('messages.receive-reply')}}</a>
+							                        <li><a href="{{ route('review.show',[$movie,$review]) }}"> {{__('messages.reply')}} {{numformat($review->replys->count())}} {{__('messages.receive')}}</a>
 							                        </li>
 							                    </ul>
 							                </div>
@@ -96,7 +96,7 @@
 							     </section>
 							@endforeach
 							@if($reviews->count() == !0)
-							<a href="{{route('review.create', $movie)}}" class="mt-4 btn btn-dark btn-lg btn-block">{{__('messages.view-other-comment')}}</a>
+							<a href="{{route('review.all', $movie)}}" class="mt-4 btn btn-dark btn-lg btn-block">{{__('messages.view-other-comment')}}</a>
 							@else
 							<a href="{{route('review.create', $movie)}}" class="mt-4 btn btn-dark btn-lg btn-block">{{__('messages.be-first-comment')}}</a>							
 							@endif							

@@ -32,6 +32,7 @@ Route::prefix('admin')->group(function () {
 Route::prefix('movie')->group(function () { 
     Route::get('{movie}', 'Movie\MovieController@show')->name('movie.show');
 
+    Route::get('{movie}/reviews', 'Movie\ReviewController@allReviews')->name('review.all');
     Route::get('{movie}/review/create', 'Movie\ReviewController@create')->name('review.create');
     Route::post('{movie}/review', 'Movie\ReviewController@store')->name('review.store');
     Route::get('{movie}/review/{review}', 'Movie\ReviewController@show')->name('review.show');

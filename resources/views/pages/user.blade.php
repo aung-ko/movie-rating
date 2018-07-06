@@ -22,19 +22,11 @@
                                 <a href="#" class="btn btn-info btn-sm mt">&nbsp;Follow <i class="fa fa-user-plus ml-xs"></i>&nbsp;</a>
 
 								<ul class="list-group list-group-flush m-3">
-								  <li class="list-group-item">အလုပ်အကိုင်- ရုပ်ရှင် ဒါရိုက်တာရူး</li>
 								  <li class="list-group-item">စတင်ဝင်ရောက်သည့်နေ့- ၁၊ မေ၊ ၂၀၁၈</li>
 								  <li class="list-group-item">မှတ်ချက်စုစုပေါင်း- ၁၂၅ ခုပေးခဲ့သည်</li>
-								  <li class="list-group-item">သူငယ်ချင်းများ- ၃၀ ယောက်</li>
-								  <li class="list-group-item">ကြည့်ရှုပြီးသောရုပ်ရှင်- ၅၀ ကား</li>
-								  <li class="list-group-item">ရရှိထားသောဆု- လေအိုးကြီး</li>
 								</ul>
 
                             </div>
-                        </div>
-                        <div class="col-sm-12">
-                            </p>
-                            <p class="lead mt-lg">ကွီးနာမည်က ဖြူလုံး ရုပ်ရှင် ကြည့်ရတာ ဝါသနာပါတယ်၊ အထူးသဖြင့် မရီရတဲ့ ပေါကားတွေ ကြည့်ပြီး ဝေဖန်ရေး ဆစရက  လုပ်ရတာ အထူး ကျွမ်ကျင်တယ် ဆိုပါတော့</p>
                         </div>
                         <a href="#" class="btn btn-sm mt align-items-right align-items-bottom"><i class="fa fa-edit ml-xs"></i>&nbsp;</a>
                     </div>

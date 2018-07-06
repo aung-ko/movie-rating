@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Movie;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\MovieRepo;
-use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Review;
-use App\Models\Reply;
+use App\Repositories\MovieRepo;
 
 class MovieController extends Controller
 {
@@ -22,14 +20,14 @@ class MovieController extends Controller
 
     public function show(Movie $movie)
     {
-        $reviews = Review::where('movie_id', '=' , $movie->id)->get();
+        $reviews = Review::latest()
+            ->where('movie_id', '=', $movie->id)
+            ->take(3)
+            ->get();
 
         $movie = $this->movieRepo->get($movie);
         $relatedMovies = $this->movieRepo->getRelatedMovies($movie->id, $movie->genres);
-        return view('movies.show', compact('movie', 'reviews','genres', 'relatedMovies'));
+        return view('movies.show', compact('movie', 'reviews', 'genres', 'relatedMovies'));
     }
 
-    
-
-    
 }

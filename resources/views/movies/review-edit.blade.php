@@ -1,74 +1,87 @@
 @extends('frontend.app')
-
-
+@section('title', 'Movie reviews for '.($movie->name))
+@section('description', 'Best movie review for '.($movie->name).' released in '.(date('Y',strtotime($movie->released_date)). ' directed by '.($movie->director_name)))
+@section('keywords', ($movie->name).' in Myanmar')
+@section('image', asset('storage/movies/' . $movie->slug . '/' . $movie->poster ))
 @section('content')
 
-<br>
-<br>
+<section class="listing jumbotron">
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-4">
+            <div class="bg-white">
+                <div>
+                    <h1 class="btn-movie text-white jumbotron-heading text-left p-3 pb-0 m-0 myanmarsanpro">
+                        {{ $movie->name }}
+                    </h1> 
+                    
+                    <a href="{{ route('movie.show', $movie->slug) }}">
+                          <img width="100%" height="auto" src="{{ asset('storage/movies/' . $movie->slug . '/' . $movie->poster ) }}" alt="">
+                    </a>
 
-<form action="{{route('review.update', [$movie, $review])}}" method="POST" class="form-horizontal form-bordered">
-	{{ method_field('PATCH') }}
-					{{csrf_field()}}
+                    <div class="p-4">             
+                        <p class="rating"> {{numformat($movie->rating)}}/၅  </p>
+                        <p class="stars">
+                        <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
+                        </p>
+                          <p class="lead text-muted">{{ $movie->description }}<br><br>
+                            {{__('messages.director')}} : {{ $movie->director_name }}<br>
+                            {{__('messages.genre')}} : @foreach ($movie->genres as $genre)
+                                {{ $genre->name }}, 
+                            @endforeach<br>         
+                          </p>                                                                         
+                    </div>
 
-					<div class="form-body">
-						<div class="form-group row {{$errors->has('title') ? 'has-error' : ''}}">
-							<div class="col-md-3">
-								<label class="control-label text-right">Title</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" name="title" value="{{ $review->title }}" autofocus>
+                    
+                    </div>  
+                </div>
+            </div>
+        <div class="col-md-8 mt-3">
 
-								@if ($errors->has('title'))
-								<span class="help-block">
-									<strong>{{ $errors->first('title') }}</strong>
-								</span>
-								@endif
+            <section class="activities">
+                <h2 class='myanmarsanpro mb-3'>မှတ်ချက်ရေးရန်</h2>
+                <form action="{{route('review.update', [$movie, $review])}}" method="POST" class="mt form-horizontal form-bordered">
+                    {{ method_field('PATCH') }}
+                    {{csrf_field()}}
 
-							</div>
-						</div>
-					</div>
-					<div class="form-body">
-						<div class="form-group row {{$errors->has('body') ? 'has-error' : ''}}">
-							<div class="col-md-3">
-								<label class="control-label text-right">Body</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" class="form-control" name="body" value="{{ $review->body }}" autofocus>
+                    <div class='form-group mb-0 {{$errors->has('title') ? 'has-error' : ''}}'>
+                        <input type="text" class="form-control" name="title" value="{{ $review->title }}" autofocus
+                        placeholder="ခေါင်းစဉ်">
 
-								@if ($errors->has('body'))
-								<span class="help-block">
-									<strong>{{ $errors->first('body') }}</strong>
-								</span>
-								@endif
-
-							</div>
-						</div>
-					</div>
-					
-
-
-						
-
-						
+                        @if ($errors->has('title'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('title') }}</strong>
+                        </span>
+                        @endif                        
+                    </div>
+                    <div class="form-group mb-0 {{$errors->has('body') ? 'has-error' : ''}}">
+                        
+                        <textarea class="form-control" name="body" placeholder="ဒီဇိုင်းကာလာဘာညာအနေအထား" rows="15">{{ $review->body }}</textarea>
 
 
-					
-					<div class="form-actions">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="offset-sm-10 col-md-9">
-										<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Submit</button>
-										
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-				<br>
-				<br>
+                                @if ($errors->has('body'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('body') }}</strong>
+                                </span>
+                                @endif
 
+                    </div>
+                    <div class="btn-toolbar">
+                        {{-- <div class="btn-group m-2"><a href="#" class="btn btn-sm btn-gray"><i class="fa fa-camera fa-lg"></i></a> <a href="#" class="btn btn-sm btn-gray"><i class="fa fa-map-marker fa-lg"></i></a>
+                        </div> --}}
+                        <button type="submit" class="btn btn-dark btn-movie btn-sm pl-5 pr-5">Update</button>
+                        <div class='m-2'><input id="input-1-ltr-star-xs" name="rating" id="review_rating" class="user-reaction rating-loading" value="1" dir="ltr" data-size="xxs"></div>
+                    </div>
+                </form> 
+                
+            </section>
+
+                       
+            </div>
+        </div>   
+    </div>
+</div>
+</section>
 @endsection
 
 

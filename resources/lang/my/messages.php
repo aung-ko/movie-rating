@@ -29,9 +29,9 @@ return [
 	//Review String
 	'comment' => 'မှတ်ချက်',
 	'comments' => 'မှတ်ချက်များ',
-	'receive' => 'ရရှိထားသည်',
-	'receive-reply' => 'ထပ်ဆင့် မှတ်ချက်ရရှိထားသည်',
-	'view-other-comment' => 'အြခား မှတ်ချက်များပါ ြကည့်ရှုရန်',
+	'receive' => 'ခုရရှိထားသည်',
+	'reply' => 'ထပ်ဆင့်မှတ်ချက်',
+	'view-other-comment' => 'မှတ်ချက်အားလုံးကြည့်ရန်',
 	'be-first-comment' => 'မှတ်ချက် ဦးစွာပေးသူအနေနဲ့ စတင်လိုက်ပါ',
 	'write-comment' => 'မှတ်ချက်ရေးမယ်',
 	'update-comment' => 'မှတ်ချက်ြပင်မယ်',

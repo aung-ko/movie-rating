@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group mb-0 {{$errors->has('body') ? 'has-error' : ''}}">
                         
-                        <textarea class="form-control" name="body" placeholder="ဒီဇိုင်းကာလာဘာညာအနေအထား">{{old('body')}}</textarea>
+                        <textarea class="form-control" name="body" placeholder="ဒီဇိုင်းကာလာဘာညာအနေအထား" rows="15">{{old('body')}}</textarea>
 
 
                                 @if ($errors->has('body'))
@@ -68,47 +68,15 @@
                         {{-- <div class="btn-group m-2"><a href="#" class="btn btn-sm btn-gray"><i class="fa fa-camera fa-lg"></i></a> <a href="#" class="btn btn-sm btn-gray"><i class="fa fa-map-marker fa-lg"></i></a>
                         </div> --}}
                         <button type="submit" class="btn btn-dark btn-movie btn-sm pl-5 pr-5">Post</button>
-                        <div class='m-2'><input id="input-1-ltr-star-xs" name="rating" id="review_rating" class="user-reaction rating-loading" value="3.5" dir="ltr" data-size="xxs"></div>
+                        <div class='m-2'><input id="input-1-ltr-star-xs" name="rating" id="review_rating" class="user-reaction rating-loading" value="1" dir="ltr" data-size="xxs"></div>
                     </div>
                 </form> 
                 
             </section>
 
-                <div class="mt-3 mb-3">
-                    <div class="">
-                            <h2 class="text-left myanmarsanpro">{{__('messages.comments')}}</h2>                         
-                            @foreach($movie->reviews as $review)
-                                <section class="event mb-4">
-                                        <h4 class="event-heading pb-3">
-                                            <a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a>
-
-                                            <span style="font-size: 12px;">
-                                                <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" 
-                                                value="{{$review->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
-                                            </span>
-                                        </h4>
-                                            
-                                       <p class="fs-mini">{{$review->body}}</p>
-                                            <span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>               
-                                                {{numdate($review->created_at)}}  <br>
-                        
-                                        <footer>
-                                            <div class="clearfix">
-                                                <ul class="post-links mt-sm pull-left">
-                                                    {{-- <li><a href="#">{{numformat(1)}} {{__('messages.when.hour')}}</a>
-                                                    </li> --}}
-                                                    <li><a href="{{ route('review.show',[$movie,$review]) }}"> {{numformat($review->replys->count())}} {{__('messages.receive-reply')}}</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                     </footer>
-                                 </section>
-                            @endforeach                        
-                                                                            
-                    </div>  
-                </div>            
-        </div>
-             </div>   
+                       
+            </div>
+        </div>   
     </div>
 </div>
 </section>

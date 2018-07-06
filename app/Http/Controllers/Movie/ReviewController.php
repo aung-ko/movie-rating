@@ -11,12 +11,27 @@ class ReviewController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only(['store', 'update', 'destroy']);
+        $this->middleware('auth')->only(['create', 'store', 'update', 'destroy']);
     }
 
     public function create(Movie $movie)
     {
+        if (auth()->user()->reviewExistForMovie($movie)) {
+            $review = Review::where([
+                'user_id' => auth()->user()->id,
+                'movie_id' => $movie->id
+            ])->first();
+            return redirect()->route('review.edit', [$movie, $review]);
+        }
         return view('movies.review-create', compact('movie'));
+    }
+
+    public function allReviews(Movie $movie)
+    {
+        $reviews = Review::latest()
+            ->where('movie_id', '=', $movie->id)
+            ->get();
+        return view('movies.reviews', compact(['reviews', 'movie']));
     }
 
     public function store(Request $request, Movie $movie)
@@ -79,5 +94,10 @@ class ReviewController extends Controller
         // dd($review);
         $review = Review::where('id', '=', $review->id)->delete();
         return redirect()->route('movie.show', $movie->slug);
+    }
+
+    public function edit(Movie $movie, Review $review)
+    {
+        return view('movies.review-edit', compact(['movie', 'review']));
     }
 }

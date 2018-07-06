@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Review;
 
 class User extends Authenticatable
 {
@@ -52,9 +53,23 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Reply');
     }
 
-
     public function getRouteKeyName()
     {
         return 'slug';
     }
+
+    public function reviewExistForMovie($movie)
+    {
+        $review = Review::where([
+            'user_id' => auth()->user()->id,
+            'movie_id' => $movie->id
+        ])->get();
+
+        if(count($review) > 0){
+            return true;
+        }
+
+        return false;
+    }
+
 }
