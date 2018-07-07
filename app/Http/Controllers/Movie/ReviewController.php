@@ -88,7 +88,7 @@ class ReviewController extends Controller
 
         $movie->recalculateRating();
 
-        return redirect()->route('movie.show', $movie->slug);
+        return redirect()->route('review.show', [$movie, $review]);
     }
 
     public function destroy(Movie $movie, Review $review)

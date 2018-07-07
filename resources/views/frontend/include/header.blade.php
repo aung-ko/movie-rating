@@ -14,7 +14,9 @@
                   အမျိုးအစား
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{URL::to('/')}}/search?genre_id=1">Action</a>
+                    @foreach (getAllGenres() as $genre)
+                        <a class="dropdown-item" href="{{ url('search?genre_id=' . $genre->id) }}">{{ $genre->name }}</a>
+                    @endforeach
                   {{--@foreach($genres as $key=>$value)
                   <a class="dropdown-item" href="{{URL::to('/')}}/search?genre_id={{$key}}">{{$value}}</a>
                   @endforeach --}}

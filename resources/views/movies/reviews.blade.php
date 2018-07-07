@@ -54,7 +54,7 @@
                                         </h4>
                                             
                                        <p class="fs-mini">{{$review->body}}</p>
-                                            <span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>               
+                                            <span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="{{ asset('storage/users/' . $review->user->img) }}" alt="..."></span>  <h4><a href="{{ route('user', $review->user->slug) }}">{{$review->user->name}}</a></h4>               
                                                 {{numdate($review->created_at)}}  <br>
                         
                                         <footer>

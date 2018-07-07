@@ -54,8 +54,8 @@ Route::get('/search', 'SearchController@search');
 
 Route::prefix('/')->group(function(){
     Route::get('/', 'Pages\PagesController@index')->name('index');  
-    Route::get('/user/{user}', 'ProfileController@user')->name('user');
-  
+    Route::get('/user/{user}', 'ProfileController@profile')->name('user');
+    
 });
 
 

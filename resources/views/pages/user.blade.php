@@ -17,15 +17,21 @@
                     <div class="row">
                         <div class="col-sm-12 text-center">
                             <div class="post-user post-user-profile"><span class="thumb-xlg"><img class="img-circle rounded-circle" src="{{ asset('storage/users/' . $user->img) }}" alt="..."></span>
-                                <h4 class="fw-normal pt-2">ကို ဖြူလုံး</h4>
+                                <h4 class="fw-normal pt-2">{{ $user->name }}</h4>
                                 {{-- <a href="#" class="btn btn-success btn-sm mt">&nbsp;Send <i class="fa fa-envelope ml-xs"></i>&nbsp;</a>
                                 <a href="#" class="btn btn-info btn-sm mt">&nbsp;Follow <i class="fa fa-user-plus ml-xs"></i>&nbsp;</a> --}}
 
 								<ul class="list-group list-group-flush m-3">
-								  <li class="list-group-item">စတင်ဝင်ရောက်သည့်နေ့- ၁၊ မေ၊ ၂၀၁၈</li>
-                                  <li class="list-group-item">မှတ်ချက်စုစုပေါင်း- ၁၂၅ ခုပေးခဲ့သည်</li>
+								  <li class="list-group-item">စတင်ဝင်ရောက်သည့်နေ့- {{ numdate($user->created_at) }}</li>
+                                  <li class="list-group-item">မှတ်ချက်စုစုပေါင်း- {{ numformat($user->reviews->count()) }} ခုပေးခဲ့သည်</li>
                                   <li class="list-group-item">
-                                    <p class="mt-lg">ကွီးနာမည်က ဖြူလုံး ရုပ်ရှင် ကြည့်ရတာ ဝါသနာပါတယ်၊ အထူးသဖြင့် မရီရတဲ့ ပေါကားတွေ ကြည့်ပြီး ဝေဖန်ရေး ဆစရက  လုပ်ရတာ အထူး ကျွမ်ကျင်တယ် ဆိုပါတော့</p>
+                                    <p class="mt-lg">
+                                        @if (empty($user->bio))
+                                            about you
+                                        @else
+                                            {{ $user->bio }}
+                                        @endif
+                                    </p>
                                 </li>
 								</ul>
 

@@ -1,5 +1,7 @@
 <?php 
 
+use App\Models\Genre;
+
 function numformat($value,$type = null){
 
     if ($type == null) {
@@ -21,5 +23,9 @@ function numdate($value){
     $day = date(('d'),strtotime($value));
     $month = date(('m'),strtotime($value));
     return numformat($day).'-'. numformat($month).'-'.numformat($year); 
+}
+
+function getAllGenres(){
+    return Genre::all();
 }
  ?>

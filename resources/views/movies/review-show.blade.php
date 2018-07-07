@@ -38,11 +38,15 @@
 
         <section class="activities">
                 <section class="event">
-                        <span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>               
+                        <span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="{{ asset('storage/users/' . $review->user->img) }}" alt="..."></span>  <h4><a href="{{ route('user', $review->user->slug) }}">{{$review->user->name}}</a></h4>               
                         {{numdate($review->created_at)}}  <p/>
 
                         <h4 class="event-heading pb-3">
                                 <a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a>
+                                <span class="float-right">
+                                    <a href="{{ route('review.edit', [$movie,$review])}}"><button type="button" class="btn btn-link"><i class="fa fa-edit"></i></button></a>
+                                    <a href="#"><button type="button" class="btn btn-link"><i class="fa fa-trash text-danger"></i></button></a>
+                                </span>
 
                                 <span style="font-size: 12px;" class="row pl-3">
                                     <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" 
@@ -68,52 +72,46 @@
 
 
                             @foreach($review->replys as $reply)
-                            <li><span class="thumb-xs avatar pull-left mr-sm"><img class="img-circle" src="img/avatar1.png" alt="..."></span>
+                            <li><span class="thumb-xs avatar pull-left mr-sm"><img class="img-circle" src="{{ asset('storage/users/' . $reply->user->img) }}" alt="..."></span>
                                 <div class="comment-body">
+                                    <a href="{{ route('user', $reply->user->slug) }}">
                                     <h6 class="author fw-semi-bold">{{$reply->user->name}}{{--  <small>{{$reply->created_at->diffForHumans()}}</small> --}}</h6>
+                                    </a>
                                     <p>{{$reply->body}}</p>
 
                                 <div class="d-flex float-right">
                                     @can('edit-reply', $reply)
-                                     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
-                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                                            <div class="modal-dialog" role="document">
-                                              <div class="modal-content">
+                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Comment</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            
+                                                <div class="modal-body">
+                                                    <form action="{{route('reply.update', [$movie, $review, $reply])}}" method="POST" class="form-horizontal form-bordered">
+                                                        {{ method_field('PATCH') }}
+                                                        {{csrf_field()}}
+                                                        <div class="form-body">
+                                                            <div class="form-group row">
+                                                                <div class="col-md-12">
+                                                                    <input type="text" class="form-control" name="body" value="{{ $reply->body }}" autofocus>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save</button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                              <form action="{{route('reply.update', [$movie, $review, $reply])}}" method="POST" class="form-horizontal form-bordered">
-                                                  {{ method_field('PATCH') }}
-                                                  {{csrf_field()}}
-                                                  <div class="form-body">
-                                                      <div class="form-group row">
-      
-                                                          <div class="col-md-12">
-                                                              <input type="text" class="form-control" name="body" value="{{ $reply->body }}" autofocus>
-      
-                                                              
-      
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                  <button type="submit" class="btn btn-primary">Save</button>
-      
-      
-                                                  
-                                              </form>
-                                          </div>
-                                          
-                                      </div>
-                                      
-                                  </div>
-                            </div>
-                            @endcan
-                            @can('delete-reply', $reply)
+                                        </div>
+                                    </div>
+                                @endcan
+                                @can('delete-reply', $reply)
                                     <form action="{{route('reply.destroy', $reply->id)}}" method="POST">
                                         {{method_field('delete')}}
                                         {{csrf_field()}}
@@ -144,7 +142,7 @@
                                             <div class="form-group {{$errors->has('body') ? 'has-error' : ''}}">
 
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control" name="body" value="{{ old('body') }}" autofocus>
+                                                    <input type="text" class="form-control" name="body" value="{{ old('body') }}">
 
                                                     @if ($errors->has('body'))
                                                     <span class="help-block">
@@ -154,7 +152,7 @@
 
                                                 </div>
                                             </div>
-                                            <button type="submit" class="ml-3 btn btn-success"> <i class="fa fa-check"></i> Submit</button>
+                                            <button type="submit" class="ml-3 btn btn-success"> Comment</button>
 
                                         </div>
                                 </form>

@@ -44,7 +44,7 @@ class LoginController extends Controller
         if ($user->isAdmin()) {
             return redirect()->route('admin.dashboard');
         }
-        if($user->is_banned()){
+        if($user->isBanned()){
             auth()->logout();
             return back()->with('warning', 'Your account is being banned');
         }

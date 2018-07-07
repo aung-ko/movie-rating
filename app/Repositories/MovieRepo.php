@@ -43,7 +43,7 @@ class MovieRepo
     }
 
     public function update($request, $movie)
-    {;
+    {
         $validatedMovie = $this->validateMovieUpdate($request);
 
         $path = 'public/movies/' . $movie->slug . '/';
