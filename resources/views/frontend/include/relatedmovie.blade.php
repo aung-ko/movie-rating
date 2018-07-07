@@ -2,7 +2,7 @@
 <div class="row p-5">
 @foreach ($relatedMovies as $key => $movie)
 
-			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 home">
 
 				<div class="recent-movie-block">
 					<div class="recent-movie-img">

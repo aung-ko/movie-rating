@@ -7,7 +7,7 @@
 @include('frontend.include.homeslider')  
 @include('frontend.include.searchweight')
 <section class="content">
-	<div class="container">
+	<div class="container home">
 		<div class="row">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center">
 				<h1 class='m-4 myanmarsanpro'>{{__('messages.coming-soon-movies')}}</h1>

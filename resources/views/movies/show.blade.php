@@ -17,11 +17,16 @@
                     @endif
 	            </div>
 	          	<div class="col-md-9 nopadding nomargin bg-dark-movie">
-					<!-- Youtube Embed Custom Player	 -->
+				@if (strlen($movie->trailer_id) == 11)
 					<div class="plyr__video-embed" id="player">
 	                    <iframe src="https://www.youtube.com/embed/{{ $movie->trailer_id }}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" 
 	                    allowfullscreen allowtransparency allow="autoplay"></iframe>
 					</div>
+				@else
+					<div class="plyr__video-embed" id="player">
+	                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FMyanmarMovieTrailer%2Fvideos%2F{{ $movie->trailer_id }}" width="100%" height="480" frameBorder="0"></iframe>
+					</div>
+				@endif
 				</div>
 	          </div>
 	 		<div class="row bg-light">

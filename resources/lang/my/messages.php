@@ -1,6 +1,17 @@
 <?php 
 
 return [
+
+	'pages' => [
+		'home' => 'ပင်မစာမျက်နှာ',
+		'search' => 'ရှာဖွေပါ',
+		'movie-detail' => 'ရုပ်ရှင်စာမျက်နှာ (single)',
+		'user-profile' => 'အသုံးပြုသူ ပရိုဖိုင်',
+		'review-detail' => 'ရီဗျုးစာမျက်နှာ',
+		'genre' => 'ဇာတ်လမ်းအမျိုးအစား',
+
+	],
+
 	//Search String
 	'search' => 'ရှာဖွေပါ', 
 	'search2' => 'ရှာမယ်',
@@ -38,10 +49,11 @@ return [
 	'recent-comments' => 'နောက်ဆုံးရမှတ်ချက်များ',
 
 	'action' => [
-		'login' => '',
-		'logout' => '',
-		'close' => '',
-		'open' =>'', 
+		'login' => '၀င်ရောက်မယ်',
+		'logout' => 'ထွက်ခွာမယ်',
+		'close' => 'ဖ​ျက်သိမ်းမယ်',
+		'account-open' =>'စတင်မယ်', 
+		'chatting' => 'လေလည်ခန်း',
 	],
 
 	//Time
@@ -53,6 +65,7 @@ return [
 
 	'buy-ticket' => 'လက်မှတ်၀ယ်မယ်',
 	'show-cinema' => 'ဘယ်မှာပြသနေပြီလဲ',
+	'profile' => 'ကိုယ်ရေးမှတ်တမ်း',
 	//Month
 	//Dynamic Number Value check at app/Hepler.php
 
