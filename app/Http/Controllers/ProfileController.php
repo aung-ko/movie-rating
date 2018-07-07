@@ -16,7 +16,9 @@ class ProfileController extends Controller
     	if($user->isAdmin()){
     		return $user;
     	}else{
-    		return view('pages.user', compact('user'));
+            $reviews = $user->reviews()->paginate(2);
+
+    		return view('pages.user', compact(['user', 'reviews']));
     	}
     }
     

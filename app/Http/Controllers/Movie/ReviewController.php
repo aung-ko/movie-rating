@@ -30,7 +30,7 @@ class ReviewController extends Controller
     {
         $reviews = Review::latest()
             ->where('movie_id', '=', $movie->id)
-            ->get();
+            ->paginate(5);
         return view('movies.reviews', compact(['reviews', 'movie']));
     }
 
@@ -85,6 +85,8 @@ class ReviewController extends Controller
         } else {
             abort(403, 'Unauthorized action. You have to login');
         }
+
+        $movie->recalculateRating();
 
         return redirect()->route('movie.show', $movie->slug);
     }

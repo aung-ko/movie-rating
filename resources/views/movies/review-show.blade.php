@@ -38,23 +38,32 @@
 
         <section class="activities">
                 <section class="event">
-                    <h4 class="event-heading"><a href="#">{{$review->user->name}}</a> <small><a href="#">"{{$review->movie->name}}" ရုပ်ရှင်တွင် မှတ်ချက်ရေးခဲ့သည့်</a></small></h4>
-                    <p class="fs-sm text-muted">၂၀၁၈ခုနှစ် မေလ ၁ရက်နေ င်္နနက် ၅း၃၀</p>
-                    <p class="fs-sm text-muted"><strong>{{$review->title}}</strong></p>
-                    <p class="fs-mini">{{$review->body}}</p>
-                   
-                    <footer>
-                        <div class="clearfix">
-                            <ul class="post-links mt-sm pull-left">
-                                <li><a href="#">တစ်နာရီက</a>
-                                </li>
-                                <li><a href="#"><span class="text-danger"><i class="fa fa-heart-o"></i>  ၅၀ ကြိုက်တယ်</span></a>
-                                </li>
-                                <li><a href="#"> ၁၀ မှတ်ချက်ရေးခဲ့သည့်</a>
-                                </li>
+                        <span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>  <h4><a href="#">{{$review->user->name}}</a></h4>               
+                        {{numdate($review->created_at)}}  <p/>
 
-                            </ul>
-                        </div>
+                        <h4 class="event-heading pb-3">
+                                <a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a>
+
+                                <span style="font-size: 12px;" class="row pl-3">
+                                    <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" 
+                                    value="{{$review->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
+                                    {{numformat($review->rating)}}/၅
+                                </span>
+                            </h4>
+                                
+                           <p class="fs-mini">{{$review->body}}</p>
+                                
+            
+                            <footer>
+                                <div class="clearfix">
+                                    <ul class="post-links mt-sm pull-left">
+                                        <li>{{ $review->created_at->diffForHumans() }}</li>
+                                        <li><a href="{{ route('review.show',[$movie,$review]) }}">{{__('messages.reply')}} {{numformat($review->replys->count())}} {{__('messages.receive')}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                         </footer>
+                         
                         <ul class="post-comments mt-sm">
 
 

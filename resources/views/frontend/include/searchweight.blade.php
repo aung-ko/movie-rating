@@ -8,7 +8,7 @@
 				</div>
 				<div class="col-md-2 text-center">
 					{{trans_choice('messages.ratings',1)}} 
-					<input id="input-3-ltr-star-xs" name="min_rating" id="min_rating" class="star-readonly rating-loading" value="1" dir="ltr" data-size="xxs">
+					<input id="input-3-ltr-star-xs" name="min_rating" id="min_rating" class="star-readonly rating-loading" value="0" dir="ltr" data-size="xxs">
 				</div>
 				<div class="col-md-2 text-center">
 					{{trans_choice('messages.ratings',5)}}

@@ -13,7 +13,10 @@ class AddedImgToUsers extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('users', function($table) {
+            $table->string('img');
+            $table->text('bio');
+        });
     }
 
     /**
@@ -23,6 +26,9 @@ class AddedImgToUsers extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function($table) {
+            $table->dropColumn('img');
+            $table->dropColumn('bio');
+        });
     }
 }

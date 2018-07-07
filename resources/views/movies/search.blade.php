@@ -17,22 +17,22 @@
 						<form action="/search" method="GET">
 							<div class="form-row">
 								<div class="p-3 w-100">
-									<input type="text" class="form-control" placeholder="ဇာတ်ကားအမည်" name="name">
+                                <input type="text" class="form-control" placeholder="ဇာတ်ကားအမည်" name="name" @if (request()->name) value="{{ request()->name }}"  @endif>
 								</div>
 								<div class="p-1 slidecontainer row text-center">
 									<div class='col'>
-										အနည်းဆုံး ြကယ် <input id="input-1-ltr-star-xs" name="min_rating" id="min_rating" class="star-reaction" rating-loading" value="1" dir="ltr" data-size="xs">	
+										အနည်းဆုံး ြကယ် <input id="input-1-ltr-star-xs" name="min_rating" id="min_rating" class="star-reaction rating-loading" @if (request()->min_rating) value="{{ request()->min_rating }}" @else value="0" @endif dir="ltr" data-size="xs">	
 									</div>
 									<div class='col'>
 										အများဆုံး ြကယ် 
-									<input id="input-1-ltr-star-xs" name="max_rating" id="max_rating" class="star-reaction" rating-loading" value="1.5" dir="ltr" data-size="xs">									
+									<input id="input-1-ltr-star-xs" name="max_rating" id="max_rating" class="star-reaction rating-loading" @if (request()->max_rating) value="{{ request()->max_rating }}" @else value="5" @endif dir="ltr" data-size="xs">									
 									</div>								
 								</div>	   		
 								<div class="p-2 ml-2 mr-2 w-100">
 									<select id="category" name="genre_id" class="form-control">
 										<option value='' selected>အမျိုးအစား</option>
 										@foreach($genres as $key=>$value)
-										<option value="{{$key}}">{{$value}}</option>
+										<option value="{{$key}}" @if (request()->genre_id == $key) selected @endif>{{$value}}</option>
 
 										@endforeach
 									</select>
@@ -41,7 +41,7 @@
 									<select id="year" name="released_date" class="form-control">
 										<option value='' selected>အချိန်အလိုက်</option>
 										@foreach($years as $year)
-										<option value="{{$year}}">{{numformat($year)}}</option>
+										<option value="{{$year}}" @if (request()->released_date == $year) selected @endif>{{numformat($year)}}</option>
 
 										@endforeach
 									</select>
@@ -59,7 +59,7 @@
 			<div class="col-md-8">
 				@if ($results->count() !== 0)
 						<h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>{{__('messages.search-result')}}</h2>
-						<p class='pl-3'>( {{numformat($results->count())}} ) {{__('messages.has-movie')}}</p>
+						<p class='pl-3'>( {{numformat($results->total())}} ) {{__('messages.has-movie')}}</p>
 					@else
 						<h2 class='pt-3 pl-3 pb-1 myanmarsanpro'>{{__('messages.search-result')}}</h2>
 						<p class='pl-3 alert alert-danger'>{{__('messages.no-has-movie')}}</p>					
@@ -75,7 +75,7 @@
 									<div>
 										<p class="rating"> {{numformat($result->rating)}}/၅  </p>
 										<p class="stars">
-											<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$result->rating}}" dir="ltr" data-size="Xxs" data-readonly="true"> 
+											<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$result->rating}}" dir="ltr" data-size="Xxs" data-readonly="true"> 
 										</p>
 
 									</div>
@@ -85,14 +85,13 @@
 										<h3 class="text-dark mb0">{{$result->name}}</h3>
 									</div>
 									<div class="card-body">
-										၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
+										{{-- ၁၀  <img class="custom-icon flex-row chilis" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
 										၁၀  <img class="custom-icon flex-row putato" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">  | 
-										၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">   		
+										၁၀  <img class="custom-icon flex-row ginger" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">   		 --}}
 										<p class="rating"> {{numformat($result->rating)}}/၅  </p>
 										<p class="stars">
-											<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly" rating-loading" value="{{$result->rating}}" dir="ltr" data-size="Xxs" data-readonly="true"> 
+											<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$result->rating}}" dir="ltr" data-size="Xxs" data-readonly="true"> 
 										</p>
-										<p>{{$result->description}}</p>
 									</div>
 									<div class="card-footer nopadding">
 										<a class="align-text-bottom btn btn-dark align-text-bottom btn-lg btn-block" href="{{route('movie.show', $result)}}" role="button">ကြည့်မယ်</a>
@@ -104,7 +103,7 @@
 					@endforeach
 
 				</div>
-				@include('frontend.include.pagination') 
+				{{ $results->appends(Request::except('page'))->links() }}
 			</div>
 
 		</div>

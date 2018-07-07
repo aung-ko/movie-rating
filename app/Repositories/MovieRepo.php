@@ -67,6 +67,9 @@ class MovieRepo
 
     public function getMovieByStatus($status)
     {
+        if($status == 2){
+            return Movie::where('status_id', $status)->take(8)->get();
+        }
         return Movie::where('status_id', $status)->get();
     }
 

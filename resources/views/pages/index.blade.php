@@ -52,5 +52,4 @@
 	</div>    
 
 </section>
-@include('frontend.include.pagination')
 @endsection

@@ -991,6 +991,19 @@ select.form-control:not([size]):not([multiple]) {
   font-size: 15px;
   padding: 12px 3px;
 }
+
+
+.pagination li {
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid #ec7500;
+    margin: 2px;
+    color: #000;
+}
+.pagination li a:active{
+    background: #ec7500;
+    color: #fff;
+}
 .right-first-section i:hover{
   color:#fff;
 }
@@ -1296,9 +1309,7 @@ select.form-control:not([size]):not([multiple]) {
     margin-right: 20px
 }
 .jumbotron-heading{
-    text-shadow: 2px 2px 3px #000;
-    font-weight: bold;
-    font-size: 250%;
+  text-shadow: 1px 2px 2px #000;
 }
 @media (min-width:768px) {
     .widget-top-overflow>.btn-toolbar {
@@ -1766,7 +1777,7 @@ select.form-control:not([size]):not([multiple]) {
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    background-blend-mode: overlay;
+    background-blend-mode: color-dodge;
 }
 
 .rating-xxs {

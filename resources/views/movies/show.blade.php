@@ -73,9 +73,10 @@
 							    <section class="event mb-4">
 							            <h4 class="event-heading pb-3">
                                             <a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a>
-                                            <span style="font-size: 12px;">
+                                            <span style="font-size: 12px;" class="row pl-3">
                                                 <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" 
                                                 value="{{$review->rating}}" dir="ltr" data-size="xxs" data-readonly="true">
+                                                {{numformat($review->rating)}}/၅
                                             </span>
                                         </h4>
 											
@@ -86,8 +87,7 @@
 							            <footer>
 							                <div class="clearfix">
 							                    <ul class="post-links mt-sm pull-left">
-							                        {{-- <li><a href="#">{{numformat(1)}} {{__('messages.when.hour')}}</a>
-							                        </li> --}}
+                                                    <li>{{ $review->created_at->diffForHumans() }}</li>
 							                        <li><a href="{{ route('review.show',[$movie,$review]) }}"> {{__('messages.reply')}} {{numformat($review->replys->count())}} {{__('messages.receive')}}</a>
 							                        </li>
 							                    </ul>

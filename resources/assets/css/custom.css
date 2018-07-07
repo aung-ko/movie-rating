@@ -554,6 +554,19 @@ select.form-control:not([size]):not([multiple]) {
   font-size: 15px;
   padding: 12px 3px;
 }
+
+
+.pagination li {
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid #ec7500;
+    margin: 2px;
+    color: #000;
+}
+.pagination li a:active{
+    background: #ec7500;
+    color: #fff;
+}
 .right-first-section i:hover{
   color:#fff;
 }

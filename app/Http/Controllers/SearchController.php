@@ -34,7 +34,7 @@ class SearchController extends Controller
         // dd($movie);
         $results = $movie->whereHas('genres' , function ($query) use ($genreFilters) {
             $genreFilters->apply($query);
-        })->get();
+        })->paginate(6);
 
         // $resutls = 
 
@@ -45,10 +45,10 @@ class SearchController extends Controller
         // dd($results->count());
 
 
-        $numOfResults = 0;
-        foreach ($results as $result) {
-            $numOfResults++;
-        }
+        // $numOfResults = 0;
+        // foreach ($results as $result) {
+        //     $numOfResults++;
+        // }
        
 
 
