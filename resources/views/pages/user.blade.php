@@ -16,7 +16,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 text-center">
-                            <div class="post-user post-user-profile"><span class="thumb-xlg"><img class="img-circle rounded-circle" src="{{ asset('img/avatar6.png') }}" alt="..."></span>
+                            <div class="post-user post-user-profile"><span class="thumb-xlg"><img class="img-circle rounded-circle" src="{{ asset('storage/users/' . $user->img) }}" alt="..."></span>
                                 <h4 class="fw-normal pt-2">ကို ဖြူလုံး</h4>
                                 {{-- <a href="#" class="btn btn-success btn-sm mt">&nbsp;Send <i class="fa fa-envelope ml-xs"></i>&nbsp;</a>
                                 <a href="#" class="btn btn-info btn-sm mt">&nbsp;Follow <i class="fa fa-user-plus ml-xs"></i>&nbsp;</a> --}}
@@ -42,7 +42,7 @@
 
                 @foreach ($reviews as $review)
                 
-                <section class="event"><span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..."></span>
+                <section class="event"><span class="thumb-sm avatar pull-left mr-sm"><img class="img-circle" src="{{ asset('storage/users/' . $user->img) }}" alt="..."></span>
                     <h4 class="event-heading"><small><a href="{{ route('movie.show', $review->movie) }}">"{{ $review->movie->name }}" ရုပ်ရှင်တွင် မှတ်ချက်ရေးခဲ့သည်</a></small></h4>
                     <p class="fs-sm text-muted">{{numdate($review->created_at)}}</p>
 

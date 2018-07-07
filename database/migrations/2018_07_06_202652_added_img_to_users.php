@@ -15,7 +15,7 @@ class AddedImgToUsers extends Migration
     {
         Schema::table('users', function($table) {
             $table->string('img');
-            $table->text('bio');
+            $table->text('bio')->nullable();
         });
     }
 
