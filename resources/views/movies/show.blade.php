@@ -124,4 +124,8 @@
 
 </section>
 
+@if(auth()->check())
+@include('frontend.include.chatweight')  
+@endif
+
 @endsection
