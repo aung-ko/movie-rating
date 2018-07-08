@@ -20,7 +20,7 @@ $(document).ready(function(){
     });
 });
 $(document).ready(function(){
-  $(".fa-times").click(function(){
+  $("#closeopen").click(function(){
         $('.main-section').toggleClass("open-more");
     });
 });
@@ -33,15 +33,6 @@ $(document).ready(function(){
     centerPadding: '50px',
     slidesToShow: 2,
     responsive: [
-      // {
-      //   breakpoint: 1281,
-      //   settings: {
-      //     arrows: true,
-      //     centerMode: true,
-      //     centerPadding: '250px',
-      //     slidesToShow: 1
-      //   }
-      // },
       {
         breakpoint: 1025,
         settings: {

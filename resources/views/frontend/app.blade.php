@@ -14,6 +14,8 @@
     <meta property="og:url" content="{{URL::current()}}">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/chatapp.js') }}"></script>
+
 </head>
 <body>
     <div id="app">
@@ -24,7 +26,10 @@
       @include('frontend.include.footer')
     </div>
     @include('sweetalert::alert')
+    <script src="{{ asset('js/chatapp.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    
+    
     @yield('script')
 </body>
 </html>

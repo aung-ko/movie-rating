@@ -59,4 +59,13 @@ Route::prefix('/')->group(function(){
     
 });
 
+// Route::get('/','ChatController@chat');
+Route::post('send','ChatController@send');
+Route::post('saveToSession','ChatController@saveToSession');
+Route::post('deleteSession','ChatController@deleteSession');
+Route::post('getOldMessage','ChatController@getOldMessage');
+Route::get('check',function(){
+    return session('chat');
+});
+
 

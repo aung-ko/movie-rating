@@ -38,4 +38,6 @@
         </div> --}}
     </div>
 </footer>
-@include('frontend.include.chatweight')
+@if(auth()->check())
+@include('frontend.include.chatweight')  
+@endif

@@ -38,3 +38,6 @@ mix.styles([
     'resources/assets/css/star-rating.min.css',
     'resources/assets/css/custom.css'
 ], 'public/css/app.css');
+
+mix.js('resources/assets/js/app.js', 'public/js/chatapp.js');
+
