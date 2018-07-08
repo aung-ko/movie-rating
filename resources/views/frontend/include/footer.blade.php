@@ -29,7 +29,7 @@
                         <li class="list-group-item">Facebook နဲ့ချိတ်ဆက်မယ်</li>
                         <li class="list-group-item">Twitter နဲ့ချိတ်ဆက်မယ်</li>
                         <li class="list-group-item">Viber နဲ့ချိတ်ဆက်မယ်</li>
-                        <li class="list-group-item">Pinterest နဲ့ချိတ်ဆက်မယ်c</li>
+                        <li class="list-group-item">Pinterest နဲ့ချိတ်ဆက်မယ်</li>
                         <li class="list-group-item">Google Plus နဲ့ချိတ်ဆက်မယ်</li>
                     </ul>    
                 </div>

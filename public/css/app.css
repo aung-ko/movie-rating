@@ -447,6 +447,7 @@ body{
   -webkit-border-radius: 0 !important;
      -moz-border-radius: 0 !important;
           border-radius: 0 !important;
+          font-family: "Padauk";
 }
 
 .profile-img-preview{
@@ -458,8 +459,8 @@ body{
     border: thin solid black;
 }
 
-html,body,p,h1,h2,h3,h4,h5,a,li{
-    font-family: "Padauk";
+html,body,p,h1,h2,h3,h4,h5,a,ul,li,span,{
+    font-family: "Padauk" !important;
 }
 .h1, h1{
     font-size: 1.5rem;
@@ -853,7 +854,6 @@ select.form-control:not([size]):not([multiple]) {
 .btn-grey{
     background-color:#D8D8D8;
     color:#FFF;
-        font-family: "FontAwesome";
     content: "\f053";
 }
 .rating-block{
