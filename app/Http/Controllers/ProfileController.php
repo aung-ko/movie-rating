@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\User;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -25,16 +26,20 @@ class ProfileController extends Controller
     public function updateProfile(Request $request, User $user)
     {
         $validated = $request->validate([
+            'name' => 'required|string|min:6|max:255',
             'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'bio' => 'string|max:255|nullable',
         ]);
 
-        $path = 'public/users/' . $movie->slug . '/';
+        $path = 'public/users/';
 
         if ($request->hasfile('img')) {
             $validated['img'] = $this->uploadOneImage($request, 'img', $path);
         }
 
         $user->update($validated);
+
+        return back();
     }
 
     protected function uploadOneImage(Request $request, $file, $path)

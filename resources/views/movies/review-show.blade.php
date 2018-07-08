@@ -1,9 +1,5 @@
 @extends('frontend.app')
 
-@section('script')
-<script src="{{ asset('js/vue.js') }}"></script>
-
-@endsection
 @section('content')
 
 <section class="listing jumbotron">
@@ -44,9 +40,14 @@
                         <h4 class="event-heading pb-3">
                                 <a href="{{route('review.show',[$movie,$review]) }}">{{$review->title}}</a>
                                 <span class="float-right">
+                                @can('edit-review', $review)
                                     <a href="{{ route('review.edit', [$movie,$review])}}"><button type="button" class="btn btn-link"><i class="fa fa-edit"></i></button></a>
+                                @endcan
+                                @can('delete-review', $review)
                                     <a href="#"><button type="button" class="btn btn-link"><i class="fa fa-trash text-danger"></i></button></a>
+                                @endcan
                                 </span>
+
 
                                 <span style="font-size: 12px;" class="row pl-3">
                                     <input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" 
@@ -81,12 +82,12 @@
 
                                 <div class="d-flex float-right">
                                     @can('edit-reply', $reply)
-                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#reviewModal"><i class="fa fa-edit"></i></button>
+                                    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true" >
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Comment</h5>
+                                                    <h5 class="modal-title" id="reviewModalLabel">Edit Comment</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -100,6 +101,11 @@
                                                             <div class="form-group row">
                                                                 <div class="col-md-12">
                                                                     <input type="text" class="form-control" name="body" value="{{ $reply->body }}" autofocus>
+                                                                    @if ($errors->has('body'))
+                                                                    <span class="help-block text-danger" id="error-message">
+                                                                        <strong>{{ $errors->first('body') }}</strong>
+                                                                    </span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -144,12 +150,6 @@
                                                 <div class="col-md-12">
                                                     <input type="text" class="form-control" name="body" value="{{ old('body') }}">
 
-                                                    @if ($errors->has('body'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('body') }}</strong>
-                                                    </span>
-                                                    @endif
-
                                                 </div>
                                             </div>
                                             <button type="submit" class="ml-3 btn btn-success"> Comment</button>
@@ -173,6 +173,13 @@
 </section>
 @endsection
 
+@section('script')
+<script type="text/javascript">
+    @if (count($errors) > 0)
+        $('#reviewModal').modal('show');
+    @endif
+</script>
+@endsection
 
 
 

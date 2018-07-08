@@ -55,6 +55,7 @@ Route::get('/search', 'SearchController@search');
 Route::prefix('/')->group(function(){
     Route::get('/', 'Pages\PagesController@index')->name('index');  
     Route::get('/user/{user}', 'ProfileController@profile')->name('user');
+    Route::patch('/user/{user}', 'ProfileController@updateProfile')->name('profile.update');
     
 });
 

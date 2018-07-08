@@ -11,13 +11,73 @@
                         <div class="height-250 overflow-hidden"><img class="img-responsive" src="{{ asset('img/flores-amarillas-wallpaper.jpeg') }}">
                         </div>
                         <div class="btn-toolbar">
-                            <a href="#" class="btn btn-default btn-sm pull-right"><i class="fa fa-edit"></i></a>
+
+                            <!--- profile edit modal box -->
+                            <a href="#" class="btn btn-default btn-sm pull-right">
+                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#profileModal"><i class="fa fa-edit"></i></button>
+                            </a>
+
                         </div>
                     </div>
+                    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true" >
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="profileModalLabel">Edit Your Profile</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            
+                                <div class="modal-body">
+                                    <form action="{{route('profile.update', $user)}}" method="POST" class="form-horizontal form-bordered" enctype="multipart/form-data">
+
+                                        {{ method_field('PATCH') }}
+                                        {{csrf_field()}}
+
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label>Profile Image : </label>
+                                                <img src="{{ asset('storage/users/' . $user->img) }}" class="profile-img-preview" id="profile-image">
+                                                <input type="file" class="form-control" name="img" id="profile-image-input">
+                                                @if ($errors->has('img'))
+                                                    <span class="help-block text-danger" id="error-message">
+                                                        <strong>{{ $errors->first('img') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="name">အမည် : </label>
+                                                <input type="text" class="form-control" name="name" value="{{ $user->name }}" autofocus>
+                                                @if ($errors->has('name'))
+                                                    <span class="help-block text-danger" id="error-message">
+                                                        <strong>{{ $errors->first('name') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="name">မိမိအကြောင်း : </label>
+                                                <textarea class="form-control" name="bio" rows="3" autofocus>{{ $user->bio }}</textarea>
+                                            </div>
+
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="row">
                         <div class="col-sm-12 text-center">
-                            <div class="post-user post-user-profile"><span class="thumb-xlg"><img class="img-circle rounded-circle" src="{{ asset('storage/users/' . $user->img) }}" alt="..."></span>
-                                <h4 class="fw-normal pt-2">{{ $user->name }}</h4>
+                            <div class="post-user post-user-profile">
+                            <span class="thumb-xlg">
+                                    <img class="img-circle rounded-circle" src="{{ asset('storage/users/' . $user->img) }}" alt="...">
+                            </span>
+                                <h4 class="fw-normal pt-2 mt-4">{{ $user->name }}</h4>
                                 {{-- <a href="#" class="btn btn-success btn-sm mt">&nbsp;Send <i class="fa fa-envelope ml-xs"></i>&nbsp;</a>
                                 <a href="#" class="btn btn-info btn-sm mt">&nbsp;Follow <i class="fa fa-user-plus ml-xs"></i>&nbsp;</a> --}}
 
@@ -27,7 +87,7 @@
                                   <li class="list-group-item">
                                     <p class="mt-lg">
                                         @if (empty($user->bio))
-                                            about you
+                                            <span class="text-secondary">မိမိအကြောင်း</span>
                                         @else
                                             {{ $user->bio }}
                                         @endif
@@ -85,4 +145,29 @@
     </div>
 </div>
 </section>
+@endsection
+
+@section('script')
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            $('#profile-image').attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#profile-image-input").change(function(){
+    readURL(this);
+});
+
+@if (count($errors) > 0)
+    $('#profileModal').modal('show');
+@endif
+
+</script>
 @endsection
