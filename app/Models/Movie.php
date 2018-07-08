@@ -57,7 +57,7 @@ class Movie extends Model
         if($avgRating >= 1.5 && $avgRating < 3.5){
             return 'custom-icon flex-row potato';
         }
-        if($avgRating >= 3.5 && $avgRating < 5.0){
+        if($avgRating >= 3.5 && $avgRating <= 5.0){
             return 'custom-icon flex-row chilis';
         }
 

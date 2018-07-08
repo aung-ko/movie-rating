@@ -28,6 +28,7 @@ class CreateMoviesTable extends Migration
             $table->integer('rating_count')->default(0);
             $table->integer('review_count')->default(0);
             $table->string('slug')->unique();
+            $table->string('rating_level')->default('none');
             $table->timestamps();
         });
     }

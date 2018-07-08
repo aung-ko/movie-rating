@@ -24,30 +24,14 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        test
+                        ကျော်ကြားမှုအလိုက်
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('search?min_rating=3.5') }}"> hot </a>
-                        <a class="dropdown-item" href="{{ url('search?min_rating=1.5&max_rating=3.4') }}"> potato </a>
-                        <a class="dropdown-item" href="{{ url('search?max_rating=1.4') }}"> ginger </a>
+                        <a class="dropdown-item" href="{{ url('search?min_rating=3.5') }}"> အဟော့အစပ်ဆုံးကားများ </a>
+                        <a class="dropdown-item" href="{{ url('search?min_rating=1.5&max_rating=3.4') }}"> အာလူးကားများ </a>
+                        <a class="dropdown-item" href="{{ url('search?max_rating=1.4') }}"> ဂျင်းကားများ </a>
                     </div>
                 </li>
-            {{-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               တန်းပလိတ် <span class="badge badge-pill badge-info"> dev</span>
-             </a>
-             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{URL::to('/')}}/">ပင်မစာမျက်နှာ</a>
-              <a class="dropdown-item" href="{{URL::to('/')}}/search">ရုပ်ရှင်စာမျက်နှာ (listing)</a>
-              <a class="dropdown-item" href="{{URL::to('/')}}/movie/a-quiet-place-5b12e239d93ca">ရုပ်ရှင်စာမျက်နှာ (single)</a>
-              <a class="dropdown-item" href="{{URL::to('/')}}/user">အသုံးပြုသူ ပရိုဖိုင်</a>
-              <a class="dropdown-item" href="{{URL::to('/')}}/movie/a-quiet-place-5b12e239d93ca/review/create">ရီဗျုးစာမျက်နှာ</a>
-              
-              <div class="dropdown-divider"></div>
-              
-              <a class="dropdown-item" href="#">အမျိးအစား စာမျက်နှာ  <span class="badge badge-pill badge-info"> soon</span></a>              
-            </div>
-          </li> --}}
 
         </ul>
 
