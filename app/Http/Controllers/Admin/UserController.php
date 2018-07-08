@@ -75,7 +75,7 @@ class UserController extends Controller
 
     public function userData()
     {
-        $users = User::all();
+        $users = User::where('role_id', 2)->get();
         return Datatables::of($users)
             ->addColumn("role", function ($model) {
                 $data = $model->role->role;
@@ -84,7 +84,7 @@ class UserController extends Controller
             ->addColumn("action", function ($model) {
                 $data = '';
                 if (!$model->isAdmin()) {
-                    if (!$model->is_banned()) {
+                    if (!$model->isBanned()) {
                         $data = '<form action="' . route('admin.ban.user', $model->slug) . '" method="POST">' .
                         csrf_field() .
                             '<button type="submit" class="btn btn-danger">Ban</button>' .

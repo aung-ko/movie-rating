@@ -1,7 +1,6 @@
 <footer>
     <div class='container-fluid bg-dark'>
-        <p>Copy Right</p>
-        {{-- <div class="container mx-auto">
+        <div class="container mx-auto">
             <div class="row text-light">
                 <div class="col-sm m-5">
                     <h3 class='myanmarsanpro'>ကျွန်တော်တို့ အကြောင်း</h3>
@@ -23,7 +22,7 @@
                         <li class="list-group-item">ဂျင်းအများနဲ့ရှာမယ်</li>
                         <li class="list-group-item">နောက်ဆုံးရုံတင်ကားများ</li>
                     </ul>
-                </div>
+                </div>  
                 <div class="col-sm  m-5">
                     <h3 class='myanmarsanpro'>ချိတ်ဆက်ကြမယ်</h3>    	
                     <ul class="list-group list-group-flush">
@@ -35,7 +34,7 @@
                     </ul>    
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 </footer>
 @if(auth()->check())

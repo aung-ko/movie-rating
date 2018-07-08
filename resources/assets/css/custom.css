@@ -103,6 +103,9 @@ p { font-size: 1rem;
     z-index: 1
 }
 
+.custom-icon{
+    float: right;
+}
 
 /* Image on the left side */
 
@@ -216,7 +219,7 @@ img.left {
     height: 30px;
     background: url(../img/icon-small.gif) 150px 0;
 }
-.putato{
+.potato{
     width: 30px;
     height: 30px;
     background: url(../img/icon-small.gif) 120px 0;
@@ -381,6 +384,7 @@ select.form-control:not([size]):not([multiple]) {
 .recent-movie-img { position: relative; }
 .recent-movie-img img { width: 100%; height: 350px; object-fit: cover;}
 .recent-movie-img .overlay img { width: 30px; }
+.recent-movie-img .overlay .custom-icon { width: 30px; height:30px}
 .recent-movie-title { }
 .recent-movie-meta { color: #9da4aa; font-weight: 400; font-size: 16px; }
 .overlay { 

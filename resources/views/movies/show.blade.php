@@ -36,10 +36,20 @@
 
 
 	 			<div class="col-md-5  p-3">
-	            	<p class="rating"> {{numformat($movie->rating)}}/{{numformat(5)}} </p>
-					<p class="stars">
-						<input id="input-1-ltr-star-xs" name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xs" data-readonly="true">
-					</p>        						
+
+                    <div class="card-body">
+                        <div class='stars-rating'>
+                            <p class="rating">  {{numformat($movie->rating)}}/၅ </p>
+                            
+                            </div>
+                            <img class="{{ $movie->rating_level }} mt-2" />  
+                            <p class="stars">
+                                <input name="input-1-ltr-star-xs" class="star-readonly rating-loading" value="{{$movie->rating}}" dir="ltr" data-size="xs" data-readonly="true">
+                                    
+                            </p>	
+                    </div>
+                    
+                     						
 	 			</div>
 	 		</div> 		
         </div>

@@ -40,9 +40,26 @@ class Movie extends Model
     public function recalculateRating()
     {
         $reviews = $this->reviews();
-        $avgRating = $reviews->avg('rating');
-        $this->rating = round($avgRating, 1);
+        $avgRating = round($reviews->avg('rating'), 1);
+
+        $this->rating_level = $this->getRatingLevel($avgRating);
+
+        $this->rating = $avgRating;
         $this->rating_count = $reviews->count();
         $this->save();
+    }
+
+    public function getRatingLevel($avgRating)
+    {
+        if($avgRating > 0.0 && $avgRating < 1.5){
+            return 'custom-icon flex-row ginger';
+        }
+        if($avgRating >= 1.5 && $avgRating < 3.5){
+            return 'custom-icon flex-row potato';
+        }
+        if($avgRating >= 3.5 && $avgRating < 5.0){
+            return 'custom-icon flex-row chilis';
+        }
+
     }
 }

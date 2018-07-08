@@ -13,12 +13,15 @@
                         <div class="btn-toolbar">
 
                             <!--- profile edit modal box -->
+                            @can('edit-profile', $user)
                             <a href="#" class="btn btn-default btn-sm pull-right">
                                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#profileModal"><i class="fa fa-edit"></i></button>
                             </a>
+                            @endcan
 
                         </div>
                     </div>
+                    @can('edit-profile', $user)
                     <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true" >
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -70,6 +73,7 @@
                             </div>
                         </div>
                     </div>
+                    @endcan
                     
                     <div class="row">
                         <div class="col-sm-12 text-center">

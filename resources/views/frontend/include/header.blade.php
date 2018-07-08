@@ -22,7 +22,17 @@
                   @endforeach --}}
                 </div>
                 </li>
-            <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        test
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ url('search?min_rating=3.5') }}"> hot </a>
+                        <a class="dropdown-item" href="{{ url('search?min_rating=1.5&max_rating=3.4') }}"> potato </a>
+                        <a class="dropdown-item" href="{{ url('search?max_rating=1.4') }}"> ginger </a>
+                    </div>
+                </li>
+            {{-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                တန်းပလိတ် <span class="badge badge-pill badge-info"> dev</span>
              </a>
@@ -37,7 +47,7 @@
               
               <a class="dropdown-item" href="#">အမျိးအစား စာမျက်နှာ  <span class="badge badge-pill badge-info"> soon</span></a>              
             </div>
-          </li>
+          </li> --}}
 
         </ul>
 

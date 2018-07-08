@@ -1,7 +1,7 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-            <li class="sidebar-search">
+            {{-- <li class="sidebar-search">
                 <div class="input-group custom-search-form">
                     <input type="text" class="form-control" placeholder="Searchadmin.">
                     <span class="input-group-btn">
@@ -11,9 +11,9 @@
                 </span>
                 </div>
                 <!-- /input-group -->
-            </li>
+            </li> --}}
             <li>
-                <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Admin Dashboard</a>
             </li>
             <li>
                 <a href="{{ route('admin.movies') }}"><i class="fa fa-film fa-fw"></i> Movies</a>

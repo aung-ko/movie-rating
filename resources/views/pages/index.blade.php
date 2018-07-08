@@ -35,7 +35,8 @@
 								<h3 class="text-dark mb0">{{ $movie['name'] }}</h3>
 							</div>
 							<div class="card-body">
-								<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
+                                <p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
+                                <img class="{{ $movie['rating_level'] }}" />
 								<p class="stars">
 									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
 								</p>

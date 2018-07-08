@@ -16,7 +16,7 @@ class ProfileController extends Controller
     public function profile(User $user)
     {
         if ($user->isAdmin()) {
-            return $user;
+            return view('admin.profile', compact('user'));
         } else {
             $reviews = Review::latest()->where('user_id', auth()->user()->id)->paginate(5);
             return view('pages.user', compact(['user', 'reviews']));
@@ -26,7 +26,7 @@ class ProfileController extends Controller
     public function updateProfile(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name' => 'required|string|min:6|max:255',
+            'name' => 'required|string|min:3|max:255',
             'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'bio' => 'string|max:255|nullable',
         ]);

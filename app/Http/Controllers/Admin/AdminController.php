@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Status;
+use App\User;
+use App\Models\Review;
 use App\Repositories\MovieRepo;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -23,7 +25,10 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $movie_count = Movie::count();
+        $review_count = Review::count();
+        $user_count = User::where('role_id', 2)->count();
+        return view('admin.dashboard', compact(['movie_count', 'review_count', 'user_count']));
     }
 
     public function allMovies()

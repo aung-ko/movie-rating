@@ -14,7 +14,6 @@
     <meta property="og:url" content="{{URL::current()}}">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/chatapp.js') }}"></script>
 
 </head>
 <body>
