@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     protected $guarded = [];
-    //  protected $fillable = [
-    //     'name', 'released_date', 'genre_id', 'rating_id'
-    // ];
-
+    
     public function getRouteKeyName()
     {
         return 'slug';
@@ -28,7 +25,6 @@ class Movie extends Model
 
     public function scopeFilter($query, $filters)
     {
-        // dd($filters);
         $filters->apply($query);
     }
 

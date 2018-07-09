@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Genre extends Model
 {
     protected $guarded = [];
-    
+
     public function movies()
     {
         return $this->belongsToMany("App\Models\Movie", "movie_genres");
@@ -15,10 +15,7 @@ class Genre extends Model
 
     public function scopeFilter($query, $filters)
     {
-        // dd($filters);
         $filters->apply($query);
     }
-
-   
 
 }

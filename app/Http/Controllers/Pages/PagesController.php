@@ -14,7 +14,6 @@ class PagesController extends Controller
     public function __construct(MovieRepo $movieRepo)
     {
         $this->movieRepo = $movieRepo;
-        // $this->middleware('auth');
     }
 
     public function index()
@@ -23,8 +22,6 @@ class PagesController extends Controller
         $movies = Movie::pluck('released_date');
 
         $years = $this->movieRepo->released_date();
-
-        // $movies = $this->movieRepo->all();
 
         $showingMovies = $this->movieRepo->getMovieByStatus(1);
         $comingSoonMovies = $this->movieRepo->getMovieByStatus(2);

@@ -5,6 +5,7 @@ namespace App\Models;
 
 class Review extends Model
 {
+    protected $guarded = [];
     
     public function replys()
     {

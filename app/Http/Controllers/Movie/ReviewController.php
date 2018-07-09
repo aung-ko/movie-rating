@@ -19,7 +19,7 @@ class ReviewController extends Controller
         if (auth()->user()->reviewExistForMovie($movie)) {
             $review = Review::where([
                 'user_id' => auth()->user()->id,
-                'movie_id' => $movie->id
+                'movie_id' => $movie->id,
             ])->first();
             return redirect()->route('review.edit', [$movie, $review]);
         }
@@ -93,7 +93,6 @@ class ReviewController extends Controller
 
     public function destroy(Movie $movie, Review $review)
     {
-        // dd($review);
         $review = Review::where('id', '=', $review->id)->delete();
         return redirect()->route('movie.show', $movie->slug);
     }

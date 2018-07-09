@@ -13,9 +13,7 @@ class MovieController extends Controller
 
     public function __construct(MovieRepo $movieRepo)
     {
-        // $this->middleware(['auth', 'admin']);
         $this->movieRepo = $movieRepo;
-
     }
 
     public function show(Movie $movie)

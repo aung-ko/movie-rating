@@ -24,9 +24,9 @@
 						<div class="recent-movie-content p-3">
 							<h4 class="text-white mb0">{{ $movie['name'] }}</h4>
 							<div>
-								<p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
+                                <p class="rating"> {{numformat($movie['rating'])}}/၅  </p>
 								<p class="stars">
-									<input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
+                                    <input name="input-1-ltr-star-xs-{{$key}}" class="star-readonly rating-loading" value="{{$movie['rating']}}" dir="ltr" data-size="xxs" data-readonly="true">
 								</p>
 							</div>
 						</div>

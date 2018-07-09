@@ -32,8 +32,6 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id == $reply->user->id;
         });
 
-        
-
         Gate::define("edit-review", function($user, $review) {
             return $user->id == $review->user->id;
         });

@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Movie;
-use App\Models\Status;
-use App\User;
 use App\Models\Review;
+use App\Models\Status;
 use App\Repositories\MovieRepo;
+use App\User;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use Alert;
 
 class AdminController extends Controller
 {
@@ -63,14 +62,13 @@ class AdminController extends Controller
 
     public function storeMovie(Request $request)
     {
-        $this->movieRepo->save($request);        
+        $this->movieRepo->save($request);
         return redirect()->route('admin.movies');
     }
 
     public function deleteMovie(Movie $movie)
     {
         $this->movieRepo->delete($movie);
-        // Alert::success('Movie is Deleted');
         return redirect()->route('admin.movies');
     }
 
@@ -84,15 +82,15 @@ class AdminController extends Controller
         $movies = $this->movieRepo->all();
         return Datatables::of($movies)
             ->editColumn('name', '<a href=movie/{{ $slug }}/edit> {{ $name }} </a>')
-            ->addColumn('status', function($model){
+            ->addColumn('status', function ($model) {
                 $data = $model->status->name;
                 return $data;
             })
-            ->addColumn("poster", function($model){
-                $data = "<img width='100' height='auto' src=" . asset('/storage/movies') . '/' . $model->slug . '/' . $model->poster ."></img>";
+            ->addColumn("poster", function ($model) {
+                $data = "<img width='100' height='auto' src=" . asset('/storage/movies') . '/' . $model->slug . '/' . $model->poster . "></img>";
                 return $data;
             })
-            ->rawColumns(['name','status', 'poster'])
+            ->rawColumns(['name', 'status', 'poster'])
             ->make(true);
     }
 }

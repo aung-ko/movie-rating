@@ -19,11 +19,6 @@ class ChatController extends Controller
     	$this->middleware('auth');
     }
 
-    // public function chat()
-    // {
-    // 	return view('frontend.app');
-    // }
-
     public function send(request $request)
     {
     	$user = User::find(Auth::id());
