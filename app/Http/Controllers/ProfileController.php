@@ -15,10 +15,14 @@ class ProfileController extends Controller
 
     public function profile(User $user)
     {
-        if ($user->isAdmin()) {
+        if ($user->isAdmin() && auth()->user()->isAdmin()) {
             return view('admin.profile', compact('user'));
         } else {
-            $reviews = Review::latest()->where('user_id', auth()->user()->id)->paginate(5);
+            if($user->isAdmin()){
+                return redirect()->back();
+            }
+
+            $reviews = Review::latest()->where('user_id', $user->id)->paginate(5);
             return view('pages.user', compact(['user', 'reviews']));
         }
     }
