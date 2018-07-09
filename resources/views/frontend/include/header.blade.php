@@ -39,6 +39,12 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{route('user', Auth::user()->slug)}}">Profile</a>
                 <div class="dropdown-divider"></div>
+
+                @if (Auth::user()->isAdmin())
+                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    <div class="dropdown-divider"></div>
+                @endif
+                
                 <a  class="dropdown-item" href="{{ route('logout') }}" 
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -48,7 +54,7 @@
                 </form>            
             </div>
         </div>
-@else
+    @else
 
 
         <a  href="{{route('login')}}" class="btn btn-primary">၀င်ရောက်ပါ</a>
