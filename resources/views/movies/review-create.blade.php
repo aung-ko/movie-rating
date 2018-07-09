@@ -31,11 +31,9 @@
                             @endforeach<br>         
                           </p>                                                                         
                     </div>
-
-                    
-                    </div>  
-                </div>
+                </div>  
             </div>
+        </div>
         <div class="col-md-8 mt-3">
 
             <section class="activities">
