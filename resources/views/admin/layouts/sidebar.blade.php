@@ -10,7 +10,7 @@
                     </button>
                 </span>
                 </div>
-                <!-- /input-group -->
+          
             </li> --}}
             <li>
                 <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Admin Dashboard</a>
@@ -26,6 +26,9 @@
             </li>
             <li>
                 <a href="{{ route('admin.users') }}"><i class="fa fa-users fa-fw"></i> Users</a>
+            </li>
+            <li>
+                <a href="{{ route('admin.review') }}"><i class="fa fa-book fa-fw"></i> Reviews</a>
             </li>
             
            

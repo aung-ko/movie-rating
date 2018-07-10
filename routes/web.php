@@ -27,6 +27,12 @@ Route::prefix('admin')->group(function () {
     Route::get('users-d', 'Admin\UserController@userData')->name('admin.users.data');
     Route::post('ban/{user}', 'Admin\UserController@banUser')->name('admin.ban.user');
     Route::post('unban/{user}', 'Admin\UserController@UnBanUser')->name('admin.unban.user');
+
+
+
+    Route::get('review/', 'Movie\ReviewController@reviewList')->name('admin.review');
+    Route::delete('/review/{review}', 'Movie\ReviewController@reviewDestroy')->name('admin.review.destroy');
+    Route::get('reviews-d', 'Movie\ReviewController@reviewData')->name('admin.review.data');
 });
 
 Route::prefix('movie')->group(function () { 

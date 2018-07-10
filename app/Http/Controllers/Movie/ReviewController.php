@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+
 
 class ReviewController extends Controller
 {
@@ -29,8 +31,8 @@ class ReviewController extends Controller
     public function allReviews(Movie $movie)
     {
         $reviews = Review::latest()
-            ->where('movie_id', '=', $movie->id)
-            ->paginate(5);
+        ->where('movie_id', '=', $movie->id)
+        ->paginate(5);
         return view('movies.reviews', compact(['reviews', 'movie']));
     }
 
@@ -101,4 +103,66 @@ class ReviewController extends Controller
     {
         return view('movies.review-edit', compact(['movie', 'review']));
     }
+
+    public function reviewList()
+    {
+        return view('admin.review.index');
+    }
+
+
+    public function reviewDestroy(Review $review)
+    {
+        $review = Review::where('id', '=', $review->id)->delete();
+        return redirect()->route('admin.review');
+    }
+
+    public function reviewData()
+    {
+        $reviews = Review::all();
+        return Datatables::of($reviews)
+        ->addColumn("movie", function($model){
+            $data = $model->movie->name;
+            return $data;
+        })
+        ->addColumn("delete", function($model){
+            $data = '<form action='. route('admin.review.destroy', $model->id) .'  method="POST">'
+            . csrf_field() .
+            method_field("delete") .
+            '<button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+            </form>';
+            return $data;
+        })
+        ->rawColumns(['movie', 'delete'])
+        ->make(true);
+    }
+
+    
 }
+
+// ->addColumn("edit", function($model){
+//             $data = "<button type='button' class='btn btn-primary' 
+//             data-toggle='modal' data-target='#reviewModal" . $model->id . "'>
+//             <span class='glyphicon glyphicon-pencil'></span>
+//             </button>
+//             <div class='modal fade' id='reviewModal" . $model->id . "' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+//             <div class='modal-dialog' role='document'>
+//             <div class='modal-content'>
+//             <div class='modal-header'>
+//             <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+//             <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+//             <span aria-hidden='true'>&times;</span>
+//             </button>
+//             </div>
+//             <div class='modal-body'>
+            
+//             </div>
+//             <div class='modal-footer'>
+//             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+//             <button type='button' class='btn btn-primary'>Save changes</button>
+//             </div>
+//             </div>
+//             </div>
+//             </div>";
+//             return $data;
+//         })
+
